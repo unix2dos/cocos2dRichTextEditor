@@ -96,11 +96,19 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0f / 60);
 
     // Set the design resolution
-    glview->setDesignResolutionSize(DESIGN_SIZE_W, DESIGN_SIZE_H, ResolutionPolicy::FIXED_HEIGHT);
+    glview->setDesignResolutionSize(MY_DESIGNSIZE_W, MY_DESIGNSIZE_H, ResolutionPolicy::NO_BORDER);
 
 
     register_all_packages();
 
+    
+    //path
+    auto path = FileUtils::getInstance()->getSearchPaths();
+    path.clear();
+    path.push_back("fonts");
+    path.push_back("res");
+    FileUtils::getInstance()->setSearchPaths(path);
+    
     //跳到启动场景
     CSceneManager::jumpToScene(eSceneType::launch);
 

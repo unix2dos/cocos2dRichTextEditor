@@ -9,8 +9,7 @@
 #define Config_h
 
 
-static const float DESIGN_SIZE_W = 1536.0f;
-static const float DESIGN_SIZE_H = 2048.0f;
-
+static const float MY_DESIGNSIZE_W = 1000;
+static const float MY_DESIGNSIZE_H = 1334;
 
 #endif /* Config_h */

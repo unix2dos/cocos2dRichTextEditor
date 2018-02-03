@@ -6,6 +6,8 @@
 //
 
 #include "SceneMain.h"
+#include "LayerMain.h"
+USING_NS_CC;
 
 CSceneMain::CSceneMain()
 {
@@ -22,5 +24,9 @@ bool CSceneMain::init()
     if (!CSceneBase::init()){
         return false;
     }
+    
+    auto layer = CLayerMain::create();
+    this->addChild(layer);
+    
     return true;
 }
