@@ -8,7 +8,7 @@
 
 #include "RichText.h"
 #include "cocos2d.h"
-//#import "ZSSDemoViewController.h"
+#include "ZSSDemoViewController.h"
 USING_NS_CC;
 
 CRichText* CRichText::m_pRichText = nullptr;
@@ -30,20 +30,20 @@ CRichText* CRichText::getInstance()
     return m_pRichText;
 }
 
-//static ZSSDemoViewController* demo = nullptr;
+static ZSSDemoViewController* demo = nullptr;
 void CRichText::haha()
 {
-//    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-//    if (demo)
-//    {
-//        [rootViewController.view willRemoveSubview:demo.view];
-//        demo = nullptr;
-//    }
-//    else
-//    {
-//        ZSSDemoViewController *demo = [[ZSSDemoViewController alloc] init];
-//        [rootViewController.view addSubview:demo.view];
-//    }
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    if (demo)
+    {
+        [rootViewController.view willRemoveSubview:demo.view];
+        demo = nullptr;
+    }
+    else
+    {
+        ZSSDemoViewController *demo = [[ZSSDemoViewController alloc] init];
+        [rootViewController.view addSubview:demo.view];
+    }
 }
 
 
