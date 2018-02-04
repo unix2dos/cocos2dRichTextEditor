@@ -8,7 +8,7 @@
 
 #include "RichText.h"
 #include "cocos2d.h"
-#include "ZSSDemoViewController.h"
+#include "RichViewController.h"
 USING_NS_CC;
 
 CRichText* CRichText::m_pRichText = nullptr;
@@ -30,7 +30,7 @@ CRichText* CRichText::getInstance()
     return m_pRichText;
 }
 
-static ZSSDemoViewController* demo = nullptr;
+static RichViewController* demo = nullptr;
 void CRichText::haha()
 {
     UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -41,7 +41,7 @@ void CRichText::haha()
     }
     else
     {
-        ZSSDemoViewController *demo = [[ZSSDemoViewController alloc] init];
+        demo = [[RichViewController alloc] init];
         [rootViewController.view addSubview:demo.view];
     }
 }

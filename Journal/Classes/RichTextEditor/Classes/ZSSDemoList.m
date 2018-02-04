@@ -13,6 +13,7 @@
 #import "ZSSPlaceholderViewController.h"
 #import "ZSSSelectiveViewController.h"
 #import "ZSSCustomButtonsViewController.h"
+#import "ZSSDemoPickerViewController.h"
 
 @interface ZSSDemoList ()
 @property (nonatomic) BOOL isIPad;
@@ -57,7 +58,7 @@
 {
     // Return the number of rows in the section.
     //if (self.isIPad) return 6;
-    return 5;
+    return 8;
 }
 
 
@@ -91,6 +92,12 @@
     } else if (indexPath.row == 5) {
         cell.textLabel.text = @"iPad Form Style Modal";
         cell.detailTextLabel.text = @"Shows a form style modal on the iPad";
+    }else if (indexPath.row == 6) {
+        cell.textLabel.text = @"1111";
+        cell.detailTextLabel.text = @"111111";
+    }else if (indexPath.row == 7) {
+        cell.textLabel.text = @"2222";
+        cell.detailTextLabel.text = @"22222222";
     }
     cell.detailTextLabel.textColor = [UIColor grayColor];
     
@@ -120,8 +127,13 @@
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:demo1];
         nav.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentViewController:nav animated:YES completion:nil];
+    }else if (indexPath.row == 6) {
+        ZSSLargeViewController *demo6 = [[ZSSPlaceholderViewController alloc] init];
+        [self.navigationController pushViewController:demo6 animated:YES];
+    } else if (indexPath.row == 7) {
+        ZSSLargeViewController *demo7 = [[ZSSDemoPickerViewController alloc] init];
+        [self.navigationController pushViewController:demo7 animated:YES];
     }
-    
 }
 
 @end
