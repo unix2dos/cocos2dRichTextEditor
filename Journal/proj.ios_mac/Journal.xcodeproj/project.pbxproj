@@ -14,6 +14,7 @@
 		0193ABEC20257DA900C6C656 /* SceneMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABEA20257DA900C6C656 /* SceneMain.cpp */; };
 		0193ABEF20257F9900C6C656 /* SceneLaunch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABED20257F9900C6C656 /* SceneLaunch.cpp */; };
 		0193ABF52025811200C6C656 /* LayerMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABF32025811200C6C656 /* LayerMain.cpp */; };
+		01BA7D5E2026FB57002EA80C /* RichText.mm in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7D5B2026FB56002EA80C /* RichText.mm */; };
 		1A88B2641FC3D9C9005C14AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A88B2631FC3D9C9005C14AE /* Images.xcassets */; };
 		1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */; };
 		1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB07180E9839004C840B /* libcocos2d iOS.a */; };
@@ -109,6 +110,8 @@
 		0193ABEE20257F9900C6C656 /* SceneLaunch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneLaunch.h; sourceTree = "<group>"; };
 		0193ABF32025811200C6C656 /* LayerMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerMain.cpp; sourceTree = "<group>"; };
 		0193ABF42025811200C6C656 /* LayerMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerMain.h; sourceTree = "<group>"; };
+		01BA7D5B2026FB56002EA80C /* RichText.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RichText.mm; sourceTree = "<group>"; };
+		01BA7D5C2026FB56002EA80C /* RichText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichText.h; sourceTree = "<group>"; };
 		1A88B2631FC3D9C9005C14AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
@@ -231,6 +234,7 @@
 		0193ABF1202580FB00C6C656 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				01BA7D5A2026FB56002EA80C /* RichText */,
 				0193ABD02025486A00C6C656 /* WebView */,
 				0193ABF2202580FB00C6C656 /* Main */,
 			);
@@ -244,6 +248,15 @@
 				0193ABF42025811200C6C656 /* LayerMain.h */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		01BA7D5A2026FB56002EA80C /* RichText */ = {
+			isa = PBXGroup;
+			children = (
+				01BA7D5B2026FB56002EA80C /* RichText.mm */,
+				01BA7D5C2026FB56002EA80C /* RichText.h */,
+			);
+			path = RichText;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -505,6 +518,7 @@
 				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
 				0193ABEF20257F9900C6C656 /* SceneLaunch.cpp in Sources */,
+				01BA7D5E2026FB57002EA80C /* RichText.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
