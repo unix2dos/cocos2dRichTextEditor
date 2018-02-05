@@ -7,7 +7,7 @@
 
 #ifndef SceneMain_hpp
 #define SceneMain_hpp
-#include "SceneBase.h"
+
 
 class CSceneMain: public CSceneBase
 {

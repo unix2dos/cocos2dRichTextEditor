@@ -7,6 +7,7 @@
 
 #ifndef LayerMain_hpp
 #define LayerMain_hpp
+
 #include "ui/UIButton.h"
 
 
@@ -17,7 +18,7 @@ enum class MainStatus{
 };
 
 
-class CLayerMain: public cocos2d::Layer
+class CLayerMain: public Layer
 {
 public:
     CLayerMain();

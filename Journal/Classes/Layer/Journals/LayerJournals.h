@@ -8,7 +8,7 @@
 #ifndef LayerJournals_hpp
 #define LayerJournals_hpp
 
-class CLayerJournals: public cocos2d::Layer
+class CLayerJournals: public Layer
 {
 public:
     CLayerJournals();
@@ -17,6 +17,12 @@ public:
     bool init() override;    
 private:
     void _initUI();
+    
+    void _initInfo();
+    void _initContext();
+    
+private:
+    Size m_winSize;
 };
 
 #endif /* LayerJournals_hpp */

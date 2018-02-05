@@ -5,17 +5,18 @@
 //  Created by liuwei on 2018/2/3.
 //
 
-#include "LayerMain.h"
-#include "Config.h"
-#include "LayerJournals.h"
-#include "LayerArchive.h"
-#include "LayerJournalEx.h"
-
-
 
 USING_NS_CC;
 using namespace cocos2d::ui;
 using namespace std;
+
+
+#include "Config.h"
+#include "LayerJournals.h"
+#include "LayerArchive.h"
+#include "LayerJournalEx.h"
+#include "LayerMain.h"
+
 #define FUNCTIONS_HEIGHT 100
 
 
@@ -61,7 +62,7 @@ void CLayerMain::_initFunctions()
     Size size = Director::getInstance()->getWinSize();
     
     auto layerColor = LayerColor::create(Color4B(220, 220, 220, 255), size.width, 150);
-    this->addChild(layerColor);
+    this->addChild(layerColor, 2);
     
     
     auto btnJournals = Button::create("tab-journal.png");
@@ -182,5 +183,5 @@ void CLayerMain::_showJournalEx()
     
     auto layer = CLayerJournalEx::create();
     layer->setTag(100);
-    this->addChild(layer);
+    this->addChild(layer, 1);
 }

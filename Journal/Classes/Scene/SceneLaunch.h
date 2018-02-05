@@ -7,7 +7,7 @@
 
 #ifndef SceneLaunch_hpp
 #define SceneLaunch_hpp
-#include "SceneBase.h"
+
 
 class CSceneLaunch: public CSceneBase
 {

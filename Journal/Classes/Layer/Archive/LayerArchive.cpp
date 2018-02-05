@@ -5,13 +5,12 @@
 //  Created by liuwei on 2018/2/5.
 //
 
-#include "LayerArchive.h"
-#include "Config.h"
-
-
 USING_NS_CC;
 using namespace cocos2d::ui;
 using namespace std;
+
+#include "Config.h"
+#include "LayerArchive.h"
 
 CLayerArchive::CLayerArchive()
 {

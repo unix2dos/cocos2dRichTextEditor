@@ -8,7 +8,7 @@
 #ifndef LayerArchive_hpp
 #define LayerArchive_hpp
 
-class CLayerArchive: public cocos2d::Layer
+class CLayerArchive: public Layer
 {
 public:
     CLayerArchive();

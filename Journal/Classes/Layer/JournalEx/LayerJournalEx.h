@@ -8,7 +8,7 @@
 #ifndef LayerJournalEx_hpp
 #define LayerJournalEx_hpp
 
-class CLayerJournalEx: public cocos2d::Layer
+class CLayerJournalEx: public Layer
 {
 public:
     CLayerJournalEx();

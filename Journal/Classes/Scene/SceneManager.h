@@ -7,7 +7,7 @@
 
 #ifndef SceneManager_hpp
 #define SceneManager_hpp
-#include "SceneBase.h"
+
 
 
 enum class eSceneType
@@ -17,8 +17,8 @@ enum class eSceneType
     main, //主界面
 };
 
-
-class CSceneManager : public cocos2d::Ref
+class CSceneBase;
+class CSceneManager : public Ref
 {
 public:
     static CSceneManager* getInstance();

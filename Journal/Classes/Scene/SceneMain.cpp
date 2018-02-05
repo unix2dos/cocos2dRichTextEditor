@@ -5,9 +5,10 @@
 //  Created by liuwei on 2018/2/3.
 //
 
-#include "SceneMain.h"
-#include "LayerMain.h"
 USING_NS_CC;
+#include "SceneBase.h"
+#include "LayerMain.h"
+#include "SceneMain.h"
 
 CSceneMain::CSceneMain()
 {

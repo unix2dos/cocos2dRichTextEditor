@@ -8,12 +8,8 @@
 #ifndef LayerWebView_hpp
 #define LayerWebView_hpp
 
-#include <stdio.h>
-#include "cocos2d.h"
-#include "extensions/cocos-ext.h"
-#include "ui/CocosGUI.h"
 
-class CLayerWebView: public cocos2d::Layer
+class CLayerWebView: public Layer
 {
 public:
     CLayerWebView();

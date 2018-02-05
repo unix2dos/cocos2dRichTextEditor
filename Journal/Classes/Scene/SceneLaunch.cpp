@@ -5,9 +5,10 @@
 //  Created by liuwei on 2018/2/3.
 //
 
-#include "SceneLaunch.h"
-#include "SceneManager.h"
 USING_NS_CC;
+#include "SceneBase.h"
+#include "SceneManager.h"
+#include "SceneLaunch.h"
 
 CSceneLaunch::CSceneLaunch()
 {

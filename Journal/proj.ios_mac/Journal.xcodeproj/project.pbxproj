@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABD12025487B00C6C656 /* LayerWebView.cpp */; };
-		0193ABD720254D5000C6C656 /* Test.html in Resources */ = {isa = PBXBuildFile; fileRef = 0193ABD620254D4F00C6C656 /* Test.html */; };
 		0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE42025771A00C6C656 /* SceneManager.cpp */; };
 		0193ABE92025795F00C6C656 /* SceneBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE72025795F00C6C656 /* SceneBase.cpp */; };
 		0193ABEC20257DA900C6C656 /* SceneMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABEA20257DA900C6C656 /* SceneMain.cpp */; };
@@ -215,7 +214,6 @@
 /* Begin PBXFileReference section */
 		0193ABD12025487B00C6C656 /* LayerWebView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerWebView.cpp; sourceTree = "<group>"; };
 		0193ABD22025487B00C6C656 /* LayerWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWebView.h; sourceTree = "<group>"; };
-		0193ABD620254D4F00C6C656 /* Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Test.html; sourceTree = "<group>"; };
 		0193ABE1202575B000C6C656 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		0193ABE42025771A00C6C656 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
 		0193ABE52025771A00C6C656 /* SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
@@ -472,13 +470,6 @@
 			path = WebView;
 			sourceTree = "<group>";
 		};
-		0193ABE02025759F00C6C656 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		0193ABE2202576F100C6C656 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,8 +512,8 @@
 			children = (
 				01BA7D5B2026FB56002EA80C /* RichText.mm */,
 				01BA7D5C2026FB56002EA80C /* RichText.h */,
-				01BA7F6720270AAB002EA80C /* RichViewController.h */,
 				01BA7F6920270AAB002EA80C /* RichViewController.mm */,
+				01BA7F6720270AAB002EA80C /* RichViewController.h */,
 			);
 			path = RichText;
 			sourceTree = "<group>";
@@ -812,7 +803,6 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0193ABD620254D4F00C6C656 /* Test.html */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 				3EACC98E19EE6D4300EB3C5E /* res */,
 			);
@@ -829,7 +819,6 @@
 				01BA7E63202700B6002EA80C /* RichTextEditor */,
 				0193ABF1202580FB00C6C656 /* Layer */,
 				0193ABE2202576F100C6C656 /* Scene */,
-				0193ABE02025759F00C6C656 /* Base */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -1024,7 +1013,6 @@
 				01BA7F30202700B7002EA80C /* ZSSfonts.png in Resources */,
 				01BA7F4C202700B7002EA80C /* ZSSimage.png in Resources */,
 				01BA7F4D202700B7002EA80C /* editor.html in Resources */,
-				0193ABD720254D5000C6C656 /* Test.html in Resources */,
 				01BA7F17202700B7002EA80C /* ZSSunorderedlist@2x.png in Resources */,
 				01BA7F60202700B7002EA80C /* Default-568h@2x.png in Resources */,
 				01BA7F3E202700B7002EA80C /* ZSSh5@2x.png in Resources */,

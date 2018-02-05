@@ -6,10 +6,11 @@
 //
 //
 
-#include "RichText.h"
-#include "cocos2d.h"
-#include "RichViewController.h"
 USING_NS_CC;
+#include "RichViewController.h"
+#include "RichText.h"
+
+
 
 CRichText* CRichText::m_pRichText = nullptr;
 

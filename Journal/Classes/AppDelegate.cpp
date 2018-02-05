@@ -39,11 +39,11 @@ using namespace cocos2d::experimental;
 #include "audio/include/SimpleAudioEngine.h"
 using namespace CocosDenshion;
 #endif
-#include "Config.h"
-#include "SceneManager.h"
+
 
 USING_NS_CC;
-
+#include "Config.h"
+#include "SceneManager.h"
 
 
 AppDelegate::AppDelegate()

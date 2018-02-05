@@ -5,8 +5,8 @@
 //  Created by liuwei on 2018/2/3.
 //
 
-#include "SceneBase.h"
 
+#include "SceneBase.h"
 
 CSceneBase::CSceneBase()
 {

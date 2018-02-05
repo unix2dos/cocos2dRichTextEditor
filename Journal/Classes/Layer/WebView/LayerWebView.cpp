@@ -5,9 +5,11 @@
 //  Created by liuwei on 2018/2/3.
 //
 
-#include "LayerWebView.h"
 USING_NS_CC;
 using namespace cocos2d::ui;
+#include "extensions/cocos-ext.h"
+#include "ui/CocosGUI.h"
+#include "LayerWebView.h"
 
 CLayerWebView::CLayerWebView(){
     
