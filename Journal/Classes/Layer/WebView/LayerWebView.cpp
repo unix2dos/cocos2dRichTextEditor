@@ -5,9 +5,8 @@
 //  Created by liuwei on 2018/2/3.
 //
 
-USING_NS_CC;
-using namespace cocos2d::ui;
-#include "extensions/cocos-ext.h"
+
+#include "Config.h"
 #include "ui/CocosGUI.h"
 #include "LayerWebView.h"
 

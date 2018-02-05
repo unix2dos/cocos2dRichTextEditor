@@ -131,6 +131,7 @@
 		01BA7F7E202805D6002EA80C /* LayerJournals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F7C202805D6002EA80C /* LayerJournals.cpp */; };
 		01BA7F812028065E002EA80C /* LayerArchive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F7F2028065E002EA80C /* LayerArchive.cpp */; };
 		01BA7F8420280685002EA80C /* LayerJournalEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F8220280685002EA80C /* LayerJournalEx.cpp */; };
+		01BA7F8B20284C2E002EA80C /* JournalsCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F8920284C2E002EA80C /* JournalsCell.cpp */; };
 		1A88B2641FC3D9C9005C14AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A88B2631FC3D9C9005C14AE /* Images.xcassets */; };
 		1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */; };
 		1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB07180E9839004C840B /* libcocos2d iOS.a */; };
@@ -374,6 +375,8 @@
 		01BA7F802028065E002EA80C /* LayerArchive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerArchive.h; sourceTree = "<group>"; };
 		01BA7F8220280685002EA80C /* LayerJournalEx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerJournalEx.cpp; sourceTree = "<group>"; };
 		01BA7F8320280685002EA80C /* LayerJournalEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerJournalEx.h; sourceTree = "<group>"; };
+		01BA7F8920284C2E002EA80C /* JournalsCell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = JournalsCell.cpp; sourceTree = "<group>"; };
+		01BA7F8A20284C2E002EA80C /* JournalsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JournalsCell.h; sourceTree = "<group>"; };
 		1A88B2631FC3D9C9005C14AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
@@ -710,6 +713,8 @@
 			children = (
 				01BA7F7C202805D6002EA80C /* LayerJournals.cpp */,
 				01BA7F7D202805D6002EA80C /* LayerJournals.h */,
+				01BA7F8920284C2E002EA80C /* JournalsCell.cpp */,
+				01BA7F8A20284C2E002EA80C /* JournalsCell.h */,
 			);
 			path = Journals;
 			sourceTree = "<group>";
@@ -1073,6 +1078,7 @@
 				01BA7F7E202805D6002EA80C /* LayerJournals.cpp in Sources */,
 				01BA7F61202700B7002EA80C /* main.m in Sources */,
 				01BA7F4E202700B7002EA80C /* ZSSRichTextEditor.m in Sources */,
+				01BA7F8B20284C2E002EA80C /* JournalsCell.cpp in Sources */,
 				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
 				01BA7F55202700B7002EA80C /* HRBrightnessCursor.m in Sources */,
 				01BA7F65202700B7002EA80C /* DemoModalViewController.m in Sources */,

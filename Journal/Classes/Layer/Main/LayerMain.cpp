@@ -6,11 +6,6 @@
 //
 
 
-USING_NS_CC;
-using namespace cocos2d::ui;
-using namespace std;
-
-
 #include "Config.h"
 #include "LayerJournals.h"
 #include "LayerArchive.h"
@@ -46,28 +41,29 @@ bool CLayerMain::init()
 
 void CLayerMain::_initUI()
 {
-    Size size = Director::getInstance()->getWinSize();
+    m_winSize = Director::getInstance()->getWinSize();
     auto bg = Sprite::create("bg_main.png");
-    bg->setPosition(Vec2(size.width/2, size.height/2));
+    bg->setPosition(Vec2(m_winSize.width/2, m_winSize.height/2));
     this->addChild(bg);
     
-    //初始化功能
-    _initFunctions();
+    //初始化按钮
+    _initButtons();
+    
+    //显示默认
+    this->setMainStatus(m_status);
 }
 
 
 
-void CLayerMain::_initFunctions()
+void CLayerMain::_initButtons()
 {
-    Size size = Director::getInstance()->getWinSize();
-    
-    auto layerColor = LayerColor::create(Color4B(220, 220, 220, 255), size.width, 150);
+    auto layerColor = LayerColor::create(Color4B(220, 220, 220, 255), m_winSize.width, 150);
     this->addChild(layerColor, 2);
     
     
     auto btnJournals = Button::create("tab-journal.png");
     btnJournals->setScale(.5f);
-    btnJournals->setPosition(Vec2(size.width*.25, FUNCTIONS_HEIGHT));
+    btnJournals->setPosition(Vec2(m_winSize.width*.25, FUNCTIONS_HEIGHT));
     btnJournals->addClickEventListener([&](Ref* r){
         this->setMainStatus(MainStatus::Journals);
     });
@@ -78,14 +74,14 @@ void CLayerMain::_initFunctions()
     label1->setName("text");
     btnJournals->addChild(label1);
     
-
-
+    
+    
     
     
     
     auto btnArchive = Button::create("tab-profile.png");
     btnArchive->setScale(.5f);
-    btnArchive->setPosition(Vec2(size.width*.5, FUNCTIONS_HEIGHT));
+    btnArchive->setPosition(Vec2(m_winSize.width*.5, FUNCTIONS_HEIGHT));
     btnArchive->addClickEventListener([&](Ref* r){
         this->setMainStatus(MainStatus::Archive);
     });
@@ -101,7 +97,7 @@ void CLayerMain::_initFunctions()
     
     auto btnJournalEx = Button::create("tab-journalex.png");
     btnJournalEx->setScale(.5f);
-    btnJournalEx->setPosition(Vec2(size.width*.75, FUNCTIONS_HEIGHT));
+    btnJournalEx->setPosition(Vec2(m_winSize.width*.75, FUNCTIONS_HEIGHT));
     btnJournalEx->addClickEventListener([&](Ref* r){
         this->setMainStatus(MainStatus::JournalEx);
     });
@@ -116,8 +112,6 @@ void CLayerMain::_initFunctions()
     m_vecBtns.push_back(btnJournals);
     m_vecBtns.push_back(btnArchive);
     m_vecBtns.push_back(btnJournalEx);
-    
-    this->setMainStatus(m_status);
 }
 
 
@@ -156,8 +150,10 @@ void CLayerMain::setMainStatus(MainStatus status)
 
 void CLayerMain::_showJournals()
 {
-    auto label = dynamic_cast<Label*>(m_vecBtns[0]->getChildByName("text"));
-    label->setTextColor(Color4B(0,0,0,255));
+    if (!m_vecBtns.empty()){
+        auto label = dynamic_cast<Label*>(m_vecBtns[0]->getChildByName("text"));
+        label->setTextColor(Color4B(0,0,0,255));
+    }
     
     auto layer = CLayerJournals::create();
     layer->setTag(100);
@@ -167,8 +163,10 @@ void CLayerMain::_showJournals()
 
 void CLayerMain::_showArchive()
 {
-    auto label = dynamic_cast<Label*>(m_vecBtns[1]->getChildByName("text"));
-    label->setTextColor(Color4B(0,0,0,255));
+    if (!m_vecBtns.empty()){
+        auto label = dynamic_cast<Label*>(m_vecBtns[1]->getChildByName("text"));
+        label->setTextColor(Color4B(0,0,0,255));
+    }
     
     auto layer = CLayerArchive::create();
     layer->setTag(100);
@@ -178,8 +176,10 @@ void CLayerMain::_showArchive()
 
 void CLayerMain::_showJournalEx()
 {
-    auto label = dynamic_cast<Label*>(m_vecBtns[2]->getChildByName("text"));
-    label->setTextColor(Color4B(0,0,0,255));
+    if (!m_vecBtns.empty()){
+        auto label = dynamic_cast<Label*>(m_vecBtns[2]->getChildByName("text"));
+        label->setTextColor(Color4B(0,0,0,255));
+    }
     
     auto layer = CLayerJournalEx::create();
     layer->setTag(100);

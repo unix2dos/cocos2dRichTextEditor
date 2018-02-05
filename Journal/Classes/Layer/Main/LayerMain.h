@@ -8,8 +8,6 @@
 #ifndef LayerMain_hpp
 #define LayerMain_hpp
 
-#include "ui/UIButton.h"
-
 
 enum class MainStatus{
     Journals,
@@ -31,7 +29,7 @@ public:
     
 private:
     void _initUI();
-    void _initFunctions();
+    void _initButtons();
     
     
     void _showJournals();
@@ -39,6 +37,7 @@ private:
     void _showJournalEx();
     
 private:
+    Size m_winSize;
     MainStatus m_status;
     std::vector<cocos2d::ui::Button*> m_vecBtns;
 };
