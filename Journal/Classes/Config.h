@@ -9,7 +9,9 @@
 #define Config_h
 
 
-static const float MY_DESIGNSIZE_W = 1000;
-static const float MY_DESIGNSIZE_H = 1334;
+#define MY_DESIGNSIZE_W  1000.0f
+#define MY_DESIGNSIZE_H  1334.0f
+#define MY_FONT_ENGLISH "arial.ttf"
+
 
 #endif /* Config_h */

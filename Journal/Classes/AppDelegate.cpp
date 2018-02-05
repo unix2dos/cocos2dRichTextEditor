@@ -90,7 +90,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     }
 
     // turn on display FPS
-    director->setDisplayStats(true);
+//    director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
@@ -107,6 +107,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     path.clear();
     path.push_back("fonts");
     path.push_back("res");
+    path.push_back("res/ui");
     FileUtils::getInstance()->setSearchPaths(path);
     
     //跳到启动场景
