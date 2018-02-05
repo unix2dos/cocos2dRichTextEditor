@@ -95,8 +95,20 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
 
-    // Set the design resolution
-    glview->setDesignResolutionSize(MY_DESIGNSIZE_W, MY_DESIGNSIZE_H, ResolutionPolicy::NO_BORDER);
+    
+    //这种写法是为了winSize不同设备不同, 更好适配
+    Size screenSize = glview->getFrameSize();
+    Size designSize = Size(MY_DESIGNSIZE_W, MY_DESIGNSIZE_H);
+    if(screenSize.width / screenSize.height < MY_DESIGNSIZE_W/MY_DESIGNSIZE_H)//说明屏幕的宽小了,分辨率的宽也应该也小点
+    {
+        designSize = Size(screenSize.width * MY_DESIGNSIZE_H / screenSize.height,MY_DESIGNSIZE_H);
+    }
+    else if(screenSize.width / screenSize.height > MY_DESIGNSIZE_W / MY_DESIGNSIZE_H)
+    {
+        designSize = Size(MY_DESIGNSIZE_W,screenSize.height * MY_DESIGNSIZE_W / screenSize.width);
+    }
+    glview->setDesignResolutionSize(designSize.width, designSize.height,ResolutionPolicy::NO_BORDER);
+    
 
 
     register_all_packages();

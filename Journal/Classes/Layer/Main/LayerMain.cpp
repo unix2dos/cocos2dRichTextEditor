@@ -47,7 +47,7 @@ bool CLayerMain::init()
 void CLayerMain::_initUI()
 {
     Size size = Director::getInstance()->getWinSize();
-    auto bg = Sprite::create("bg.png");
+    auto bg = Sprite::create("bg_main.png");
     bg->setPosition(Vec2(size.width/2, size.height/2));
     this->addChild(bg);
     
