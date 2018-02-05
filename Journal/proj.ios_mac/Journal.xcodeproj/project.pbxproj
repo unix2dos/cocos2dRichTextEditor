@@ -129,6 +129,9 @@
 		01BA7F64202700B7002EA80C /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 01BA7EF2202700B6002EA80C /* 152.png */; };
 		01BA7F65202700B7002EA80C /* DemoModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7EF3202700B6002EA80C /* DemoModalViewController.m */; };
 		01BA7F6A20270AAB002EA80C /* RichViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F6920270AAB002EA80C /* RichViewController.mm */; };
+		01BA7F7E202805D6002EA80C /* LayerJournals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F7C202805D6002EA80C /* LayerJournals.cpp */; };
+		01BA7F812028065E002EA80C /* LayerArchive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F7F2028065E002EA80C /* LayerArchive.cpp */; };
+		01BA7F8420280685002EA80C /* LayerJournalEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F8220280685002EA80C /* LayerJournalEx.cpp */; };
 		1A88B2641FC3D9C9005C14AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A88B2631FC3D9C9005C14AE /* Images.xcassets */; };
 		1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */; };
 		1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB07180E9839004C840B /* libcocos2d iOS.a */; };
@@ -367,6 +370,12 @@
 		01BA7EF3202700B6002EA80C /* DemoModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoModalViewController.m; sourceTree = "<group>"; };
 		01BA7F6720270AAB002EA80C /* RichViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichViewController.h; sourceTree = "<group>"; };
 		01BA7F6920270AAB002EA80C /* RichViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RichViewController.mm; sourceTree = "<group>"; };
+		01BA7F7C202805D6002EA80C /* LayerJournals.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerJournals.cpp; sourceTree = "<group>"; };
+		01BA7F7D202805D6002EA80C /* LayerJournals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerJournals.h; sourceTree = "<group>"; };
+		01BA7F7F2028065E002EA80C /* LayerArchive.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerArchive.cpp; sourceTree = "<group>"; };
+		01BA7F802028065E002EA80C /* LayerArchive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerArchive.h; sourceTree = "<group>"; };
+		01BA7F8220280685002EA80C /* LayerJournalEx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerJournalEx.cpp; sourceTree = "<group>"; };
+		01BA7F8320280685002EA80C /* LayerJournalEx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerJournalEx.h; sourceTree = "<group>"; };
 		1A88B2631FC3D9C9005C14AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
@@ -490,6 +499,9 @@
 			children = (
 				01BA7D5A2026FB56002EA80C /* RichText */,
 				0193ABD02025486A00C6C656 /* WebView */,
+				01BA7F7A2028058F002EA80C /* Journals */,
+				01BA7F792028058F002EA80C /* Archive */,
+				01BA7F7B2028058F002EA80C /* JournalEx */,
 				0193ABF2202580FB00C6C656 /* Main */,
 			);
 			path = Layer;
@@ -691,6 +703,33 @@
 				01BA7EE8202700B6002EA80C /* CYRTextStorage.h */,
 			);
 			path = "Third Party";
+			sourceTree = "<group>";
+		};
+		01BA7F792028058F002EA80C /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				01BA7F7F2028065E002EA80C /* LayerArchive.cpp */,
+				01BA7F802028065E002EA80C /* LayerArchive.h */,
+			);
+			path = Archive;
+			sourceTree = "<group>";
+		};
+		01BA7F7A2028058F002EA80C /* Journals */ = {
+			isa = PBXGroup;
+			children = (
+				01BA7F7C202805D6002EA80C /* LayerJournals.cpp */,
+				01BA7F7D202805D6002EA80C /* LayerJournals.h */,
+			);
+			path = Journals;
+			sourceTree = "<group>";
+		};
+		01BA7F7B2028058F002EA80C /* JournalEx */ = {
+			isa = PBXGroup;
+			children = (
+				01BA7F8220280685002EA80C /* LayerJournalEx.cpp */,
+				01BA7F8320280685002EA80C /* LayerJournalEx.h */,
+			);
+			path = JournalEx;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -1043,6 +1082,7 @@
 				01BA7F58202700B7002EA80C /* CYRTextStorage.m in Sources */,
 				0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */,
 				01BA7F51202700B7002EA80C /* ZSSFontsViewController.m in Sources */,
+				01BA7F7E202805D6002EA80C /* LayerJournals.cpp in Sources */,
 				01BA7F61202700B7002EA80C /* main.m in Sources */,
 				01BA7F4E202700B7002EA80C /* ZSSRichTextEditor.m in Sources */,
 				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
@@ -1061,6 +1101,7 @@
 				01BA7EFF202700B7002EA80C /* ZSSColorViewController.m in Sources */,
 				01BA7F4F202700B7002EA80C /* ZSSBarButtonItem.m in Sources */,
 				01BA7EF8202700B7002EA80C /* ZSSSelectiveViewController.m in Sources */,
+				01BA7F812028065E002EA80C /* LayerArchive.cpp in Sources */,
 				01BA7F54202700B7002EA80C /* HRColorPickerView.m in Sources */,
 				01BA7EFD202700B7002EA80C /* ZSSDemoPickerViewController.m in Sources */,
 				01BA7F52202700B7002EA80C /* HRCgUtil.m in Sources */,
@@ -1068,6 +1109,7 @@
 				01BA7EFA202700B7002EA80C /* ZSSPlaceholderViewController.m in Sources */,
 				01BA7EFE202700B7002EA80C /* ZSSAppDelegate.m in Sources */,
 				0193ABEC20257DA900C6C656 /* SceneMain.cpp in Sources */,
+				01BA7F8420280685002EA80C /* LayerJournalEx.cpp in Sources */,
 				01BA7EF7202700B7002EA80C /* ZSSDemoViewController.m in Sources */,
 				01BA7F53202700B7002EA80C /* HRColorPickerViewController.m in Sources */,
 				01BA7F56202700B7002EA80C /* CYRLayoutManager.m in Sources */,

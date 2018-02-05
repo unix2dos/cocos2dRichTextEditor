@@ -6,15 +6,17 @@
 //
 
 #include "LayerMain.h"
-#include "RichText.h"
 #include "Config.h"
+#include "LayerJournals.h"
+#include "LayerArchive.h"
+#include "LayerJournalEx.h"
 
 
 
 USING_NS_CC;
 using namespace cocos2d::ui;
 using namespace std;
-#define FUNCTIONS_HEIGHT 120
+#define FUNCTIONS_HEIGHT 100
 
 
 CLayerMain::CLayerMain()
@@ -50,15 +52,6 @@ void CLayerMain::_initUI()
     
     //初始化功能
     _initFunctions();
-
-    
-    
-    //    auto btn = Button::create("add.png");
-    //    btn->setPosition(Vec2(size.width/2, size.height/2));
-    //    btn->addClickEventListener([](Ref* r){
-    //        CRichText::getInstance()->haha();
-    //    });
-    //    this->addChild(btn);
 }
 
 
@@ -67,7 +60,7 @@ void CLayerMain::_initFunctions()
 {
     Size size = Director::getInstance()->getWinSize();
     
-    auto layerColor = LayerColor::create(Color4B(220, 220, 220, 255), size.width, 160);
+    auto layerColor = LayerColor::create(Color4B(220, 220, 220, 255), size.width, 150);
     this->addChild(layerColor);
     
     
@@ -132,11 +125,18 @@ void CLayerMain::setMainStatus(MainStatus status)
 {
     m_status = status;
     
+    //common ui
     for (const auto& it : m_vecBtns){
         auto label = dynamic_cast<Label*>(it->getChildByName("text"));
         label->setTextColor(Color4B(144,144,144,255));
     }
+    auto layer = this->getChildByTag(100);
+    if (layer)
+    {
+        layer->removeFromParent();
+    }
     
+    //ui
     switch (status) {
         case MainStatus::Journals:
             _showJournals();
@@ -157,6 +157,10 @@ void CLayerMain::_showJournals()
 {
     auto label = dynamic_cast<Label*>(m_vecBtns[0]->getChildByName("text"));
     label->setTextColor(Color4B(0,0,0,255));
+    
+    auto layer = CLayerJournals::create();
+    layer->setTag(100);
+    this->addChild(layer);
 }
 
 
@@ -164,6 +168,10 @@ void CLayerMain::_showArchive()
 {
     auto label = dynamic_cast<Label*>(m_vecBtns[1]->getChildByName("text"));
     label->setTextColor(Color4B(0,0,0,255));
+    
+    auto layer = CLayerArchive::create();
+    layer->setTag(100);
+    this->addChild(layer);
 }
 
 
@@ -171,4 +179,8 @@ void CLayerMain::_showJournalEx()
 {
     auto label = dynamic_cast<Label*>(m_vecBtns[2]->getChildByName("text"));
     label->setTextColor(Color4B(0,0,0,255));
+    
+    auto layer = CLayerJournalEx::create();
+    layer->setTag(100);
+    this->addChild(layer);
 }
