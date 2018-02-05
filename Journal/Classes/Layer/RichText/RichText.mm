@@ -30,19 +30,31 @@ CRichText* CRichText::getInstance()
     return m_pRichText;
 }
 
-static RichViewController* demo = nullptr;
+static RichViewController* controller = nullptr;
 void CRichText::haha()
 {
     UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    if (demo)
+    if (controller)
     {
-        [rootViewController.view willRemoveSubview:demo.view];
-        demo = nullptr;
+//        [rootViewController.view willRemoveSubview:controller.view];
+        //  [self.navigationController popToViewController:(nonnull UIViewController *) animated:(BOOL)];
+
+        [rootViewController dismissViewControllerAnimated:YES completion:nil];
+        [controller removeFromParentViewController];
+        controller = nullptr;//TODO: 此处应该是删除nav
     }
     else
     {
-        demo = [[RichViewController alloc] init];
-        [rootViewController.view addSubview:demo.view];
+//        controller = [[RichViewController alloc] init];
+//        controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//        [rootViewController.view addSubview:controller.view];
+//        [rootViewController.navigationController pushViewController:controller animated:YES];
+//        [rootViewController presentViewController:controller animated:YES completion:nil];
+        
+        controller = [[RichViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
+        nav.modalPresentationStyle = UIModalPresentationFormSheet;
+        [rootViewController presentViewController:nav animated:YES completion:nil];
     }
 }
 

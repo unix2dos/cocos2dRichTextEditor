@@ -9,7 +9,7 @@
 #import "RichViewController.h"
 #import "ZSSDemoPickerViewController.h"
 #import "DemoModalViewController.h"
-
+#import "RichText.h"
 
 @interface RichViewController ()
 
@@ -20,19 +20,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.title = @"Standard";
     self.shouldShowKeyboard = NO;
     self.alwaysShowToolbar = NO;
-    self.receiveEditorDidChangeEvents = NO;
-    self.formatHTML = YES;
+    self.receiveEditorDidChangeEvents = YES;
+//    self.formatHTML = YES;
     [self setPlaceholder:@"This is a placeholder that will show when there is no content(html)"];
-    
+    self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold, ZSSRichTextEditorToolbarH1, ZSSRichTextEditorToolbarParagraph];
 
     // Export HTML
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Export" style:UIBarButtonItemStylePlain target:self action:@selector(exportHTML)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(exportHTML)];
 
     
+//    UIButton *b = [[UIButton alloc]initWithButtonType:UIButtonTypeCustom];
+//    [b setImage:[UIImage imageNamed:@"BackImage.png"] forState:UIControlStateNormal];
+//    [b addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+//    self.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:b];
+//
     
     NSString *html = @"<div class='test'></div><!-- This is an HTML comment -->"
     "<p>This is a test of the <strong>ZSSRichTextEditor</strong> by <a title=\"Zed Said\" href=\"http://www.zedsaid.com\">Zed Said Studio</a></p>";
@@ -72,6 +76,7 @@
 - (void)exportHTML {
     
     NSLog(@"%@", [self getHTML]);
+    CRichText::getInstance()->haha();
     
 }
 
