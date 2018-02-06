@@ -120,6 +120,10 @@
 		011795D42029874D00770759 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011795632029874C00770759 /* Images.xcassets */; };
 		011795D52029874D00770759 /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 011795642029874C00770759 /* 152.png */; };
 		011795D62029874D00770759 /* DemoModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 011795652029874C00770759 /* DemoModalViewController.m */; };
+		011795DC2029892D00770759 /* DataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DA2029892D00770759 /* DataManager.cpp */; };
+		011795DF20298AA000770759 /* DataUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DD20298A9F00770759 /* DataUser.cpp */; };
+		011795E220298AB400770759 /* DataJournal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795E020298AB400770759 /* DataJournal.cpp */; };
+		017A773F20299199003AE256 /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 017A773D20299199003AE256 /* CommonUtils.cpp */; };
 		0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABD12025487B00C6C656 /* LayerWebView.cpp */; };
 		0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE42025771A00C6C656 /* SceneManager.cpp */; };
 		0193ABE92025795F00C6C656 /* SceneBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE72025795F00C6C656 /* SceneBase.cpp */; };
@@ -354,6 +358,14 @@
 		011795632029874C00770759 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		011795642029874C00770759 /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152.png; sourceTree = "<group>"; };
 		011795652029874C00770759 /* DemoModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoModalViewController.m; sourceTree = "<group>"; };
+		011795DA2029892D00770759 /* DataManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataManager.cpp; sourceTree = "<group>"; };
+		011795DB2029892D00770759 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		011795DD20298A9F00770759 /* DataUser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataUser.cpp; sourceTree = "<group>"; };
+		011795DE20298A9F00770759 /* DataUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataUser.h; sourceTree = "<group>"; };
+		011795E020298AB400770759 /* DataJournal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataJournal.cpp; sourceTree = "<group>"; };
+		011795E120298AB400770759 /* DataJournal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataJournal.h; sourceTree = "<group>"; };
+		017A773D20299199003AE256 /* CommonUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommonUtils.cpp; sourceTree = "<group>"; };
+		017A773E20299199003AE256 /* CommonUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		0193ABD12025487B00C6C656 /* LayerWebView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerWebView.cpp; sourceTree = "<group>"; };
 		0193ABD22025487B00C6C656 /* LayerWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWebView.h; sourceTree = "<group>"; };
 		0193ABE1202575B000C6C656 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
@@ -473,6 +485,12 @@
 		011794D32029874600770759 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				011795DA2029892D00770759 /* DataManager.cpp */,
+				011795DB2029892D00770759 /* DataManager.h */,
+				011795DD20298A9F00770759 /* DataUser.cpp */,
+				011795DE20298A9F00770759 /* DataUser.h */,
+				011795E020298AB400770759 /* DataJournal.cpp */,
+				011795E120298AB400770759 /* DataJournal.h */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -663,6 +681,15 @@
 			path = "Third Party";
 			sourceTree = "<group>";
 		};
+		017A773B20299167003AE256 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				017A773D20299199003AE256 /* CommonUtils.cpp */,
+				017A773E20299199003AE256 /* CommonUtils.h */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		0193ABD02025486A00C6C656 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +873,7 @@
 				0193ABE1202575B000C6C656 /* Config.h */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
+				017A773B20299167003AE256 /* Base */,
 				011794D32029874600770759 /* Data */,
 				0193ABF1202580FB00C6C656 /* Layer */,
 				0193ABE2202576F100C6C656 /* Scene */,
@@ -1105,6 +1133,7 @@
 				01BA7F7E202805D6002EA80C /* LayerJournals.cpp in Sources */,
 				011795C92029874D00770759 /* CYRTextStorage.m in Sources */,
 				011795C22029874D00770759 /* ZSSFontsViewController.m in Sources */,
+				011795E220298AB400770759 /* DataJournal.cpp in Sources */,
 				01CA8D682029431C002F1934 /* JournalExCell.cpp in Sources */,
 				01BA7F8B20284C2E002EA80C /* JournalsCell.cpp in Sources */,
 				0117956B2029874D00770759 /* ZSSPlaceholderViewController.m in Sources */,
@@ -1118,6 +1147,7 @@
 				011795C42029874D00770759 /* HRColorPickerViewController.m in Sources */,
 				01BA7D5E2026FB57002EA80C /* RichText.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				017A773F20299199003AE256 /* CommonUtils.cpp in Sources */,
 				011795C32029874D00770759 /* HRCgUtil.m in Sources */,
 				01CA8D6C20295143002F1934 /* LayerJournalClassify.cpp in Sources */,
 				011795BF2029874D00770759 /* ZSSRichTextEditor.m in Sources */,
@@ -1128,6 +1158,7 @@
 				011795C02029874D00770759 /* ZSSBarButtonItem.m in Sources */,
 				011795C82029874D00770759 /* CYRToken.m in Sources */,
 				0117956D2029874D00770759 /* ZSSCustomButtonsViewController.m in Sources */,
+				011795DF20298AA000770759 /* DataUser.cpp in Sources */,
 				0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */,
 				011795C62029874D00770759 /* HRBrightnessCursor.m in Sources */,
 				011795682029874D00770759 /* ZSSDemoViewController.m in Sources */,
@@ -1136,6 +1167,7 @@
 				01BA7F812028065E002EA80C /* LayerArchive.cpp in Sources */,
 				011795C72029874D00770759 /* CYRLayoutManager.m in Sources */,
 				0193ABEC20257DA900C6C656 /* SceneMain.cpp in Sources */,
+				011795DC2029892D00770759 /* DataManager.cpp in Sources */,
 				01BA7F8420280685002EA80C /* LayerJournalEx.cpp in Sources */,
 				011795D22029874D00770759 /* main.m in Sources */,
 				0193ABE92025795F00C6C656 /* SceneBase.cpp in Sources */,

@@ -154,7 +154,8 @@ void CLayerJournalClassify::_closeUI()
     {
         auto pos = classify->getPosition();
         classify->runAction(Sequence::create(
-                                             MoveTo::create(0.3f, Vec2(pos.x - m_winSize.width*.4, pos.y)),
+                                             DelayTime::create(0.3f),
+                                             MoveTo::create(0.2f, Vec2(pos.x - m_winSize.width*.4, pos.y)),
                                              call,
                                              nullptr)
                             );
@@ -191,7 +192,11 @@ void CLayerJournalClassify::_onClickLabel(int index)
     auto LayerJournals = dynamic_cast<CLayerJournals*>(this->getParent());
     if (LayerJournals)
     {
-        LayerJournals->clickJournals(index);
+        ShowType type = ShowType::All;
+        if (index == 0){type = ShowType::All;}
+        else if (index == 1){type = ShowType::Public;}
+        else if(index == 2){type = ShowType::Private;}
+        LayerJournals->setShowType(type);
     }
     
     this->_closeUI();

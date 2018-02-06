@@ -8,7 +8,15 @@
 #ifndef LayerJournals_hpp
 #define LayerJournals_hpp
 
+enum class ShowType
+{
+    All,
+    Public,
+    Private
+};
 
+
+#include "DataJournal.h"
 class CLayerJournals: public Layer
 , public cocos2d::extension::TableViewDataSource
 , public cocos2d::extension::TableViewDelegate
@@ -25,13 +33,16 @@ public:
     virtual cocos2d::extension::TableViewCell* tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)override;
     virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
 public:
-    void clickJournals(int index);
+    void setShowType(ShowType type);
 private:
     void _initUI();
 private:
     Size m_winSize;
     float m_fTableViewHeight;
     cocos2d::extension::TableView* m_pTableView;
+    ShowType m_showType;
+    
+    std::vector<Journal_Info> m_showJournals;
 };
 
 

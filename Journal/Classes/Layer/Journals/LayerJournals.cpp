@@ -7,6 +7,9 @@
 
 #include "Config.h"
 #include "RichText.h"
+#include "DataManager.h"
+#include "DataJournal.h"
+#include "DataUser.h"
 #include "JournalsCell.h"
 #include "LayerMain.h"
 #include "LayerJournalClassify.h"
@@ -19,6 +22,7 @@
 CLayerJournals::CLayerJournals()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
+,m_showType(ShowType::All)
 {
 }
 
@@ -54,10 +58,11 @@ void CLayerJournals::_initUI()
     bg->addChild(avater);
     
     //名字
-    auto name = Label::createWithTTF("Sample Name", MY_FONT_ENGLISH, 35);
-    name->setPosition(Vec2(bg->getContentSize().width/2, 50));
-    name->enableBold();
-    bg->addChild(name);
+    auto username = CDataManager::getInstance()->getDataUser()->getUserInfo().username;
+    auto labelname = Label::createWithTTF(username, MY_FONT_ENGLISH, 35);
+    labelname->setPosition(Vec2(bg->getContentSize().width/2, 50));
+    labelname->enableBold();
+    bg->addChild(labelname);
     
     //width适配
     auto width = m_winSize.width * 0.15f;
@@ -93,6 +98,7 @@ void CLayerJournals::_initUI()
     
     
     //tableview
+    this->setShowType(m_showType);
     m_fTableViewHeight = m_winSize.height - bg->getContentSize().height - MAIN_BOTTOM_HEIGHT;
     m_pTableView = TableView::create(this, Size(m_winSize.width, m_fTableViewHeight));
     m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
@@ -104,18 +110,29 @@ void CLayerJournals::_initUI()
 }
 
 
-void CLayerJournals::clickJournals(int index)
+void CLayerJournals::setShowType(ShowType type)
 {
-    log("click %d", index);
-    if (index == 0)
+    if (m_showType == type)
     {
-        //all
-    } else if (index == 1) {
-        //public
-    } else if (index == 2) {
-        //private
+        return;
+    }
+    
+    m_showType = type;
+    m_showJournals = CDataManager::getInstance()->getDataJournal()->getJournals();
+    if (type == ShowType::Public)
+    {
+        
+    }
+    else if (type == ShowType::Private)
+    {
+        
+    }
+    if (m_pTableView)
+    {
+        m_pTableView->reloadData();
     }
 }
+
 
 
 void CLayerJournals::scrollViewDidScroll(cocos2d::extension::ScrollView* view)
@@ -147,13 +164,13 @@ cocos2d::extension::TableViewCell* CLayerJournals::tableCellAtIndex(cocos2d::ext
         cell = CJournalsCell::create();
         cell->setContentSize(tableCellSizeForIndex(table,idx));
     }
-    dynamic_cast<CJournalsCell*>(cell)->updateCell(static_cast<int>(idx));
+    dynamic_cast<CJournalsCell*>(cell)->updateCell(m_showJournals, static_cast<int>(idx));
     return cell;
 }
 
 ssize_t CLayerJournals::numberOfCellsInTableView(cocos2d::extension::TableView *table)
 {
-    return 10;
+    return m_showJournals.size();
 }
 
 

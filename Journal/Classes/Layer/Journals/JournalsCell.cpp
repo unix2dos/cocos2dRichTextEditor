@@ -45,13 +45,13 @@ bool CJournalsCell::init()
 
 
 
-void CJournalsCell::updateCell(int idx)
+
+void CJournalsCell::updateCell(const std::vector<Journal_Info>&info, int idx)
 {
     this->setLocalZOrder(idx);
     this->removeAllChildren();
-
     
-    if (idx < 9) //TODO: data size
+    if (idx < info.size()-1)
     {
         auto draw = DrawNode::create();
         draw->drawLine(Point(0, 0), Point(getContentSize().width, 0), Color4F::GRAY);
