@@ -8,6 +8,7 @@
 #ifndef LayerMain_hpp
 #define LayerMain_hpp
 
+#define MAIN_BOTTOM_HEIGHT 150 //底部高度
 
 enum class MainStatus{
     Journals,

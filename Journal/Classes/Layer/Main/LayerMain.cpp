@@ -12,18 +12,17 @@
 #include "LayerJournalEx.h"
 #include "LayerMain.h"
 
-#define FUNCTIONS_HEIGHT 100
+#define BUTTON_HEIGHT 100
 
 
 CLayerMain::CLayerMain()
 :m_status(MainStatus::Journals)
 {
-    
 }
 
 
-CLayerMain::~CLayerMain(){
-    
+CLayerMain::~CLayerMain()
+{
 }
 
 
@@ -57,13 +56,13 @@ void CLayerMain::_initUI()
 
 void CLayerMain::_initButtons()
 {
-    auto layerColor = LayerColor::create(Color4B(220, 220, 220, 255), m_winSize.width, 150);
+    auto layerColor = LayerColor::create(Color4B(220, 220, 220, 255), m_winSize.width, MAIN_BOTTOM_HEIGHT);
     this->addChild(layerColor, 2);
     
     
     auto btnJournals = Button::create("tab-journal.png");
     btnJournals->setScale(.5f);
-    btnJournals->setPosition(Vec2(m_winSize.width*.25, FUNCTIONS_HEIGHT));
+    btnJournals->setPosition(Vec2(m_winSize.width*.25, BUTTON_HEIGHT));
     btnJournals->addClickEventListener([&](Ref* r){
         this->setMainStatus(MainStatus::Journals);
     });
@@ -81,7 +80,7 @@ void CLayerMain::_initButtons()
     
     auto btnArchive = Button::create("tab-profile.png");
     btnArchive->setScale(.5f);
-    btnArchive->setPosition(Vec2(m_winSize.width*.5, FUNCTIONS_HEIGHT));
+    btnArchive->setPosition(Vec2(m_winSize.width*.5, BUTTON_HEIGHT));
     btnArchive->addClickEventListener([&](Ref* r){
         this->setMainStatus(MainStatus::Archive);
     });
@@ -97,7 +96,7 @@ void CLayerMain::_initButtons()
     
     auto btnJournalEx = Button::create("tab-journalex.png");
     btnJournalEx->setScale(.5f);
-    btnJournalEx->setPosition(Vec2(m_winSize.width*.75, FUNCTIONS_HEIGHT));
+    btnJournalEx->setPosition(Vec2(m_winSize.width*.75, BUTTON_HEIGHT));
     btnJournalEx->addClickEventListener([&](Ref* r){
         this->setMainStatus(MainStatus::JournalEx);
     });

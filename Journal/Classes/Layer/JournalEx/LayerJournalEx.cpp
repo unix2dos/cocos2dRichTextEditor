@@ -6,6 +6,7 @@
 //
 
 #include "Config.h"
+#include "LayerMain.h"
 #include "JournalExCell.h"
 #include "LayerJournalEx.h"
 
@@ -14,6 +15,7 @@
 
 CLayerJournalEx::CLayerJournalEx()
 :m_pTableView(nullptr)
+,m_fTableViewHeight(0.0f)
 {
     
 }
@@ -40,10 +42,12 @@ void CLayerJournalEx::_initUI()
 {
     m_winSize = Director::getInstance()->getWinSize();
     
-    m_pTableView = TableView::create(this, Size(m_winSize.width, m_winSize.height));
+    m_fTableViewHeight = m_winSize.height - MAIN_BOTTOM_HEIGHT;
+    m_pTableView = TableView::create(this, Size(m_winSize.width, m_fTableViewHeight));
     m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     m_pTableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
     m_pTableView->setDelegate(this);
+    m_pTableView->setPositionY(MAIN_BOTTOM_HEIGHT);
     this->addChild(m_pTableView);
     m_pTableView->reloadData();
 }
@@ -69,7 +73,7 @@ void CLayerJournalEx::tableCellTouched(cocos2d::extension::TableView* table, coc
 
 cocos2d::Size CLayerJournalEx::tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)
 {
-    return Size(m_winSize.width, m_winSize.height/JOURNALEX_CELL_SIZE);
+    return Size(m_winSize.width, m_fTableViewHeight/JOURNALEX_CELL_SIZE);
 }
 
 cocos2d::extension::TableViewCell* CLayerJournalEx::tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)

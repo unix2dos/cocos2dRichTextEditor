@@ -26,6 +26,7 @@ public:
 private:
     void _initUI();
     Size m_winSize;
+    float m_fTableViewHeight;
     cocos2d::extension::TableView* m_pTableView;
 };
 

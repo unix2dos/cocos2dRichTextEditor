@@ -8,6 +8,7 @@
 #include "Config.h"
 #include "RichText.h"
 #include "JournalsCell.h"
+#include "LayerMain.h"
 #include "LayerJournalClassify.h"
 #include "LayerJournals.h"
 
@@ -96,11 +97,12 @@ void CLayerJournals::_initUI()
     
     
     //tableview
-    m_fTableViewHeight = m_winSize.height - bg->getContentSize().height;
+    m_fTableViewHeight = m_winSize.height - bg->getContentSize().height - MAIN_BOTTOM_HEIGHT;
     m_pTableView = TableView::create(this, Size(m_winSize.width, m_fTableViewHeight));
     m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     m_pTableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
     m_pTableView->setDelegate(this);
+    m_pTableView->setPositionY(MAIN_BOTTOM_HEIGHT);
     this->addChild(m_pTableView);
     m_pTableView->reloadData();
 }
