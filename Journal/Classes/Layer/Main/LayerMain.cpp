@@ -56,7 +56,7 @@ void CLayerMain::_initUI()
 
 void CLayerMain::_initButtons()
 {
-    auto layerColor = LayerColor::create(Color4B(220, 220, 220, 255), m_winSize.width, MAIN_BOTTOM_HEIGHT);
+    auto layerColor = LayerColor::create(Color4B(240, 240, 240, 255), m_winSize.width, MAIN_BOTTOM_HEIGHT);
     this->addChild(layerColor, 2);
     
     

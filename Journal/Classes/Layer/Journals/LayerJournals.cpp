@@ -16,13 +16,13 @@
 #include "LayerJournals.h"
 
 
-#define JOURNAL_CELL_SIZE 5 //table显示的cell数量
+#define JOURNAL_CELL_SIZE 3.5 //table显示的cell数量
 
 
 CLayerJournals::CLayerJournals()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
-,m_showType(ShowType::All)
+,m_showType(ShowType::None)
 {
 }
 
@@ -98,7 +98,7 @@ void CLayerJournals::_initUI()
     
     
     //tableview
-    this->setShowType(m_showType);
+    this->setShowType(ShowType::All);
     m_fTableViewHeight = m_winSize.height - bg->getContentSize().height - MAIN_BOTTOM_HEIGHT;
     m_pTableView = TableView::create(this, Size(m_winSize.width, m_fTableViewHeight));
     m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
@@ -121,11 +121,31 @@ void CLayerJournals::setShowType(ShowType type)
     m_showJournals = CDataManager::getInstance()->getDataJournal()->getJournals();
     if (type == ShowType::Public)
     {
-        
+        for (auto it = m_showJournals.begin(); it != m_showJournals.end();)
+        {
+            if (!it->isPublic)
+            {
+                it = m_showJournals.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
     }
     else if (type == ShowType::Private)
     {
-        
+        for (auto it = m_showJournals.begin(); it != m_showJournals.end();)
+        {
+            if (it->isPublic)
+            {
+                it = m_showJournals.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
+        }
     }
     if (m_pTableView)
     {
@@ -172,11 +192,3 @@ ssize_t CLayerJournals::numberOfCellsInTableView(cocos2d::extension::TableView *
 {
     return m_showJournals.size();
 }
-
-
-
-
-
-
-
-

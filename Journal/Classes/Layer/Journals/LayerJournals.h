@@ -10,6 +10,7 @@
 
 enum class ShowType
 {
+    None,
     All,
     Public,
     Private
@@ -40,8 +41,8 @@ private:
     Size m_winSize;
     float m_fTableViewHeight;
     cocos2d::extension::TableView* m_pTableView;
-    ShowType m_showType;
     
+    ShowType m_showType;
     std::vector<Journal_Info> m_showJournals;
 };
 
