@@ -69,7 +69,6 @@ void CLayerJournals::_initUI()
     btnAdd->addClickEventListener([](Ref* r){
         CRichText::getInstance()->haha();
     });
-    btnAdd->setScale(0.25f);
     bg->addChild(btnAdd);
     
     //搜索不做
@@ -77,18 +76,15 @@ void CLayerJournals::_initUI()
     btnSearch->setPosition(Vec2(width, bg->getContentSize().height/2));
     btnSearch->addClickEventListener([](Ref* r){
     });
-    btnSearch->setScale(0.25f);
     bg->addChild(btnSearch);
     
     //弹出板子
     auto btnDrawer = Button::create("btn_drawer.png");
     btnDrawer->setPosition(Vec2(width, bg->getContentSize().height/2 - 100));
     btnDrawer->addClickEventListener([&](Ref* r){
-        //添加弹出页面
         auto layer = CLayerJournalClassify::create();
         this->addChild(layer);
     });
-    btnDrawer->setScale(0.25f);
     bg->addChild(btnDrawer);
     
     

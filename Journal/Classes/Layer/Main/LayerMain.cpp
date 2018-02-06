@@ -60,33 +60,29 @@ void CLayerMain::_initButtons()
     this->addChild(layerColor, 2);
     
     
-    auto btnJournals = Button::create("tab-journal.png");
-    btnJournals->setScale(.5f);
-    btnJournals->setPosition(Vec2(m_winSize.width*.25, BUTTON_HEIGHT));
+    auto btnJournals = Button::create("tab_journal.png");
+    btnJournals->setPosition(Vec2(m_winSize.width*.2, BUTTON_HEIGHT));
     btnJournals->addClickEventListener([&](Ref* r){
         this->setMainStatus(MainStatus::Journals);
     });
     layerColor->addChild(btnJournals);
-    auto label1 = Label::createWithTTF("Journals", MY_FONT_ENGLISH, 50);
-    label1->setPosition(Vec2(btnJournals->getContentSize().width/2, -50));
+    auto label1 = Label::createWithTTF("Journals", MY_FONT_ENGLISH, 30);
+    label1->setPosition(Vec2(btnJournals->getContentSize().width/2, -30));
     label1->setTextColor(Color4B(0,0,0,255));
     label1->setName("text");
     btnJournals->addChild(label1);
     
     
+
     
-    
-    
-    
-    auto btnArchive = Button::create("tab-profile.png");
-    btnArchive->setScale(.5f);
+    auto btnArchive = Button::create("tab_archive.png");
     btnArchive->setPosition(Vec2(m_winSize.width*.5, BUTTON_HEIGHT));
     btnArchive->addClickEventListener([&](Ref* r){
         this->setMainStatus(MainStatus::Archive);
     });
     layerColor->addChild(btnArchive);
-    auto label2 = Label::createWithTTF("Archive", MY_FONT_ENGLISH, 50);
-    label2->setPosition(Vec2(btnArchive->getContentSize().width/2, -50));
+    auto label2 = Label::createWithTTF("Archive", MY_FONT_ENGLISH, 30);
+    label2->setPosition(Vec2(btnArchive->getContentSize().width/2, -30));
     label2->setTextColor(Color4B(0,0,0,255));
     label2->setName("text");
     btnArchive->addChild(label2);
@@ -94,15 +90,14 @@ void CLayerMain::_initButtons()
     
     
     
-    auto btnJournalEx = Button::create("tab-journalex.png");
-    btnJournalEx->setScale(.5f);
-    btnJournalEx->setPosition(Vec2(m_winSize.width*.75, BUTTON_HEIGHT));
+    auto btnJournalEx = Button::create("tab_journalex.png");
+    btnJournalEx->setPosition(Vec2(m_winSize.width*.8, BUTTON_HEIGHT));
     btnJournalEx->addClickEventListener([&](Ref* r){
         this->setMainStatus(MainStatus::JournalEx);
     });
     layerColor->addChild(btnJournalEx);
-    auto label3 = Label::createWithTTF("JournalEx", MY_FONT_ENGLISH, 50);
-    label3->setPosition(Vec2(btnJournalEx->getContentSize().width/2, -50));
+    auto label3 = Label::createWithTTF("JournalEx", MY_FONT_ENGLISH, 30);
+    label3->setPosition(Vec2(btnJournalEx->getContentSize().width/2, -30));
     label3->setTextColor(Color4B(0,0,0,255));
     label3->setName("text");
     btnJournalEx->addChild(label3);
