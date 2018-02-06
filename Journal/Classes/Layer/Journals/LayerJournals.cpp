@@ -8,6 +8,7 @@
 #include "Config.h"
 #include "RichText.h"
 #include "JournalsCell.h"
+#include "LayerJournalClassify.h"
 #include "LayerJournals.h"
 
 
@@ -81,11 +82,10 @@ void CLayerJournals::_initUI()
     //弹出板子
     auto btnDrawer = Button::create("btn_drawer.png");
     btnDrawer->setPosition(Vec2(width, bg->getContentSize().height/2 - 100));
-    btnDrawer->addClickEventListener([](Ref* r){
-        //TODO: show
-        //    弹出页面东西,要有个特效
-        //    logo
-        //    3个label, 权限不一样 加数据??  加黑条?
+    btnDrawer->addClickEventListener([&](Ref* r){
+        //添加弹出页面
+        auto layer = CLayerJournalClassify::create();
+        this->addChild(layer);
     });
     btnDrawer->setScale(0.25f);
     bg->addChild(btnDrawer);
@@ -103,6 +103,20 @@ void CLayerJournals::_initUI()
     m_pTableView->setDelegate(this);
     this->addChild(m_pTableView);
     m_pTableView->reloadData();
+}
+
+
+void CLayerJournals::clickJournals(int index)
+{
+    log("click %d", index);
+    if (index == 0)
+    {
+        //all
+    } else if (index == 1) {
+        //public
+    } else if (index == 2) {
+        //private
+    }
 }
 
 
