@@ -11,7 +11,7 @@
 #include "LayerJournals.h"
 
 
-#define JOURNAL_CELL_SIZE 5 //table的cell数量
+#define JOURNAL_CELL_SIZE 5 //table显示的cell数量
 
 
 CLayerJournals::CLayerJournals()
@@ -117,7 +117,6 @@ void CLayerJournals::scrollViewDidZoom(cocos2d::extension::ScrollView* view)
 
 void CLayerJournals::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell)
 {
-//    int iIndex = (int)(cell->getIdx());
     auto tableCell = dynamic_cast<CJournalsCell*>(cell);
     if (!tableCell)
     {
@@ -144,8 +143,6 @@ cocos2d::extension::TableViewCell* CLayerJournals::tableCellAtIndex(cocos2d::ext
 ssize_t CLayerJournals::numberOfCellsInTableView(cocos2d::extension::TableView *table)
 {
     return 10;
-//    auto vecIslandsData = CDataUser::getInstance()->getBookIslandArray();
-//    return vecIslandsData.size();
 }
 
 

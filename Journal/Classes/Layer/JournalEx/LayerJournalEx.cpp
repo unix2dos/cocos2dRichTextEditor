@@ -6,10 +6,14 @@
 //
 
 #include "Config.h"
+#include "JournalExCell.h"
 #include "LayerJournalEx.h"
+
+#define JOURNALEX_CELL_SIZE 11 //table显示的cell数量
 
 
 CLayerJournalEx::CLayerJournalEx()
+:m_pTableView(nullptr)
 {
     
 }
@@ -34,10 +38,52 @@ bool CLayerJournalEx::init()
 
 void CLayerJournalEx::_initUI()
 {
-    Size size = Director::getInstance()->getWinSize();
+    m_winSize = Director::getInstance()->getWinSize();
     
-    auto label1 = Label::createWithTTF("CLayerJournalEx", MY_FONT_ENGLISH, 50);
-    label1->setPosition(Vec2(size.width/2, 30));
-    label1->setTextColor(Color4B(0,0,0,255));
-    this->addChild(label1);
+    m_pTableView = TableView::create(this, Size(m_winSize.width, m_winSize.height));
+    m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
+    m_pTableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
+    m_pTableView->setDelegate(this);
+    this->addChild(m_pTableView);
+    m_pTableView->reloadData();
+}
+
+
+
+void CLayerJournalEx::scrollViewDidScroll(cocos2d::extension::ScrollView* view)
+{
+}
+
+void CLayerJournalEx::scrollViewDidZoom(cocos2d::extension::ScrollView* view)
+{
+}
+
+void CLayerJournalEx::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell)
+{
+    auto tableCell = dynamic_cast<CJournalExCell*>(cell);
+    if (!tableCell)
+    {
+        return;
+    }
+}
+
+cocos2d::Size CLayerJournalEx::tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)
+{
+    return Size(m_winSize.width, m_winSize.height/JOURNALEX_CELL_SIZE);
+}
+
+cocos2d::extension::TableViewCell* CLayerJournalEx::tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)
+{
+    TableViewCell *cell = table->dequeueCell();
+    if (!cell) {
+        cell = CJournalExCell::create();
+        cell->setContentSize(tableCellSizeForIndex(table,idx));
+    }
+    dynamic_cast<CJournalExCell*>(cell)->updateCell(static_cast<int>(idx));
+    return cell;
+}
+
+ssize_t CLayerJournalEx::numberOfCellsInTableView(cocos2d::extension::TableView *table)
+{
+    return 20;
 }
