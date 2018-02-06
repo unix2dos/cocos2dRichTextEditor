@@ -49,7 +49,6 @@ void CLayerJournals::_initUI()
     //头像
     auto avater = Sprite::create("avatar_default.png");
     avater->setPosition(Vec2(bg->getContentSize().width/2, bg->getContentSize().height/2));
-    avater->setScale(0.1f);
     bg->addChild(avater);
     
     //名字
