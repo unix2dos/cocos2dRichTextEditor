@@ -7,10 +7,12 @@
 
 
 #include "Config.h"
+#include "HttpManager.h"
 #include "LayerJournals.h"
 #include "LayerArchive.h"
 #include "LayerJournalEx.h"
 #include "LayerMain.h"
+
 
 #define BUTTON_HEIGHT 100
 
@@ -50,8 +52,16 @@ void CLayerMain::_initUI()
     
     //显示默认
     this->setMainStatus(m_status);
+    
+    //TODO:测试网络
+    CHttpManager::getInstance()->HttpPost("http://journalex.us:5000/login",eHttpType::login, "{\"username\": \"abcde\", \"password\":\"123\"}");
 }
 
+void CLayerMain::endWithHttpData(eHttpType myType, HttpStatusInfo info)
+{
+    log("111111111111");
+    log("22222222222");
+}
 
 
 void CLayerMain::_initButtons()

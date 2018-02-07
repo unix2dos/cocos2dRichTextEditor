@@ -8,6 +8,7 @@
 #ifndef LayerMain_hpp
 #define LayerMain_hpp
 
+#include "HttpDefine.h"
 #define MAIN_BOTTOM_HEIGHT 150 //底部高度
 
 enum class MainStatus{
@@ -18,6 +19,7 @@ enum class MainStatus{
 
 
 class CLayerMain: public Layer
+, public CDataHttpDelegate
 {
 public:
     CLayerMain();
@@ -27,7 +29,7 @@ public:
     
     
     void setMainStatus(MainStatus status);
-    
+    virtual void endWithHttpData(eHttpType myType, HttpStatusInfo info) override;
 private:
     void _initUI();
     void _initButtons();
