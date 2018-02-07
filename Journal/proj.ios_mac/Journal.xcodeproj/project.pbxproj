@@ -123,6 +123,7 @@
 		011795DC2029892D00770759 /* DataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DA2029892D00770759 /* DataManager.cpp */; };
 		011795DF20298AA000770759 /* DataUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DD20298A9F00770759 /* DataUser.cpp */; };
 		011795E220298AB400770759 /* DataJournal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795E020298AB400770759 /* DataJournal.cpp */; };
+		014467DD202A94DA0045AE3E /* ArchiveCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014467DB202A94DA0045AE3E /* ArchiveCell.cpp */; };
 		017A773F20299199003AE256 /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 017A773D20299199003AE256 /* CommonUtils.cpp */; };
 		0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABD12025487B00C6C656 /* LayerWebView.cpp */; };
 		0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE42025771A00C6C656 /* SceneManager.cpp */; };
@@ -364,6 +365,8 @@
 		011795DE20298A9F00770759 /* DataUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataUser.h; sourceTree = "<group>"; };
 		011795E020298AB400770759 /* DataJournal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataJournal.cpp; sourceTree = "<group>"; };
 		011795E120298AB400770759 /* DataJournal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataJournal.h; sourceTree = "<group>"; };
+		014467DB202A94DA0045AE3E /* ArchiveCell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ArchiveCell.cpp; sourceTree = "<group>"; };
+		014467DC202A94DA0045AE3E /* ArchiveCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArchiveCell.h; sourceTree = "<group>"; };
 		017A773D20299199003AE256 /* CommonUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommonUtils.cpp; sourceTree = "<group>"; };
 		017A773E20299199003AE256 /* CommonUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		0193ABD12025487B00C6C656 /* LayerWebView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerWebView.cpp; sourceTree = "<group>"; };
@@ -752,6 +755,8 @@
 			children = (
 				01BA7F7F2028065E002EA80C /* LayerArchive.cpp */,
 				01BA7F802028065E002EA80C /* LayerArchive.h */,
+				014467DB202A94DA0045AE3E /* ArchiveCell.cpp */,
+				014467DC202A94DA0045AE3E /* ArchiveCell.h */,
 			);
 			path = Archive;
 			sourceTree = "<group>";
@@ -1126,6 +1131,7 @@
 			files = (
 				011795702029874D00770759 /* ZSSColorViewController.m in Sources */,
 				011795CC2029874D00770759 /* HRColorCursor.m in Sources */,
+				014467DD202A94DA0045AE3E /* ArchiveCell.cpp in Sources */,
 				011795D62029874D00770759 /* DemoModalViewController.m in Sources */,
 				0193ABF52025811200C6C656 /* LayerMain.cpp in Sources */,
 				011795CA2029874D00770759 /* CYRTextView.m in Sources */,

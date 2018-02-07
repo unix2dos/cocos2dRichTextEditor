@@ -41,6 +41,7 @@ private:
     Size m_winSize;
     MainStatus m_status;
     std::vector<cocos2d::ui::Button*> m_vecBtns;
+    std::map<std::string, cocos2d::Layer*> m_mapLayers;
 };
 
 #endif /* LayerMain_hpp */

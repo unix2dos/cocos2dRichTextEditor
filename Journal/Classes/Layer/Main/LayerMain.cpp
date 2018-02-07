@@ -118,11 +118,12 @@ void CLayerMain::setMainStatus(MainStatus status)
     for (const auto& it : m_vecBtns){
         auto label = dynamic_cast<Label*>(it->getChildByName("text"));
         label->setTextColor(Color4B(144,144,144,255));
+        it->setOpacity(100);
     }
-    auto layer = this->getChildByTag(100);
-    if (layer)
+    //layers
+    for (auto it : m_mapLayers)
     {
-        layer->removeFromParent();
+        it.second->setVisible(false);
     }
     
     //ui
@@ -145,37 +146,64 @@ void CLayerMain::setMainStatus(MainStatus status)
 void CLayerMain::_showJournals()
 {
     if (!m_vecBtns.empty()){
+        m_vecBtns[0]->setOpacity(255);
         auto label = dynamic_cast<Label*>(m_vecBtns[0]->getChildByName("text"));
         label->setTextColor(Color4B(0,0,0,255));
     }
     
-    auto layer = CLayerJournals::create();
-    layer->setTag(100);
-    this->addChild(layer);
+    auto it = m_mapLayers.find("Journals");
+    if (it == m_mapLayers.end())
+    {
+        auto layer = CLayerJournals::create();
+        this->addChild(layer);
+        m_mapLayers["Journals"] = layer;
+    }
+    else
+    {
+        it->second->setVisible(true);
+    }
 }
 
 
 void CLayerMain::_showArchive()
 {
     if (!m_vecBtns.empty()){
+        m_vecBtns[1]->setOpacity(255);
         auto label = dynamic_cast<Label*>(m_vecBtns[1]->getChildByName("text"));
         label->setTextColor(Color4B(0,0,0,255));
     }
     
-    auto layer = CLayerArchive::create();
-    layer->setTag(100);
-    this->addChild(layer);
+    auto it = m_mapLayers.find("Archive");
+    if (it == m_mapLayers.end())
+    {
+        auto layer = CLayerArchive::create();
+        this->addChild(layer);
+        m_mapLayers["Archive"] = layer;
+    }
+    else
+    {
+        it->second->setVisible(true);
+    }
 }
 
 
 void CLayerMain::_showJournalEx()
 {
     if (!m_vecBtns.empty()){
+        m_vecBtns[2]->setOpacity(255);
         auto label = dynamic_cast<Label*>(m_vecBtns[2]->getChildByName("text"));
         label->setTextColor(Color4B(0,0,0,255));
     }
     
-    auto layer = CLayerJournalEx::create();
-    layer->setTag(100);
-    this->addChild(layer, 1);
+    auto it = m_mapLayers.find("JournalEx");
+    if (it == m_mapLayers.end())
+    {
+        auto layer = CLayerJournalEx::create();
+        this->addChild(layer, 1);
+        m_mapLayers["JournalEx"] = layer;
+    }
+    else
+    {
+        it->second->setVisible(true);
+    }
 }

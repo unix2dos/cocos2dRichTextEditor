@@ -25,6 +25,7 @@ public:
     virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
 private:
     void _initUI();
+private:
     Size m_winSize;
     float m_fTableViewHeight;
     cocos2d::extension::TableView* m_pTableView;
