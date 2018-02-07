@@ -5,7 +5,8 @@
 //  Created by liuwei on 2018/2/6.
 //
 
-#include "Config.h"
+#include "Journal.h"
+#include "Define.h"
 #include "JournalExCell.h"
 
 

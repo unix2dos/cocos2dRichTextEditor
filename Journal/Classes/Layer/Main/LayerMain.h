@@ -8,7 +8,8 @@
 #ifndef LayerMain_hpp
 #define LayerMain_hpp
 
-#include "HttpDefine.h"
+#include "HttpManager.h"
+
 #define MAIN_BOTTOM_HEIGHT 150 //底部高度
 
 enum class MainStatus{
@@ -29,7 +30,7 @@ public:
     
     
     void setMainStatus(MainStatus status);
-    virtual void endWithHttpData(eHttpType myType, HttpStatusInfo info) override;
+    virtual void endWithHttpData(eHttpType myType, HttpResponseInfo rep) override;
 private:
     void _initUI();
     void _initButtons();

@@ -6,7 +6,8 @@
 //
 
 
-#include "Config.h"
+#include "Journal.h"
+#include "Define.h"
 #include "CommonUtils.h"
 #include "LayerJournals.h"
 #include "JournalsCell.h"

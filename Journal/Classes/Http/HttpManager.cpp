@@ -5,8 +5,21 @@
 //  Created by liuwei on 2018/2/7.
 //
 
-#include "Config.h"
+#include "Journal.h"
+#include "CommonUtils.h"
 #include "HttpManager.h"
+
+//消息回调
+CDataHttpDelegate::CDataHttpDelegate()
+{
+    CHttpManager::getInstance()->registerCallBack(this);
+}
+
+CDataHttpDelegate::~CDataHttpDelegate()
+{
+    CHttpManager::getInstance()->unregisterCallBack(this);
+}
+
 
 
 static CHttpManager* g_CHttpManager = nullptr;
@@ -29,20 +42,16 @@ void CHttpManager::destroyInstance()
     }
 }
 
-void CHttpManager::init()
-{
-}
-
-void CHttpManager::free()
-{
-}
-
-
 CHttpManager::CHttpManager()
 {
 }
-
 CHttpManager::~CHttpManager()
+{
+}
+void CHttpManager::init()
+{
+}
+void CHttpManager::free()
 {
 }
 
@@ -58,12 +67,11 @@ bool CHttpManager::HttpGet(string url, eHttpType myType, std::string data)
 
 bool CHttpManager::HttpSendRequest(HttpRequest::Type type, string url, eHttpType myType, std::string data)
 {
-    if (m_mapHttpStatus[myType].status == eHttpStatus::Send)
+    if (m_mapHttpStatus[myType].status == eHttpStatus::sending)
     {
         return false;
     }
-    m_mapHttpStatus[myType].status = eHttpStatus::Send;
-
+    m_mapHttpStatus[myType].status = eHttpStatus::sending;
 
     HttpRequest* request = new (std::nothrow) class HttpRequest();
     request->setRequestType(type);
@@ -93,9 +101,9 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
     log("response: %s", status.c_str());
 
     auto myType = static_cast<eHttpType>(atoi(response->getHttpRequest()->getTag()));
-    if (!response->isSucceed())
+    if (!response->isSucceed())//发送错误
     {
-        m_mapHttpStatus[myType].status = eHttpStatus::Serr;
+        m_mapHttpStatus[myType].status = eHttpStatus::sendErr;//发送错误, 连不上服务器
         m_mapHttpStatus[myType].msg = response->getErrorBuffer();
     }
     else
@@ -104,49 +112,32 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
         std::string strContent = "";
         strContent.assign(buffer->begin(), buffer->end());
         
+        auto root = parseServerJson(strContent);
+        if (root == Json::nullValue)
+        {
+            m_mapHttpStatus[myType].status = eHttpStatus::serverErr;//json错误, 404, 500...
+            m_mapHttpStatus[myType].msg = "server error";
+        }
+        else
+        {
+            if (root["ret"].asString() != "0")
+            {
+                m_mapHttpStatus[myType].status = eHttpStatus::logicErr;//逻辑错误,check错误码
+            }
+            else
+            {
+                m_mapHttpStatus[myType].status = eHttpStatus::success;//ok
+            }
+            m_mapHttpStatus[myType].msg = root["msg"].asString();
+            m_mapHttpStatus[myType].jsonRoot = root;
+        }
+      
+        //公共数据解析
         
-        log("%s", strContent.c_str());
-        
-        //解析成Json
-        
-        //看ret
-        
-        //check err code
-        
-
-        //        CBaseLoad::LoadJsonString(m_stujson, strData);
-        //
-        //        if(m_stujson.isHasJson("ret"))
-        //        {
-        //            if (m_stujson.getValue("ret") == "0")
-        //            {
-        //                SetHttpOpState(type,eHttpStateBase::eHttpStateBase_Rok);
-        //                SetHttpOpMsg(type, "OK");
-        //            }
-        //            else
-        //            {
-        //                SetHttpOpState(type,eHttpStateBase::eHttpStateBase_Rerr);
-        //                SetHttpOpMsg(type, m_stujson.getValue("msg").c_str());
-        //            }
-        //        }
-        //        else
-        //        {
-        //            success = false;
-        //            SetHttpOpState(type,eHttpStateBase::eHttpStateBase_err);
-        //            SetHttpOpMsg(type, GetXmlString("login_errornet"));
-        //        }
-    
-
-        //
-        //    //公共数据解析
-        //    CDataUser::getInstance()->endWithHttpData(type, success, m_stujson);
-        //
-        //    if (success)
-        //        checkErrorCode(type,m_stujson.getValue("ret"));
-        
+        //公共错误处理, check错误码??
     }
-    
-    
+
+    //回调
     for (const auto& it : m_setDataRegister)
     {
         it->endWithHttpData(myType, m_mapHttpStatus[myType]);

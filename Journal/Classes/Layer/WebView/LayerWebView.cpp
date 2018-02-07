@@ -6,7 +6,7 @@
 //
 
 
-#include "Config.h"
+#include "Journal.h"
 #include "ui/CocosGUI.h"
 #include "LayerWebView.h"
 

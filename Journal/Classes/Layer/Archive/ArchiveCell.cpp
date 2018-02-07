@@ -5,7 +5,8 @@
 //  Created by liuwei on 2018/2/7.
 //
 
-#include "Config.h"
+#include "Journal.h"
+#include "Define.h"
 #include "ArchiveCell.h"
 
 CArchiveCell::CArchiveCell()

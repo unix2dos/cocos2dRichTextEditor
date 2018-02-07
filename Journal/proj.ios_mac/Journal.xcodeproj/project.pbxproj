@@ -125,7 +125,7 @@
 		011795E220298AB400770759 /* DataJournal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795E020298AB400770759 /* DataJournal.cpp */; };
 		014467DD202A94DA0045AE3E /* ArchiveCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014467DB202A94DA0045AE3E /* ArchiveCell.cpp */; };
 		014467E2202A989B0045AE3E /* HttpManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014467E0202A989B0045AE3E /* HttpManager.cpp */; };
-		014B0F4B202AD11E008D0CA7 /* HttpDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F49202AD11E008D0CA7 /* HttpDefine.cpp */; };
+		014B0F53202AD973008D0CA7 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F52202AD973008D0CA7 /* jsoncpp.cpp */; };
 		017A773F20299199003AE256 /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 017A773D20299199003AE256 /* CommonUtils.cpp */; };
 		0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABD12025487B00C6C656 /* LayerWebView.cpp */; };
 		0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE42025771A00C6C656 /* SceneManager.cpp */; };
@@ -371,13 +371,15 @@
 		014467DC202A94DA0045AE3E /* ArchiveCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArchiveCell.h; sourceTree = "<group>"; };
 		014467E0202A989B0045AE3E /* HttpManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HttpManager.cpp; sourceTree = "<group>"; };
 		014467E1202A989B0045AE3E /* HttpManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
-		014B0F49202AD11E008D0CA7 /* HttpDefine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HttpDefine.cpp; sourceTree = "<group>"; };
-		014B0F4A202AD11E008D0CA7 /* HttpDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpDefine.h; sourceTree = "<group>"; };
+		014B0F50202AD973008D0CA7 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
+		014B0F51202AD973008D0CA7 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		014B0F52202AD973008D0CA7 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
+		014B0F56202B018F008D0CA7 /* Journal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
+		014B0F57202B01B8008D0CA7 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		017A773D20299199003AE256 /* CommonUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommonUtils.cpp; sourceTree = "<group>"; };
 		017A773E20299199003AE256 /* CommonUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		0193ABD12025487B00C6C656 /* LayerWebView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerWebView.cpp; sourceTree = "<group>"; };
 		0193ABD22025487B00C6C656 /* LayerWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWebView.h; sourceTree = "<group>"; };
-		0193ABE1202575B000C6C656 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		0193ABE42025771A00C6C656 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
 		0193ABE52025771A00C6C656 /* SceneManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneManager.h; sourceTree = "<group>"; };
 		0193ABE72025795F00C6C656 /* SceneBase.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneBase.cpp; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 		011794D42029874C00770759 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				014B0F4E202AD973008D0CA7 /* JsonCpp */,
 				011794D52029874C00770759 /* RichTextEditor */,
 			);
 			path = Plugin;
@@ -695,10 +698,26 @@
 			children = (
 				014467E0202A989B0045AE3E /* HttpManager.cpp */,
 				014467E1202A989B0045AE3E /* HttpManager.h */,
-				014B0F49202AD11E008D0CA7 /* HttpDefine.cpp */,
-				014B0F4A202AD11E008D0CA7 /* HttpDefine.h */,
 			);
 			path = Http;
+			sourceTree = "<group>";
+		};
+		014B0F4E202AD973008D0CA7 /* JsonCpp */ = {
+			isa = PBXGroup;
+			children = (
+				014B0F4F202AD973008D0CA7 /* json */,
+				014B0F52202AD973008D0CA7 /* jsoncpp.cpp */,
+			);
+			path = JsonCpp;
+			sourceTree = "<group>";
+		};
+		014B0F4F202AD973008D0CA7 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				014B0F50202AD973008D0CA7 /* json-forwards.h */,
+				014B0F51202AD973008D0CA7 /* json.h */,
+			);
+			path = json;
 			sourceTree = "<group>";
 		};
 		017A773B20299167003AE256 /* Base */ = {
@@ -892,7 +911,8 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0193ABE1202575B000C6C656 /* Config.h */,
+				014B0F56202B018F008D0CA7 /* Journal.h */,
+				014B0F57202B01B8008D0CA7 /* Define.h */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				014467DF202A988C0045AE3E /* Http */,
@@ -1191,7 +1211,7 @@
 				0117956F2029874D00770759 /* ZSSAppDelegate.m in Sources */,
 				01BA7F812028065E002EA80C /* LayerArchive.cpp in Sources */,
 				011795C72029874D00770759 /* CYRLayoutManager.m in Sources */,
-				014B0F4B202AD11E008D0CA7 /* HttpDefine.cpp in Sources */,
+				014B0F53202AD973008D0CA7 /* jsoncpp.cpp in Sources */,
 				0193ABEC20257DA900C6C656 /* SceneMain.cpp in Sources */,
 				011795DC2029892D00770759 /* DataManager.cpp in Sources */,
 				01BA7F8420280685002EA80C /* LayerJournalEx.cpp in Sources */,

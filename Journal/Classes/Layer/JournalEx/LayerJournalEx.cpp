@@ -5,7 +5,7 @@
 //  Created by liuwei on 2018/2/5.
 //
 
-#include "Config.h"
+#include "Journal.h"
 #include "LayerMain.h"
 #include "JournalExCell.h"
 #include "LayerJournalEx.h"

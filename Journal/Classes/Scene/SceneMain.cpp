@@ -6,7 +6,7 @@
 //
 
 
-#include "Config.h"
+#include "Journal.h"
 #include "SceneBase.h"
 #include "LayerMain.h"
 #include "SceneMain.h"

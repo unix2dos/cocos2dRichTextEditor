@@ -42,7 +42,8 @@ using namespace CocosDenshion;
 
 
 USING_NS_CC;
-#include "Config.h"
+#include "Journal.h"
+#include "Define.h"
 #include "SceneManager.h"
 
 

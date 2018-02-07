@@ -18,11 +18,30 @@ static int getTimeStamp()
     //    return tm.tv_usec; // 单位：毫秒
 }
 
+// 格式化时间戳
 static std::string getTimeString(int timeStamp)
 {
     return cocos2d::StringUtils::format("%d",timeStamp);
 //    return "2016-01-02";
 }
+
+
+//解析服务器json
+static Json::Value parseServerJson(std::string strJson)
+{
+    Json::CharReaderBuilder builder;
+    Json::CharReader* reader = builder.newCharReader();
+    Json::Value root;
+    std::string errors;
+    bool ok = reader->parse(strJson.c_str(), strJson.c_str() + strJson.size(), &root, &errors);
+    delete reader;
+    if (ok && root.isObject() && root.isMember("ret") && root.isMember("msg") && root.isMember("data"))
+    {
+        return root;
+    }
+    return Json::nullValue;
+}
+
 
 
 #endif /* CommonUtils_hpp */
