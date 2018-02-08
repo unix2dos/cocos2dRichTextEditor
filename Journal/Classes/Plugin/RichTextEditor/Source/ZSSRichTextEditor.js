@@ -107,6 +107,11 @@ zss_editor.setScrollPosition = function() {
     window.location = 'scroll://'+position;
 }
 
+zss_editor.abc = function(placeholder) {
+    var editor = $('#zss_editor_content');
+    editor.attr("contentEditable","true");
+    console.log(editor);
+}
 
 zss_editor.setPlaceholder = function(placeholder) {
     
@@ -122,15 +127,14 @@ zss_editor.setPlaceholder = function(placeholder) {
             element.empty();
         }
     });
-	
-	
-    
 }
+
 
 zss_editor.setFooterHeight = function(footerHeight) {
     var footer = $('#zss_editor_footer');
     footer.height(footerHeight + 'px');
 }
+
 
 zss_editor.getCaretYPosition = function() {
     var sel = window.getSelection();

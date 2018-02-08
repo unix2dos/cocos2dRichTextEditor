@@ -227,4 +227,7 @@ static NSString * const ZSSRichTextEditorToolbarFonts = @"com.zedsaid.toolbarite
  */
 - (void)setCSS:(NSString *)css;
 
+
+- (void)abc;
+
 @end

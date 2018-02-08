@@ -919,6 +919,12 @@ static CGFloat kDefaultScale = 0.5;
     
 }
 
+
+- (void)abc {
+    [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.abc();"];
+}
+
+
 - (void)updateCSS {
     
     if (self.customCSS != NULL && [self.customCSS length] != 0) {
