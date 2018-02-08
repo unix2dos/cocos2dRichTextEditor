@@ -47,7 +47,7 @@ CDataJournal::CDataJournal()
         info.createTime = getTimeStamp() - rand() % 1000;
         info.vecMessage = vector<std::string>();
         info.lickCount = rand() % 255;
-        info.isPublic = i < 7;
+        info.isPublic = i < 8;
         m_vecJournals.push_back(info);
     }
     

@@ -20,57 +20,54 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Standard";
+    self.title = @"写日记";
     self.shouldShowKeyboard = NO;
     self.alwaysShowToolbar = NO;
-    self.receiveEditorDidChangeEvents = YES;
-//    self.formatHTML = YES;
-    [self setPlaceholder:@"This is a placeholder that will show when there is no content(html)"];
-    self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold, ZSSRichTextEditorToolbarH1, ZSSRichTextEditorToolbarParagraph];
-
+    self.receiveEditorDidChangeEvents = NO;
+    self.formatHTML = YES;
+    self.placeholder = @"Please tap to start editing";
+    self.toolbarItemTintColor = [UIColor redColor];
+    self.toolbarItemSelectedTintColor = [UIColor blackColor];
+    self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold
+                                 ,ZSSRichTextEditorToolbarItalic
+                                 ,ZSSRichTextEditorToolbarUnderline
+                                 ,ZSSRichTextEditorToolbarUnorderedList
+                                 ,ZSSRichTextEditorToolbarOrderedList
+//                                 ,ZSSRichTextEditorToolbarTextColor
+//                                 ,ZSSRichTextEditorToolbarH1
+//                                 ,ZSSRichTextEditorToolbarH2
+//                                 ,ZSSRichTextEditorToolbarH3
+//                                 ,ZSSRichTextEditorToolbarH4
+//                                 ,ZSSRichTextEditorToolbarH5
+//                                 ,ZSSRichTextEditorToolbarH6
+//                                 ,ZSSRichTextEditorToolbarParagraph
+                                 ];
+    
+    
     // Export HTML
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(exportHTML)];
 
-    
-//    UIButton *b = [[UIButton alloc]initWithButtonType:UIButtonTypeCustom];
-//    [b setImage:[UIImage imageNamed:@"BackImage.png"] forState:UIControlStateNormal];
-//    [b addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
-//    self.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:b];
-//
-    
-    NSString *html = @"<div class='test'></div><!-- This is an HTML comment -->"
-    "<p>This is a test of the <strong>ZSSRichTextEditor</strong> by <a title=\"Zed Said\" href=\"http://www.zedsaid.com\">Zed Said Studio</a></p>";
-    
+
+    NSString *html = @"";
     [self setHTML:html];
     
+    
+    
+    
+//    self.view.backgroundColor = [UIColor whiteColor];
+//    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveURL)];
+//    self.navigationItem.rightBarButtonItem = save;
+//    
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+//    
+//    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 20, self.view.frame.size.width - 40, 40)];
+//    self.textField.text = !self.isInsertImagePicker ? @"http://www.apple.com" : @"http://fineprintnyc.com/images/blog/history-of-apple-logo/apple-logo-2.jpg";
+//    self.textField.layer.borderColor = [UIColor grayColor].CGColor;
+//    self.textField.layer.borderWidth = 0.5f;
+//    self.textField.clearButtonMode = UITextFieldViewModeAlways;
+//    [self.view addSubview:self.textField];
 }
 
-
-- (void)showInsertURLAlternatePicker {
-    
-//    [self dismissAlertView];
-//
-//    ZSSDemoPickerViewController *picker = [[ZSSDemoPickerViewController alloc] init];
-//    picker.demoView = self;
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:picker];
-//    nav.navigationBar.translucent = NO;
-//    [self presentViewController:nav animated:YES completion:nil];
-    
-}
-
-
-- (void)showInsertImageAlternatePicker {
-    
-//    [self dismissAlertView];
-//
-//    ZSSDemoPickerViewController *picker = [[ZSSDemoPickerViewController alloc] init];
-//    picker.demoView = self;
-//    picker.isInsertImagePicker = YES;
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:picker];
-//    nav.navigationBar.translucent = NO;
-//    [self presentViewController:nav animated:YES completion:nil];
-    
-}
 
 
 - (void)exportHTML {

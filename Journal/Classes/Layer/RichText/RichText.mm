@@ -7,9 +7,9 @@
 //
 
 USING_NS_CC;
+#include "Journal.h"
 #include "RichViewController.h"
 #include "RichText.h"
-
 
 
 CRichText* CRichText::m_pRichText = nullptr;
@@ -31,31 +31,31 @@ CRichText* CRichText::getInstance()
     return m_pRichText;
 }
 
-static RichViewController* controller = nullptr;
+
+static UINavigationController *nav = nullptr;
 void CRichText::haha()
 {
-    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    if (controller)
+    UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+    if (nav)
     {
-//        [rootViewController.view willRemoveSubview:controller.view];
-        //  [self.navigationController popToViewController:(nonnull UIViewController *) animated:(BOOL)];
-
-        [rootViewController dismissViewControllerAnimated:YES completion:nil];
-        [controller removeFromParentViewController];
-        controller = nullptr;//TODO: 此处应该是删除nav
+        UIViewController *vc = [root.childViewControllers lastObject];
+        [vc willMoveToParentViewController:nil];
+        [vc.view removeFromSuperview];
+        [vc removeFromParentViewController];
+        nav = nullptr;
     }
     else
     {
-//        controller = [[RichViewController alloc] init];
-//        controller.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//        [rootViewController.view addSubview:controller.view];
-//        [rootViewController.navigationController pushViewController:controller animated:YES];
-//        [rootViewController presentViewController:controller animated:YES completion:nil];
+        cocos2d::Size winSize = Director::getInstance()->getWinSize();
         
-        controller = [[RichViewController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:controller];
-        nav.modalPresentationStyle = UIModalPresentationFormSheet;
-        [rootViewController presentViewController:nav animated:YES completion:nil];
+        RichViewController* rich = [[RichViewController alloc] init];
+        nav = [[UINavigationController alloc] initWithRootViewController:rich];
+        nav.navigationBar.translucent = NO;
+        [root addChildViewController:nav];
+//        nav.view.frame = CGRectMake(0, 0, 400, 500);
+        
+        [root.view addSubview:nav.view];
+        [nav didMoveToParentViewController:root];
     }
 }
 
