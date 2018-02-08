@@ -33,48 +33,26 @@
                                  ,ZSSRichTextEditorToolbarUnderline
                                  ,ZSSRichTextEditorToolbarUnorderedList
                                  ,ZSSRichTextEditorToolbarOrderedList
-//                                 ,ZSSRichTextEditorToolbarTextColor
-//                                 ,ZSSRichTextEditorToolbarH1
-//                                 ,ZSSRichTextEditorToolbarH2
-//                                 ,ZSSRichTextEditorToolbarH3
-//                                 ,ZSSRichTextEditorToolbarH4
-//                                 ,ZSSRichTextEditorToolbarH5
-//                                 ,ZSSRichTextEditorToolbarH6
                                  ,ZSSRichTextEditorToolbarParagraph
                                  ];
     
     
-    // Export HTML
+    // Save
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(exportHTML)];
 
 
+    
+    
     NSString *html = @"";
     [self setHTML:html];
-    
-    
-    
-    
-//    self.view.backgroundColor = [UIColor whiteColor];
-//    UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveURL)];
-//    self.navigationItem.rightBarButtonItem = save;
-//    
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
-//    
-//    self.textField = [[UITextField alloc] initWithFrame:CGRectMake(20, 20, self.view.frame.size.width - 40, 40)];
-//    self.textField.text = !self.isInsertImagePicker ? @"http://www.apple.com" : @"http://fineprintnyc.com/images/blog/history-of-apple-logo/apple-logo-2.jpg";
-//    self.textField.layer.borderColor = [UIColor grayColor].CGColor;
-//    self.textField.layer.borderWidth = 0.5f;
-//    self.textField.clearButtonMode = UITextFieldViewModeAlways;
-//    [self.view addSubview:self.textField];
+
 }
 
 
 
 - (void)exportHTML {
-    
     NSLog(@"%@", [self getHTML]);
     CRichText::getInstance()->haha();
-    
 }
 
 - (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html {
