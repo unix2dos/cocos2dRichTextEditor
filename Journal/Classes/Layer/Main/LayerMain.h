@@ -9,6 +9,7 @@
 #define LayerMain_hpp
 
 #include "HttpManager.h"
+#include "NotificationManager.h"
 
 #define MAIN_BOTTOM_HEIGHT 150 //底部高度
 
@@ -21,6 +22,7 @@ enum class MainStatus{
 
 class CLayerMain: public Layer
 , public CDataHttpDelegate
+, public CNotificationDelegate
 {
 public:
     CLayerMain();
@@ -31,6 +33,7 @@ public:
     
     void setMainStatus(MainStatus status);
     virtual void endWithHttpData(eHttpType myType, HttpResponseInfo rep) override;
+    virtual void notifyEvent(NOTIFY_TYPE type, void* pVoid = nullptr) override;
 private:
     void _initUI();
     void _initButtons();

@@ -40,7 +40,7 @@
 //                                 ,ZSSRichTextEditorToolbarH4
 //                                 ,ZSSRichTextEditorToolbarH5
 //                                 ,ZSSRichTextEditorToolbarH6
-//                                 ,ZSSRichTextEditorToolbarParagraph
+                                 ,ZSSRichTextEditorToolbarParagraph
                                  ];
     
     

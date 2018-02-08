@@ -124,9 +124,10 @@
 		011795DF20298AA000770759 /* DataUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DD20298A9F00770759 /* DataUser.cpp */; };
 		011795E220298AB400770759 /* DataJournal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795E020298AB400770759 /* DataJournal.cpp */; };
 		014467DD202A94DA0045AE3E /* ArchiveCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014467DB202A94DA0045AE3E /* ArchiveCell.cpp */; };
-		014467E2202A989B0045AE3E /* HttpManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014467E0202A989B0045AE3E /* HttpManager.cpp */; };
 		014B0F53202AD973008D0CA7 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F52202AD973008D0CA7 /* jsoncpp.cpp */; };
-		017A773F20299199003AE256 /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 017A773D20299199003AE256 /* CommonUtils.cpp */; };
+		014B0F65202C20FC008D0CA7 /* NotificationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */; };
+		014B0F66202C20FC008D0CA7 /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F60202C20FC008D0CA7 /* CommonUtils.cpp */; };
+		014B0F67202C20FC008D0CA7 /* HttpManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F64202C20FC008D0CA7 /* HttpManager.cpp */; };
 		0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABD12025487B00C6C656 /* LayerWebView.cpp */; };
 		0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE42025771A00C6C656 /* SceneManager.cpp */; };
 		0193ABE92025795F00C6C656 /* SceneBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE72025795F00C6C656 /* SceneBase.cpp */; };
@@ -369,15 +370,18 @@
 		011795E120298AB400770759 /* DataJournal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataJournal.h; sourceTree = "<group>"; };
 		014467DB202A94DA0045AE3E /* ArchiveCell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ArchiveCell.cpp; sourceTree = "<group>"; };
 		014467DC202A94DA0045AE3E /* ArchiveCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArchiveCell.h; sourceTree = "<group>"; };
-		014467E0202A989B0045AE3E /* HttpManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HttpManager.cpp; sourceTree = "<group>"; };
-		014467E1202A989B0045AE3E /* HttpManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
 		014B0F50202AD973008D0CA7 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
 		014B0F51202AD973008D0CA7 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
 		014B0F52202AD973008D0CA7 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		014B0F56202B018F008D0CA7 /* Journal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
 		014B0F57202B01B8008D0CA7 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
-		017A773D20299199003AE256 /* CommonUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommonUtils.cpp; sourceTree = "<group>"; };
-		017A773E20299199003AE256 /* CommonUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
+		014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationManager.cpp; sourceTree = "<group>"; };
+		014B0F5E202C20FC008D0CA7 /* NotificationDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationDefine.h; sourceTree = "<group>"; };
+		014B0F5F202C20FC008D0CA7 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
+		014B0F60202C20FC008D0CA7 /* CommonUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonUtils.cpp; sourceTree = "<group>"; };
+		014B0F61202C20FC008D0CA7 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
+		014B0F63202C20FC008D0CA7 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
+		014B0F64202C20FC008D0CA7 /* HttpManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HttpManager.cpp; sourceTree = "<group>"; };
 		0193ABD12025487B00C6C656 /* LayerWebView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerWebView.cpp; sourceTree = "<group>"; };
 		0193ABD22025487B00C6C656 /* LayerWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWebView.h; sourceTree = "<group>"; };
 		0193ABE42025771A00C6C656 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
@@ -693,15 +697,6 @@
 			path = "Third Party";
 			sourceTree = "<group>";
 		};
-		014467DF202A988C0045AE3E /* Http */ = {
-			isa = PBXGroup;
-			children = (
-				014467E0202A989B0045AE3E /* HttpManager.cpp */,
-				014467E1202A989B0045AE3E /* HttpManager.h */,
-			);
-			path = Http;
-			sourceTree = "<group>";
-		};
 		014B0F4E202AD973008D0CA7 /* JsonCpp */ = {
 			isa = PBXGroup;
 			children = (
@@ -720,13 +715,34 @@
 			path = json;
 			sourceTree = "<group>";
 		};
-		017A773B20299167003AE256 /* Base */ = {
+		014B0F5B202C20FC008D0CA7 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				017A773D20299199003AE256 /* CommonUtils.cpp */,
-				017A773E20299199003AE256 /* CommonUtils.h */,
+				014B0F62202C20FC008D0CA7 /* Http */,
+				014B0F5C202C20FC008D0CA7 /* Notify */,
+				014B0F60202C20FC008D0CA7 /* CommonUtils.cpp */,
+				014B0F61202C20FC008D0CA7 /* CommonUtils.h */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		014B0F5C202C20FC008D0CA7 /* Notify */ = {
+			isa = PBXGroup;
+			children = (
+				014B0F5E202C20FC008D0CA7 /* NotificationDefine.h */,
+				014B0F5F202C20FC008D0CA7 /* NotificationManager.h */,
+				014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */,
+			);
+			path = Notify;
+			sourceTree = "<group>";
+		};
+		014B0F62202C20FC008D0CA7 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				014B0F63202C20FC008D0CA7 /* HttpManager.h */,
+				014B0F64202C20FC008D0CA7 /* HttpManager.cpp */,
+			);
+			path = Http;
 			sourceTree = "<group>";
 		};
 		0193ABD02025486A00C6C656 /* WebView */ = {
@@ -915,8 +931,7 @@
 				014B0F57202B01B8008D0CA7 /* Define.h */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
-				014467DF202A988C0045AE3E /* Http */,
-				017A773B20299167003AE256 /* Base */,
+				014B0F5B202C20FC008D0CA7 /* Base */,
 				011794D32029874600770759 /* Data */,
 				0193ABF1202580FB00C6C656 /* Layer */,
 				0193ABE2202576F100C6C656 /* Scene */,
@@ -1168,7 +1183,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				011795702029874D00770759 /* ZSSColorViewController.m in Sources */,
-				014467E2202A989B0045AE3E /* HttpManager.cpp in Sources */,
 				011795CC2029874D00770759 /* HRColorCursor.m in Sources */,
 				014467DD202A94DA0045AE3E /* ArchiveCell.cpp in Sources */,
 				011795D62029874D00770759 /* DemoModalViewController.m in Sources */,
@@ -1177,9 +1191,11 @@
 				0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */,
 				01BA7F7E202805D6002EA80C /* LayerJournals.cpp in Sources */,
 				011795C92029874D00770759 /* CYRTextStorage.m in Sources */,
+				014B0F67202C20FC008D0CA7 /* HttpManager.cpp in Sources */,
 				011795C22029874D00770759 /* ZSSFontsViewController.m in Sources */,
 				011795E220298AB400770759 /* DataJournal.cpp in Sources */,
 				01CA8D682029431C002F1934 /* JournalExCell.cpp in Sources */,
+				014B0F65202C20FC008D0CA7 /* NotificationManager.cpp in Sources */,
 				01BA7F8B20284C2E002EA80C /* JournalsCell.cpp in Sources */,
 				0117956B2029874D00770759 /* ZSSPlaceholderViewController.m in Sources */,
 				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
@@ -1192,7 +1208,6 @@
 				011795C42029874D00770759 /* HRColorPickerViewController.m in Sources */,
 				01BA7D5E2026FB57002EA80C /* RichText.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				017A773F20299199003AE256 /* CommonUtils.cpp in Sources */,
 				011795C32029874D00770759 /* HRCgUtil.m in Sources */,
 				01CA8D6C20295143002F1934 /* LayerJournalClassify.cpp in Sources */,
 				011795BF2029874D00770759 /* ZSSRichTextEditor.m in Sources */,
@@ -1202,6 +1217,7 @@
 				0117956E2029874D00770759 /* ZSSDemoPickerViewController.m in Sources */,
 				011795C02029874D00770759 /* ZSSBarButtonItem.m in Sources */,
 				011795C82029874D00770759 /* CYRToken.m in Sources */,
+				014B0F66202C20FC008D0CA7 /* CommonUtils.cpp in Sources */,
 				0117956D2029874D00770759 /* ZSSCustomButtonsViewController.m in Sources */,
 				011795DF20298AA000770759 /* DataUser.cpp in Sources */,
 				0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */,
