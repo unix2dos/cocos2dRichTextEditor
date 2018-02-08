@@ -39,7 +39,7 @@
     
     // Save
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(exportHTML)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(exportHTML1)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
 
     
     
@@ -61,9 +61,9 @@
     NSLog(@"%@", [self getHTML]);
     CRichText::getInstance()->haha();
 }
-- (void)exportHTML1 {
-    [self abc];
 
+- (void)edit {
+    [self setCanEditer:true];
 }
 
 - (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html {

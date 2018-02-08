@@ -107,10 +107,9 @@ zss_editor.setScrollPosition = function() {
     window.location = 'scroll://'+position;
 }
 
-zss_editor.abc = function(placeholder) {
+zss_editor.setCanEditer = function(can) {
     var editor = $('#zss_editor_content');
-    editor.attr("contentEditable","true");
-    console.log(editor);
+    editor.attr("contentEditable", can);
 }
 
 zss_editor.setPlaceholder = function(placeholder) {

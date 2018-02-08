@@ -245,6 +245,7 @@ static CGFloat kDefaultScale = 0.5;
     self.alwaysShowToolbar = NO;
     self.shouldShowKeyboard = YES;
     self.formatHTML = YES;
+    self.canEditer = NO;
     
     //Initalise enabled toolbar items array
     self.enabledToolbarItems = [[NSArray alloc] init];
@@ -919,9 +920,15 @@ static CGFloat kDefaultScale = 0.5;
     
 }
 
-
-- (void)abc {
-    [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.abc();"];
+- (void)setCanEditer:(BOOL)can {
+    if (can)
+    {
+        [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.setCanEditer(\"true\");"];
+    }
+    else
+    {
+        [self.editorView stringByEvaluatingJavaScriptFromString:@"zss_editor.setCanEditer(\"false\");"];
+    }
 }
 
 

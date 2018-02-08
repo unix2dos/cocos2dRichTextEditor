@@ -103,6 +103,9 @@ static NSString * const ZSSRichTextEditorToolbarFonts = @"com.zedsaid.toolbarite
  */
 @property (nonatomic, strong) UIColor *toolbarItemSelectedTintColor;
 
+
+@property (nonatomic) BOOL canEditer;
+
 /**
  *  Sets the HTML for the entire editor
  *
@@ -228,6 +231,6 @@ static NSString * const ZSSRichTextEditorToolbarFonts = @"com.zedsaid.toolbarite
 - (void)setCSS:(NSString *)css;
 
 
-- (void)abc;
+- (void)setCanEditer:(BOOL)can;
 
 @end
