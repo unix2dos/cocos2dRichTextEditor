@@ -103,7 +103,7 @@
 
 //fix not hide status on ios7
 - (BOOL)prefersStatusBarHidden {
-    return YES;
+    return YES;//控制是否显示电池时间
 }
 
 // Controls the application's preferred home indicator auto-hiding when this view controller is shown.

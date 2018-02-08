@@ -26,8 +26,6 @@
     self.receiveEditorDidChangeEvents = NO;
     self.formatHTML = YES;
     self.placeholder = @"Please tap to start editing";
-    self.toolbarItemTintColor = [UIColor redColor];
-    self.toolbarItemSelectedTintColor = [UIColor blackColor];
     self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold
                                  ,ZSSRichTextEditorToolbarItalic
                                  ,ZSSRichTextEditorToolbarUnderline
@@ -37,7 +35,7 @@
     
     
     // Save
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(exportHTML)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
 
     
@@ -56,7 +54,7 @@
 
 
 
-- (void)exportHTML {
+- (void)back {
     NSLog(@"%@", [self getHTML]);
     CRichText::getInstance()->haha();
 }
@@ -66,17 +64,14 @@
 }
 
 - (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html {
-    
+
     NSLog(@"Text Has Changed: %@", text);
-    
     NSLog(@"HTML Has Changed: %@", html);
-    
 }
 
 - (void)hashtagRecognizedWithWord:(NSString *)word {
     
     NSLog(@"Hashtag has been recognized: %@", word);
-    
 }
 
 - (void)mentionRecognizedWithWord:(NSString *)word {

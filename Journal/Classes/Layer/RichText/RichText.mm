@@ -54,11 +54,19 @@ void CRichText::haha()
         nav.navigationBar.translucent = NO;
         [root addChildViewController:nav];
         
-//        CGRect rect = [[UIScreen mainScreen] bounds];
+        CGRect rect = [[UIScreen mainScreen] bounds];
 //        CGSize viewSize = rich.view.frame.size;
 //        rich.view.frame = CGRectMake(0, 0, viewSize.width, viewSize.height * .5);
-//        rich.view.center = CGPointMake(rect.size.width*0.5f, rect.size.height*0.5f);
-
+//        UITextField* textField = [[UITextField alloc]init];
+//        textField.frame = CGRectMake(0, 0, rect.size.width, 50);
+//        textField.placeholder = @"请输入标题";
+//        textField.font = [UIFont systemFontOfSize:20];
+//        textField.textColor = [UIColor blackColor];
+//        textField.borderStyle = UITextBorderStyleRoundedRect;
+//        textField.keyboardType = UIKeyboardTypeDefault;
+//        [rich.view addSubview:textField];
+        
+        
         
         [root.view addSubview:nav.view];
         [nav didMoveToParentViewController:root];
