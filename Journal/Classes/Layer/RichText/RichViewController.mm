@@ -33,7 +33,6 @@
                                  ,ZSSRichTextEditorToolbarUnderline
                                  ,ZSSRichTextEditorToolbarUnorderedList
                                  ,ZSSRichTextEditorToolbarOrderedList
-                                 ,ZSSRichTextEditorToolbarParagraph
                                  ];
     
     
