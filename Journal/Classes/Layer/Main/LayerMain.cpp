@@ -8,6 +8,7 @@
 
 #include "Journal.h"
 #include "Define.h"
+#include "CommonUtils.h"
 #include "LayerJournals.h"
 #include "LayerArchive.h"
 #include "LayerJournalEx.h"
@@ -54,10 +55,14 @@ void CLayerMain::_initUI()
     this->setMainStatus(m_status);
     
     //TODO:测试网络
-    CHttpManager::getInstance()->HttpPost(MYDEF_URL_LOGIN, eHttpType::login
-                                          ,R"({"username": "abcde", "password":"123"})"
-                                          );
-                                                            
+    
+    Json::Value root;
+    root["username"] = "abcde";
+    root["password"] = 123;
+    string strJson = buildServeJson(root);
+    CHttpManager::getInstance()->HttpPost(MYDEF_URL_LOGIN, eHttpType::login, strJson);
+    
+    
 //    CHttpManager::getInstance()->HttpGet("http://localhost:8080/foo",eHttpType::login);
 }
 
@@ -67,11 +72,11 @@ void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
     {
         if (rep.status != eHttpStatus::success)
         {
-            log("err %s", rep.msg.c_str());
+            log("Error %s", rep.msg.c_str());
         }
         else
         {
-            log("success");
+            log("Success");
         }
     }
 }

@@ -27,7 +27,7 @@ static std::string getTimeString(int timeStamp)
 
 
 //解析服务器json
-static Json::Value parseServerJson(std::string strJson)
+static Json::Value parseServeJson(std::string strJson)
 {
     Json::CharReaderBuilder builder;
     Json::CharReader* reader = builder.newCharReader();
@@ -42,6 +42,14 @@ static Json::Value parseServerJson(std::string strJson)
     return Json::nullValue;
 }
 
+
+static std::string buildServeJson(Json::Value root)
+{
+    Json::StreamWriterBuilder builder;
+    builder.settings_["indentation"] = "";
+    string strJson = Json::writeString(builder, root);
+    return strJson;
+}
 
 
 #endif /* CommonUtils_hpp */

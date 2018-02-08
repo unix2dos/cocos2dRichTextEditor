@@ -112,7 +112,7 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
         std::string strContent = "";
         strContent.assign(buffer->begin(), buffer->end());
         
-        auto root = parseServerJson(strContent);
+        auto root = parseServeJson(strContent);
         if (root == Json::nullValue)
         {
             m_mapHttpStatus[myType].status = eHttpStatus::serverErr;//json错误, 404, 500...
