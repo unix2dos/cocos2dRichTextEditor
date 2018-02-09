@@ -29,4 +29,6 @@ bool CSceneLogin::init()
     
     auto layer = CLayerLogin::create();
     this->addChild(layer);
+    
+    return true;
 }

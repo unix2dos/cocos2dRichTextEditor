@@ -17,7 +17,7 @@ public:
     bool init() override;
 private:
     void _initUI();
-    
+
 private:
     Size m_winSize;
 };

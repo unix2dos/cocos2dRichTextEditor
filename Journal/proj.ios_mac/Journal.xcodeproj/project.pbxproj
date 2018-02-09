@@ -126,7 +126,6 @@
 		014467DD202A94DA0045AE3E /* ArchiveCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014467DB202A94DA0045AE3E /* ArchiveCell.cpp */; };
 		014B0F53202AD973008D0CA7 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F52202AD973008D0CA7 /* jsoncpp.cpp */; };
 		014B0F65202C20FC008D0CA7 /* NotificationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */; };
-		014B0F66202C20FC008D0CA7 /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F60202C20FC008D0CA7 /* CommonUtils.cpp */; };
 		014B0F67202C20FC008D0CA7 /* HttpManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F64202C20FC008D0CA7 /* HttpManager.cpp */; };
 		0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABD12025487B00C6C656 /* LayerWebView.cpp */; };
 		0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE42025771A00C6C656 /* SceneManager.cpp */; };
@@ -381,7 +380,6 @@
 		014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationManager.cpp; sourceTree = "<group>"; };
 		014B0F5E202C20FC008D0CA7 /* NotificationDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationDefine.h; sourceTree = "<group>"; };
 		014B0F5F202C20FC008D0CA7 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
-		014B0F60202C20FC008D0CA7 /* CommonUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommonUtils.cpp; sourceTree = "<group>"; };
 		014B0F61202C20FC008D0CA7 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		014B0F63202C20FC008D0CA7 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
 		014B0F64202C20FC008D0CA7 /* HttpManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HttpManager.cpp; sourceTree = "<group>"; };
@@ -403,6 +401,7 @@
 		01A778A4202D6AB100CFA7E2 /* LayerLogin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerLogin.h; sourceTree = "<group>"; };
 		01A778A6202D6B2200CFA7E2 /* SceneLogin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneLogin.cpp; sourceTree = "<group>"; };
 		01A778A7202D6B2200CFA7E2 /* SceneLogin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneLogin.h; sourceTree = "<group>"; };
+		01A778AC202D7A7100CFA7E2 /* LoginDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginDefine.h; sourceTree = "<group>"; };
 		01BA7D5B2026FB56002EA80C /* RichTextManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RichTextManager.mm; sourceTree = "<group>"; };
 		01BA7D5C2026FB56002EA80C /* RichTextManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichTextManager.h; sourceTree = "<group>"; };
 		01BA7F6720270AAB002EA80C /* RichViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichViewController.h; sourceTree = "<group>"; };
@@ -730,7 +729,6 @@
 				01BA7D5A2026FB56002EA80C /* RichText */,
 				014B0F62202C20FC008D0CA7 /* Http */,
 				014B0F5C202C20FC008D0CA7 /* Notify */,
-				014B0F60202C20FC008D0CA7 /* CommonUtils.cpp */,
 				014B0F61202C20FC008D0CA7 /* CommonUtils.h */,
 			);
 			path = Base;
@@ -806,6 +804,7 @@
 		01A7789F202D69D000CFA7E2 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				01A778AC202D7A7100CFA7E2 /* LoginDefine.h */,
 				01A778A0202D69E500CFA7E2 /* LayerSignUp.cpp */,
 				01A778A1202D69E500CFA7E2 /* LayerSignUp.h */,
 				01A778A3202D6AB100CFA7E2 /* LayerLogin.cpp */,
@@ -1242,7 +1241,6 @@
 				0117956E2029874D00770759 /* ZSSDemoPickerViewController.m in Sources */,
 				011795C02029874D00770759 /* ZSSBarButtonItem.m in Sources */,
 				011795C82029874D00770759 /* CYRToken.m in Sources */,
-				014B0F66202C20FC008D0CA7 /* CommonUtils.cpp in Sources */,
 				0117956D2029874D00770759 /* ZSSCustomButtonsViewController.m in Sources */,
 				011795DF20298AA000770759 /* DataUser.cpp in Sources */,
 				0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */,
