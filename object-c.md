@@ -1,5 +1,5 @@
 
-成员函数
+### 成员函数
 
 ```
 - (void)abc;
@@ -7,7 +7,7 @@
 - (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html;
 ```
 
-属性
+### 属性
 
 ```
 @property (nonatomic,copy) NSString *name;
@@ -26,3 +26,20 @@
 * retain 一般用在对象类型, 比如我们自己写的类,还有数组NSArray中会用到
 * assgin 一般用在NSInteger和CGFloat中,因为他们在栈区,不需要内存管理,所以用assgin
 * copy 一般只会用在字符串中
+
+
+### string Nsstring
+
+* std::string转为 NsString
+
+```
+std::string str1 = "hello";
+NSString *str= [NSString stringWithUTF8String:str1.c_str()];
+```
+
+* NsString 转为 std::string 
+
+```
+NSString *str;
+[str UTF8String]
+```

@@ -36,13 +36,13 @@ CDataJournal::CDataJournal()
         "As the development of media, many children become famous. As they get the fame at the early age, their life is influenced. They can’t live the normal life as other children have. For example, some schools refuse to receive famous kids, because the school is afraid of out of control, then many students will be affected and can’t focus their attention on study.",
         "Last week, my parents told me the good news that my family would go camping with my uncle’s family. I felt so excited about it, because I could spend the whole night outside, which never happened before. When the day came, ",
         "Most young people have idols, and the popular stars are always treated in the first place in their hearts. In order to see their idols, some people will do a lot of crazy things, such as skip class or save money to buy a concert ticket. ",
-        "I always feel it a burden to learn knowledge after I go to school. As a small girl, I just want food and hang out to play for fun. Study seems the most difficult thing for me. Later, I figure out that the reason why I refuse to study is because I lack of interest. ",
+        R"(<h1>Large Editor</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at enim at nibh pulvinar sagittis eu non lacus. Quisque suscipit tempor urna vel pretium. Curabitur id enim auctor, cursus elit ac, porttitor sem. Ut suscipit purus odio, vitae sollicitudin sapien placerat in. Duis adipiscing urna id viverra tincidunt. Duis sit amet adipiscing justo, vitae facilisis ipsum. Vivamus scelerisque justo ut libero dictum, id tempor ipsum tempus. Nam nec dui dapibus, tristique dolor et, sollicitudin enim. Nullam sagittis arcu tortor, mollis porta mi laoreet ac. Proin lobortis bibendum urna, in ultrices dolor hendrerit quis. Morbi felis quam, luctus nec suscipit porttitor, lacinia vitae velit. Nulla ultricies pellentesque porta. <strong>Suspendisse suscipit sagittis metus non rhoncus</strong>.</p><p>Phasellus adipiscing justo ipsum, eget feugiat dui elementum id. Pellentesque eu dolor eu arcu bibendum sollicitudin. <em>Aenean ac dolor non lectus laoreet semper at vel est</em>. Curabitur sit amet odio laoreet turpis mattis suscipit at sed lacus. Nunc tincidunt ipsum nulla, ac blandit leo lobortis eu. Curabitur mauris mauris, vestibulum at urna sit amet, condimentum venenatis ante. Nullam a risus nisi. Donec sit amet imperdiet mi.</p>
+        )",
     };
     for (int i = 0; i < 10; ++i)
     {
         Journal_Info info;
         info.strTitle = title[i];
-        info.strPreview = preview[i];
         info.strContent = preview[i];
         info.createTime = getTimeStamp() - rand() % 1000;
         info.vecMessage = vector<std::string>();
@@ -52,7 +52,6 @@ CDataJournal::CDataJournal()
     }
     
     //根据创建时间排序
-    
     std::sort(m_vecJournals.begin(), m_vecJournals.end(), [](const Journal_Info&lhs, const Journal_Info& rhs){
         return lhs.createTime < rhs.createTime;
     });

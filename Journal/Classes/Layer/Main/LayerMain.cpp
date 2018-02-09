@@ -69,8 +69,10 @@ void CLayerMain::notifyEvent(NOTIFY_TYPE type, void* pVoid)
 void CLayerMain::_initUI()
 {
     m_winSize = Director::getInstance()->getWinSize();
-    auto bg = Sprite::create("bg_main.png");
-    bg->setPosition(Vec2(m_winSize.width/2, m_winSize.height/2));
+//    auto bg = Sprite::create("bg_main.png");
+//    bg->setPosition(Vec2(m_winSize.width/2, m_winSize.height/2));
+//    this->addChild(bg);
+    auto bg = LayerColor::create(Color4B(255, 255, 255, 255));
     this->addChild(bg);
     
     //初始化按钮
@@ -80,14 +82,12 @@ void CLayerMain::_initUI()
     this->setMainStatus(m_status);
     
     //TODO:测试网络
-    
-    Json::Value root;
-    root["username"] = "abcde";
-    root["password"] = 123;
-    string strJson = buildServeJson(root);
-    CHttpManager::getInstance()->HttpPost(MYDEF_URL_LOGIN, eHttpType::login, strJson);
-    
-    
+//    Json::Value root;
+//    root["username"] = "abcde";
+//    root["password"] = 123;
+//    string strJson = buildServeJson(root);
+//    CHttpManager::getInstance()->HttpPost(MYDEF_URL_LOGIN, eHttpType::login, strJson);
+
 //    CHttpManager::getInstance()->HttpGet("http://localhost:8080/foo",eHttpType::login);
 }
 
