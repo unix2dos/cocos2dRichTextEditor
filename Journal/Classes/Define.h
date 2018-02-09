@@ -13,11 +13,19 @@
 
 #define MY_FONT_ENGLISH "arial.ttf" //字体
 
+//zorder
+#define MYDFE_ZORDER_MSG 1000   //弹窗消息
+
+
+
+
 #define SERVER_ADDRESS "http://journalex.us:5000" //服务器地址
 
 //接口URL
 #define MYDEF_URL_SIGNUP SERVER_ADDRESS"/signup" //注册
 #define MYDEF_URL_LOGIN  SERVER_ADDRESS"/login"  //登录
+
+
 
 
 

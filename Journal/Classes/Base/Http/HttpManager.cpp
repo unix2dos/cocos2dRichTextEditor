@@ -7,6 +7,8 @@
 
 #include "Journal.h"
 #include "CommonUtils.h"
+#include "Define.h"
+#include "LayerMsg.h"
 #include "HttpManager.h"
 
 //消息回调
@@ -133,11 +135,15 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
             m_mapHttpStatus[myType].msg = root["msg"].asString();
             m_mapHttpStatus[myType].jsonRoot = root;
         }
-        
-        //TODO: 公共错误处理, check错误码??
-        
-        //TODO: 公共数据解析
     }
+    
+    //TODO: 公共错误处理, check错误码??
+    if (m_mapHttpStatus[myType].status != eHttpStatus::success)
+    {
+        CLayerMsg::showMsg(m_mapHttpStatus[myType].msg);
+    }
+    //TODO: 公共数据解析
+    
     
     log("response type = %d, data = %s\n", (int)myType, m_mapHttpStatus[myType].jsonRoot.toStyledString().c_str());
 
