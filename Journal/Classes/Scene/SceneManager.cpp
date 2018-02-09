@@ -8,6 +8,7 @@
 USING_NS_CC;
 #include "SceneBase.h"
 #include "SceneMain.h"
+#include "SceneLogin.h"
 #include "SceneLaunch.h"
 #include "SceneManager.h"
 
@@ -71,6 +72,9 @@ CSceneBase* CSceneManager::jumpToScene(eSceneType eType)
         case eSceneType::launch:
             pR = CSceneLaunch::create();
             break;
+        case eSceneType::login:
+            pR = CSceneLogin::create();
+            break;
         case eSceneType::main:
             pR = CSceneMain::create();
             break;
@@ -120,4 +124,3 @@ void CSceneManager::setCurrScene(CSceneBase* scene)
 {
     m_currScene = scene;
 }
-

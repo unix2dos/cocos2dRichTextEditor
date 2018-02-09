@@ -14,6 +14,7 @@ enum class eSceneType
 {
     none = 0,
     launch, //开机页面
+    login, //登录注册页面
     main, //主界面
 };
 
