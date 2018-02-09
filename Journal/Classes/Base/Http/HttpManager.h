@@ -16,6 +16,7 @@ enum class eHttpType
     none = 0,
     signup = 1, //注册
     login = 2,  //登录
+    journal_list = 3,//日志信息
 };
 
 //http状态

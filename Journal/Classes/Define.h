@@ -22,8 +22,9 @@
 #define SERVER_ADDRESS "http://journalex.us:5000" //服务器地址
 
 //接口URL
-#define MYDEF_URL_SIGNUP SERVER_ADDRESS"/signup" //注册
-#define MYDEF_URL_LOGIN  SERVER_ADDRESS"/login"  //登录
+#define MYDEF_URL_SIGNUP        SERVER_ADDRESS"/signup" //注册
+#define MYDEF_URL_LOGIN         SERVER_ADDRESS"/login"  //登录
+#define MYDEF_URL_JOURNAL_LIST  SERVER_ADDRESS"/journal/list" //信息
 
 
 

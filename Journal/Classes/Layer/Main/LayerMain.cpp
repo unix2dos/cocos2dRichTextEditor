@@ -80,6 +80,9 @@ void CLayerMain::_initUI()
     
     //显示默认
     this->setMainStatus(m_status);
+    
+
+    CHttpManager::getInstance()->HttpGet(MYDEF_URL_JOURNAL_LIST, eHttpType::journal_list, "/public=1");//TODO:111
 }
 
 void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)

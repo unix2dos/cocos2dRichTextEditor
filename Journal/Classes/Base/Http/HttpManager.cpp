@@ -64,6 +64,8 @@ bool CHttpManager::HttpPost(string url, eHttpType myType, std::string data)
 }
 bool CHttpManager::HttpGet(string url, eHttpType myType, std::string data)
 {
+    url += data;
+    data = "";
     return HttpSendRequest(HttpRequest::Type::GET, url, myType, data);
 }
 
