@@ -78,7 +78,6 @@ public:
 private:
     void _onHttpRequestCompleted(HttpClient *sender, HttpResponse *response);
     std::vector<std::string> _getCommonHeaders();
-    
 private:
     std::map<eHttpType, HttpResponseInfo> m_mapHttpStatus;
     std::set<CDataHttpDelegate*> m_setDataRegister;

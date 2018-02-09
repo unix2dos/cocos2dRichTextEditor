@@ -36,8 +36,4 @@ static Node* _crateEditBox(std::string strBg, std::string strHolder, bool passwd
 }
 
 
-
-
-
-
 #endif /* LoginDefine_hpp */

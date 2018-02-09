@@ -8,8 +8,11 @@
 #ifndef DataManager_hpp
 #define DataManager_hpp
 
+
 class CDataUser;
 class CDataJournal;
+class HttpResponseInfo;
+enum class eHttpType;
 class CDataManager : public Ref
 {
 public:
@@ -21,6 +24,8 @@ public:
     ~CDataManager();
     void init();
     void free();
+public:
+    void parseServeData(eHttpType myType, HttpResponseInfo rep);
 public:
     CDataUser* getDataUser();
     CDataJournal* getDataJournal();

@@ -8,6 +8,7 @@
 #include "Journal.h"
 #include "HttpManager.h"
 #include "CommonUtils.h"
+#include "SceneManager.h"
 #include "Define.h"
 #include "LoginDefine.h"
 #include "LayerSignUp.h"
@@ -112,5 +113,8 @@ void CLayerLogin::_initUI()
 
 void CLayerLogin::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
 {
-    
+    if (myType == eHttpType::login && rep.status == eHttpStatus::success)
+    {
+        CSceneManager::jumpToScene(eSceneType::main);
+    }
 }

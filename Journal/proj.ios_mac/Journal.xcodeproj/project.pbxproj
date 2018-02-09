@@ -123,7 +123,7 @@
 		011795DC2029892D00770759 /* DataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DA2029892D00770759 /* DataManager.cpp */; };
 		011795DF20298AA000770759 /* DataUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DD20298A9F00770759 /* DataUser.cpp */; };
 		011795E220298AB400770759 /* DataJournal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795E020298AB400770759 /* DataJournal.cpp */; };
-		0128F368202D88F20056ABA6 /* LayerMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0128F367202D88F10056ABA6 /* LayerMsg.cpp */; };
+		0128F36F202D8F2D0056ABA6 /* LayerMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0128F36E202D8F2D0056ABA6 /* LayerMsg.cpp */; };
 		014467DD202A94DA0045AE3E /* ArchiveCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014467DB202A94DA0045AE3E /* ArchiveCell.cpp */; };
 		014B0F53202AD973008D0CA7 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F52202AD973008D0CA7 /* jsoncpp.cpp */; };
 		014B0F65202C20FC008D0CA7 /* NotificationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */; };
@@ -371,8 +371,8 @@
 		011795DE20298A9F00770759 /* DataUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataUser.h; sourceTree = "<group>"; };
 		011795E020298AB400770759 /* DataJournal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataJournal.cpp; sourceTree = "<group>"; };
 		011795E120298AB400770759 /* DataJournal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataJournal.h; sourceTree = "<group>"; };
-		0128F366202D88F10056ABA6 /* LayerMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerMsg.h; sourceTree = "<group>"; };
-		0128F367202D88F10056ABA6 /* LayerMsg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayerMsg.cpp; sourceTree = "<group>"; };
+		0128F36D202D8F2D0056ABA6 /* LayerMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerMsg.h; sourceTree = "<group>"; };
+		0128F36E202D8F2D0056ABA6 /* LayerMsg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayerMsg.cpp; sourceTree = "<group>"; };
 		014467DB202A94DA0045AE3E /* ArchiveCell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ArchiveCell.cpp; sourceTree = "<group>"; };
 		014467DC202A94DA0045AE3E /* ArchiveCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArchiveCell.h; sourceTree = "<group>"; };
 		014B0F50202AD973008D0CA7 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
@@ -708,6 +708,15 @@
 			path = "Third Party";
 			sourceTree = "<group>";
 		};
+		0128F36C202D8F2D0056ABA6 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0128F36D202D8F2D0056ABA6 /* LayerMsg.h */,
+				0128F36E202D8F2D0056ABA6 /* LayerMsg.cpp */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		014B0F4E202AD973008D0CA7 /* JsonCpp */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,14 +794,13 @@
 		0193ABF1202580FB00C6C656 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
-				0128F367202D88F10056ABA6 /* LayerMsg.cpp */,
-				0128F366202D88F10056ABA6 /* LayerMsg.h */,
+				0128F36C202D8F2D0056ABA6 /* Common */,
+				01A7789F202D69D000CFA7E2 /* Login */,
 				0193ABD02025486A00C6C656 /* WebView */,
 				01BA7F7A2028058F002EA80C /* Journals */,
 				01BA7F792028058F002EA80C /* Archive */,
 				01BA7F7B2028058F002EA80C /* JournalEx */,
 				0193ABF2202580FB00C6C656 /* Main */,
-				01A7789F202D69D000CFA7E2 /* Login */,
 			);
 			path = Layer;
 			sourceTree = "<group>";
@@ -1238,11 +1246,11 @@
 				01BA7D5E2026FB57002EA80C /* RichTextManager.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				011795C32029874D00770759 /* HRCgUtil.m in Sources */,
+				0128F36F202D8F2D0056ABA6 /* LayerMsg.cpp in Sources */,
 				01CA8D6C20295143002F1934 /* LayerJournalClassify.cpp in Sources */,
 				011795BF2029874D00770759 /* ZSSRichTextEditor.m in Sources */,
 				011795CB2029874D00770759 /* HRColorUtil.m in Sources */,
 				0117956A2029874D00770759 /* ZSSDemoList.m in Sources */,
-				0128F368202D88F20056ABA6 /* LayerMsg.cpp in Sources */,
 				011795CD2029874D00770759 /* ZSSTextView.m in Sources */,
 				0117956E2029874D00770759 /* ZSSDemoPickerViewController.m in Sources */,
 				011795C02029874D00770759 /* ZSSBarButtonItem.m in Sources */,

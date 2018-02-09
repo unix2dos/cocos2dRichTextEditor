@@ -28,7 +28,7 @@ struct Journal_Info
     }
 };
 
-
+class HttpResponseInfo;
 class CDataJournal
 {
 public:
@@ -36,6 +36,7 @@ public:
     ~CDataJournal();
     
 public:
+    void parseServeData(HttpResponseInfo rep);
     const std::vector<Journal_Info>& getJournals();
     
 private:

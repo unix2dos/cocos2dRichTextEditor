@@ -8,7 +8,7 @@
 #include "Journal.h"
 #include "CommonUtils.h"
 #include "Define.h"
-#include "LayerMsg.h"
+#include "DataManager.h"
 #include "HttpManager.h"
 
 //消息回调
@@ -101,9 +101,6 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
         return;
     }
 
-//    std::string status = StringUtils::format("HTTP Status Code:%ld , tag = %s", response->getResponseCode(), response->getHttpRequest()->getTag());
-//    log("response: %s", status.c_str());
-
     auto myType = static_cast<eHttpType>(atoi(response->getHttpRequest()->getTag()));
     if (!response->isSucceed())//发送错误
     {
@@ -137,17 +134,13 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
         }
     }
     
-    //TODO: 公共错误处理, check错误码??
-    if (m_mapHttpStatus[myType].status != eHttpStatus::success)
-    {
-        CLayerMsg::showMsg(m_mapHttpStatus[myType].msg);
-    }
-    //TODO: 公共数据解析
     
+    log("response type = %d, code = %d data = %s\n", (int)myType, (int)response->getResponseCode(), m_mapHttpStatus[myType].jsonRoot.toStyledString().c_str());
     
-    log("response type = %d, data = %s\n", (int)myType, m_mapHttpStatus[myType].jsonRoot.toStyledString().c_str());
+    //数据解析
+    CDataManager::getInstance()->parseServeData(myType, m_mapHttpStatus[myType]);
 
-    //回调
+    //消息回调
     for (const auto& it : m_setDataRegister)
     {
         it->endWithHttpData(myType, m_mapHttpStatus[myType]);

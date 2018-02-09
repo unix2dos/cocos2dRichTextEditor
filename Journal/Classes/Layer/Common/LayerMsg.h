@@ -12,4 +12,4 @@ public:
     static void showMsg(std::string msg);
 };
 
-#endif // __SCENELOGIN_H__
+#endif // __LYAERMSG_H__

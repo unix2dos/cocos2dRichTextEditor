@@ -8,6 +8,8 @@
 #include "Journal.h"
 #include "DataUser.h"
 #include "DataJournal.h"
+#include "HttpManager.h"
+#include "LayerMsg.h"
 #include "DataManager.h"
 
 
@@ -50,6 +52,28 @@ CDataManager::CDataManager()
 
 CDataManager::~CDataManager()
 {
+}
+
+
+void CDataManager::parseServeData(eHttpType myType, HttpResponseInfo rep)
+{
+    //TODO: 公共错误处理, check错误码??
+    if (rep.status != eHttpStatus::success)
+    {
+        CLayerMsg::showMsg(rep.msg);
+        return;
+    }
+    
+    switch (myType) {
+        case eHttpType::signup:
+        case eHttpType::login:
+            m_pDataUser->parseServeData(rep);
+            m_pDataJournal->parseServeData(rep);
+            break;
+        default:
+            break;
+    }
+    
 }
 
 

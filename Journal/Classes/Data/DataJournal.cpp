@@ -6,6 +6,7 @@
 //
 
 #include "Journal.h"
+#include "HttpManager.h"
 #include "CommonUtils.h"
 #include "DataJournal.h"
 using namespace std;
@@ -61,6 +62,11 @@ CDataJournal::~CDataJournal()
 {
 }
 
+
+void CDataJournal::parseServeData(HttpResponseInfo rep)
+{
+    
+}
 
 const std::vector<Journal_Info>& CDataJournal::getJournals()
 {

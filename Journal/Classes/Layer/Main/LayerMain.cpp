@@ -80,15 +80,6 @@ void CLayerMain::_initUI()
     
     //显示默认
     this->setMainStatus(m_status);
-    
-    //TODO:测试网络
-//    Json::Value root;
-//    root["username"] = "abcde";
-//    root["password"] = 123;
-//    string strJson = buildServeJson(root);
-//    CHttpManager::getInstance()->HttpPost(MYDEF_URL_LOGIN, eHttpType::login, strJson);
-
-//    CHttpManager::getInstance()->HttpGet("http://localhost:8080/foo",eHttpType::login);
 }
 
 void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
