@@ -77,8 +77,8 @@ void CJournalsCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     labelTitle->enableBold();
     this->addChild(labelTitle);
     
-
-    auto labelPreview = Label::createWithTTF(data.strContent, MY_FONT_ENGLISH, 20);
+    std::string strContext = removeHtmlTags(data.strContent);
+    auto labelPreview = Label::createWithTTF(strContext, MY_FONT_ENGLISH, 20);
     labelPreview->setPosition(Vec2(30, getContentSize().height* .7 - 40));
     labelPreview->setTextColor(Color4B(114,114,114,255));
     labelPreview->setAnchorPoint(Vec2(0, 1));

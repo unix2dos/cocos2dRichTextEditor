@@ -7,7 +7,7 @@
 
 #ifndef CommonUtils_hpp
 #define CommonUtils_hpp
-
+#include <regex>
 
 // 获取时间戳
 static int getTimeStamp()
@@ -43,12 +43,22 @@ static Json::Value parseServeJson(std::string strJson)
 }
 
 
+//构建服务器json
 static std::string buildServeJson(Json::Value root)
 {
     Json::StreamWriterBuilder builder;
     builder.settings_["indentation"] = "";
     string strJson = Json::writeString(builder, root);
     return strJson;
+}
+
+
+
+//移除html tags
+static std::string removeHtmlTags(std::string html)
+{
+    std::regex e ("<[^>]*>");
+    return std::regex_replace (html, e, "");
 }
 
 
