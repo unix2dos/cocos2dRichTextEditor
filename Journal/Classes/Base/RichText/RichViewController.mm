@@ -24,8 +24,8 @@
 //    self.placeholder = @"Please tap to start editing";
     self.shouldShowKeyboard = NO;
     self.alwaysShowToolbar = NO;
-    self.receiveEditorDidChangeEvents = NO;
-    self.formatHTML = YES;
+    self.receiveEditorDidChangeEvents = YES;
+    self.formatHTML = NO;
     self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold
                                  ,ZSSRichTextEditorToolbarItalic
                                  ,ZSSRichTextEditorToolbarUnderline
@@ -56,7 +56,7 @@
 
 - (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html {
 
-    NSLog(@"Text Has Changed: %@", text);
+//    NSLog(@"Text Has Changed: %@", text);
     NSLog(@"HTML Has Changed: %@", html);
 }
 

@@ -82,22 +82,18 @@ void CLayerMain::_initUI()
     this->setMainStatus(m_status);
     
 
-    CHttpManager::getInstance()->HttpGet(MYDEF_URL_JOURNAL_LIST, eHttpType::journal_list, "/public=1");//TODO:111
+    CHttpManager::getInstance()->HttpGet(MYDEF_URL_GETINFO, eHttpType::getinfo);//TODO:111
 }
 
 void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
 {
-    if (myType == eHttpType::login)
-    {
-        if (rep.status != eHttpStatus::success)
-        {
-            log("Error %s", rep.msg.c_str());
-        }
-        else
-        {
-            log("Success");
-        }
-    }
+//    if (myType == eHttpType::login)
+//    {
+//        if (rep.status != eHttpStatus::success)
+//        {
+//            log("Error %s", rep.msg.c_str());
+//        }
+//    }
 }
 
 

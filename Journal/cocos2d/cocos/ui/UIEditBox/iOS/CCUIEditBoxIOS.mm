@@ -360,7 +360,7 @@
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    CCLOG("textFieldShouldBeginEditing...");
+//    CCLOG("textFieldShouldBeginEditing...");
     _editState = YES;
     _returnPressed = NO;
     
@@ -377,7 +377,7 @@
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-    CCLOG("textFieldShouldEndEditing...");
+//    CCLOG("textFieldShouldEndEditing...");
     _editState = NO;
     getEditBoxImplIOS()->refreshInactiveText();
 
@@ -442,7 +442,7 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)sender        // return NO to disallow editing.
 {
-    CCLOG("textFieldShouldBeginEditing...");
+//    CCLOG("textFieldShouldBeginEditing...");
     _editState = YES;
     
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
@@ -458,7 +458,7 @@
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)sender
 {
-    CCLOG("textFieldShouldEndEditing...");
+//    CCLOG("textFieldShouldEndEditing...");
     _editState = NO;
     const char* inputText = [sender.text UTF8String];
 
