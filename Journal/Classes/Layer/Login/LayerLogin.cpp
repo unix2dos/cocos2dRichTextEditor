@@ -6,6 +6,8 @@
 //
 
 #include "Journal.h"
+#include "HttpManager.h"
+#include "CommonUtils.h"
 #include "Define.h"
 #include "LoginDefine.h"
 #include "LayerSignUp.h"
@@ -54,13 +56,13 @@ void CLayerLogin::_initUI()
     
     //email
     auto height = m_winSize.height/2;
-    auto email = _crateEditBox("login_input.png", "email");
+    auto email = _crateEditBox("login_input.png", "email", false);
     email->setPosition(Vec2(m_winSize.width/2, height));
     this->addChild(email);
     
     //password
     height -= 120;
-    auto password = _crateEditBox("login_input.png", "password");
+    auto password = _crateEditBox("login_input.png", "password", true);
     password->setPosition(Vec2(m_winSize.width/2, height));
     this->addChild(password);
     
@@ -68,8 +70,14 @@ void CLayerLogin::_initUI()
     height -= 150;
     auto btnLogin = Button::create("login_btn1.png");
     btnLogin->setPosition(Vec2(m_winSize.width/2, height));
-    btnLogin->addClickEventListener([](Ref* r){
-        //TODO: 发送请求
+    btnLogin->addClickEventListener([=](Ref* r){
+        auto strEmail = dynamic_cast<ui::EditBox*>(email->getChildByName("EditBox"))->getText();
+        auto strPass = dynamic_cast<ui::EditBox*>(password->getChildByName("EditBox"))->getText();
+        Json::Value root;
+        root["username"] = strEmail;
+        root["password"] = strPass;
+        string strJson = buildServeJson(root);
+        CHttpManager::getInstance()->HttpPost(MYDEF_URL_LOGIN, eHttpType::login, strJson);
     });
     this->addChild(btnLogin);
     auto label1 = Label::createWithTTF("Log In", MY_FONT_ENGLISH, 35);
@@ -89,13 +97,20 @@ void CLayerLogin::_initUI()
     auto label2 = Label::createWithTTF("Sign Up", MY_FONT_ENGLISH, 35);
     btnSiginUp->setTitleLabel(label2);
     
-//    //find password
-//    auto btnFindPassword = Button::create("login_btn2.png");
-//    btnFindPassword->setPosition(Vec2(m_winSize.width/2, m_winSize.height/2 - 540));
-//    btnFindPassword->addClickEventListener([](Ref* r){
-//    });
-//    this->addChild(btnFindPassword);
-//    auto label3 = Label::createWithTTF("Find Password", MY_FONT_ENGLISH, 35);
-//    btnFindPassword->setTitleLabel(label3);
+    //find password
+    height -= 100;
+    auto btnFindPassword = Button::create("login_btn2.png");
+    btnFindPassword->setPosition(Vec2(m_winSize.width/2, height));
+    btnFindPassword->addClickEventListener([](Ref* r){
+    });
+    this->addChild(btnFindPassword);
+    auto label3 = Label::createWithTTF("Find Password", MY_FONT_ENGLISH, 35);
+    btnFindPassword->setTitleLabel(label3);
 
+}
+
+
+void CLayerLogin::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
+{
+    
 }

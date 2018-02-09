@@ -14,7 +14,8 @@
 enum class eHttpType
 {
     none = 0,
-    login = 1,//登录
+    signup = 1, //注册
+    login = 2,  //登录
 };
 
 //http状态

@@ -85,6 +85,8 @@ bool CHttpManager::HttpSendRequest(HttpRequest::Type type, string url, eHttpType
     request->setTag(StringUtils::format("%d", (int)myType));
     HttpClient::getInstance()->send(request);
     request->release();
+    
+    log("request type = %d, data = %s\n", (int)myType, data.c_str());
  
     return true;
 
@@ -97,8 +99,8 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
         return;
     }
 
-    std::string status = StringUtils::format("HTTP Status Code:%ld , tag = %s", response->getResponseCode(), response->getHttpRequest()->getTag());
-    log("response: %s", status.c_str());
+//    std::string status = StringUtils::format("HTTP Status Code:%ld , tag = %s", response->getResponseCode(), response->getHttpRequest()->getTag());
+//    log("response: %s", status.c_str());
 
     auto myType = static_cast<eHttpType>(atoi(response->getHttpRequest()->getTag()));
     if (!response->isSucceed())//发送错误
@@ -131,11 +133,13 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
             m_mapHttpStatus[myType].msg = root["msg"].asString();
             m_mapHttpStatus[myType].jsonRoot = root;
         }
-      
-        //公共数据解析
         
-        //公共错误处理, check错误码??
+        //TODO: 公共错误处理, check错误码??
+        
+        //TODO: 公共数据解析
     }
+    
+    log("response type = %d, data = %s\n", (int)myType, m_mapHttpStatus[myType].jsonRoot.toStyledString().c_str());
 
     //回调
     for (const auto& it : m_setDataRegister)

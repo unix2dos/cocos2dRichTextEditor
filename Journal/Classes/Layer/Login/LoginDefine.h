@@ -10,7 +10,7 @@
 
 
 
-static Node* _crateEditBox(std::string strBg, std::string strHolder)
+static Node* _crateEditBox(std::string strBg, std::string strHolder, bool passwd)
 {
     auto node = Node::create();
     auto pBack = Sprite::create(strBg);
@@ -23,13 +23,21 @@ static Node* _crateEditBox(std::string strBg, std::string strHolder)
     r->setPlaceholderFontColor(Color3B::GRAY);
     r->setFontColor(Color3B::BLACK);
     r->setFontSize(40);
-    r->setMaxLength(16);
+    r->setMaxLength(20);
     r->setName("EditBox");
-    r->setInputFlag(cocos2d::ui::EditBox::InputFlag::INITIAL_CAPS_WORD);
+    if (passwd)
+    {
+        r->setInputFlag(cocos2d::ui::EditBox::InputFlag::PASSWORD);
+    }
     r->setInputMode(cocos2d::ui::EditBox::InputMode::SINGLE_LINE);
     //    r->setDelegate(this);
     node->addChild(r);
     return node;
 }
+
+
+
+
+
 
 #endif /* LoginDefine_hpp */

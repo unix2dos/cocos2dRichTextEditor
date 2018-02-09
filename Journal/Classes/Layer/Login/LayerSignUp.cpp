@@ -7,6 +7,8 @@
 
 #include "Journal.h"
 #include "Define.h"
+#include "HttpManager.h"
+#include "CommonUtils.h"
 #include "LoginDefine.h"
 #include "LayerLogin.h"
 #include "LayerSignUp.h"
@@ -55,19 +57,19 @@ void CLayerSignUp::_initUI()
 
     //alias
     auto height = m_winSize.height/2;
-    auto alias = _crateEditBox("login_input.png", "alias");
+    auto alias = _crateEditBox("login_input.png", "alias", false);
     alias->setPosition(Vec2(m_winSize.width/2, height));
     this->addChild(alias);
 
     //email
     height -= 120;
-    auto email = _crateEditBox("login_input.png", "email");
+    auto email = _crateEditBox("login_input.png", "email", false);
     email->setPosition(Vec2(m_winSize.width/2, height));
     this->addChild(email);
 
     //password
     height -= 120;
-    auto password = _crateEditBox("login_input.png", "password");
+    auto password = _crateEditBox("login_input.png", "password", true);
     password->setPosition(Vec2(m_winSize.width/2, height));
     this->addChild(password);
 
@@ -80,9 +82,14 @@ void CLayerSignUp::_initUI()
         auto strAlias = dynamic_cast<ui::EditBox*>(alias->getChildByName("EditBox"))->getText();
         auto strEmail = dynamic_cast<ui::EditBox*>(email->getChildByName("EditBox"))->getText();
         auto strPass = dynamic_cast<ui::EditBox*>(password->getChildByName("EditBox"))->getText();
-        log("%s",strAlias);
-        log("%s",strEmail);
-        log("%s",strPass);
+        
+        //发送请求
+        Json::Value root;
+        root["username"] = strEmail;
+        root["password"] = strPass;
+        root["alias"] = strAlias;
+        string strJson = buildServeJson(root);
+        CHttpManager::getInstance()->HttpPost(MYDEF_URL_SIGNUP, eHttpType::signup, strJson);
 
     });
     this->addChild(btnSignUp);
@@ -102,4 +109,10 @@ void CLayerSignUp::_initUI()
     auto label2 = Label::createWithTTF("Back", MY_FONT_ENGLISH, 35);
     btnBack->setTitleLabel(label2);
 
+}
+
+
+void CLayerSignUp::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
+{
+    
 }
