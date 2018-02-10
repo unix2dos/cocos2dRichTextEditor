@@ -58,25 +58,33 @@ void CHttpManager::free()
 }
 
 
-bool CHttpManager::HttpPost(string url, eHttpType myType, std::string data)
+bool CHttpManager::HttpPost(eHttpType myType, std::string data)
 {
-    return HttpSendRequest(HttpRequest::Type::POST, url, myType, data);
+    return HttpSendRequest(HttpRequest::Type::POST, myType, data);
 }
-bool CHttpManager::HttpGet(string url, eHttpType myType, std::string data)
+bool CHttpManager::HttpGet(eHttpType myType, std::string data)
 {
-    url += data;
-    data = "";
-    return HttpSendRequest(HttpRequest::Type::GET, url, myType, data);
+    return HttpSendRequest(HttpRequest::Type::GET, myType, data);
 }
 
-bool CHttpManager::HttpSendRequest(HttpRequest::Type type, string url, eHttpType myType, std::string data)
+bool CHttpManager::HttpSendRequest(HttpRequest::Type type, eHttpType myType, std::string data)
 {
+    //status
     if (m_mapHttpStatus[myType].status == eHttpStatus::sending)
     {
         return false;
     }
     m_mapHttpStatus[myType].status = eHttpStatus::sending;
-
+    
+    //url
+    std::string url = HTTPURLMAP[myType];
+    if (type == HttpRequest::Type::GET && data.size() > 0)
+    {
+        url += data;
+        data = "";
+    }
+    
+    //request
     HttpRequest* request = new (std::nothrow) class HttpRequest();
     request->setRequestType(type);
     request->setUrl(url);

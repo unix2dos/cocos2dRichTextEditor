@@ -6,7 +6,6 @@
 //
 
 #include "Journal.h"
-#include "HttpManager.h"
 #include "CommonUtils.h"
 #include "SceneManager.h"
 #include "Define.h"
@@ -78,7 +77,7 @@ void CLayerLogin::_initUI()
         root["username"] = strEmail;
         root["password"] = strPass;
         string strJson = buildServeJson(root);
-        CHttpManager::getInstance()->HttpPost(MYDEF_URL_LOGIN, eHttpType::login, strJson);
+        CHttpManager::getInstance()->HttpPost(eHttpType::login, strJson);
     });
     this->addChild(btnLogin);
     auto label1 = Label::createWithTTF("Log In", MY_FONT_ENGLISH, 35);
@@ -108,7 +107,7 @@ void CLayerLogin::_initUI()
     auto label3 = Label::createWithTTF("Find Password", MY_FONT_ENGLISH, 35);
     btnFindPassword->setTitleLabel(label3);
 
-    CHttpManager::getInstance()->HttpGet(MYDEF_URL_GETINFO, eHttpType::getinfo);//TODO:111
+    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);
 
 }
 

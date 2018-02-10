@@ -82,7 +82,7 @@ void CLayerMain::_initUI()
     this->setMainStatus(m_status);
     
 
-    CHttpManager::getInstance()->HttpGet(MYDEF_URL_GETINFO, eHttpType::getinfo);//TODO:111
+    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:111
 }
 
 void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)

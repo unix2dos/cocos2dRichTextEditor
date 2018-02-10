@@ -10,8 +10,8 @@
 
 #include "HttpManager.h"
 #include "NotificationManager.h"
-
 #define MAIN_BOTTOM_HEIGHT 150 //底部高度
+
 
 enum class MainStatus{
     Journals,

@@ -8,6 +8,7 @@
 #ifndef LayerSignUp_hpp
 #define LayerSignUp_hpp
 
+
 #include "HttpManager.h"
 class CLayerSignUp: public Layer
 , public CDataHttpDelegate

@@ -9,17 +9,6 @@
 #define HttpManager_hpp
 
 
-
-//http类型
-enum class eHttpType
-{
-    none = 0,
-    signup = 1, //注册
-    login = 2,  //登录
-    journal_list = 3,//日志信息
-    getinfo = 4,//获取用户信息
-};
-
 //http状态
 enum class eHttpStatus
 {
@@ -49,6 +38,7 @@ struct HttpResponseInfo
 
 
 //消息回调继承这个
+enum class eHttpType;
 class CDataHttpDelegate
 {
 public:
@@ -73,9 +63,9 @@ public:
     void unregisterCallBack(CDataHttpDelegate* p);
     
 public:
-    bool HttpGet(string url, eHttpType myType, std::string data = "");
-    bool HttpPost(string url, eHttpType myType, std::string data);
-    bool HttpSendRequest(HttpRequest::Type type, string url, eHttpType myType, std::string data);
+    bool HttpGet(eHttpType myType, std::string data = "");
+    bool HttpPost(eHttpType myType, std::string data);
+    bool HttpSendRequest(HttpRequest::Type type, eHttpType myType, std::string data);
     
 private:
     void _onHttpRequestCompleted(HttpClient *sender, HttpResponse *response);

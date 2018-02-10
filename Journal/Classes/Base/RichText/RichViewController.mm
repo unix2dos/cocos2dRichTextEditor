@@ -24,8 +24,8 @@
 //    self.placeholder = @"Please tap to start editing";
     self.shouldShowKeyboard = NO;
     self.alwaysShowToolbar = NO;
-    self.receiveEditorDidChangeEvents = YES;
-    self.formatHTML = NO;
+    self.receiveEditorDidChangeEvents = NO;
+    self.formatHTML = NO;//此处禁止
     self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold
                                  ,ZSSRichTextEditorToolbarItalic
                                  ,ZSSRichTextEditorToolbarUnderline

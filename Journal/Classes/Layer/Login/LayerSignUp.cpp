@@ -8,7 +8,6 @@
 #include "Journal.h"
 #include "Define.h"
 #include "SceneManager.h"
-#include "HttpManager.h"
 #include "CommonUtils.h"
 #include "LoginDefine.h"
 #include "LayerLogin.h"
@@ -90,7 +89,7 @@ void CLayerSignUp::_initUI()
         root["password"] = strPass;
         root["alias"] = strAlias;
         string strJson = buildServeJson(root);
-        CHttpManager::getInstance()->HttpPost(MYDEF_URL_SIGNUP, eHttpType::signup, strJson);
+        CHttpManager::getInstance()->HttpPost(eHttpType::signup, strJson);
 
     });
     this->addChild(btnSignUp);

@@ -13,22 +13,31 @@
 
 #define MY_FONT_ENGLISH "arial.ttf" //字体
 
-//zorder
-#define MYDFE_ZORDER_MSG 1000   //弹窗消息
 
-
-
-
+////////HTTP////////
 #define SERVER_ADDRESS "http://journalex.us:5000" //服务器地址
+enum class eHttpType
+{
+    none = 0,
+    getinfo = 1,//获取用户信息
+    signup = 2, //注册
+    login = 3,  //登录
+    journal_list = 3,//日志信息
+    journal_add = 3,//添加日志
+};
+static std::map<eHttpType, std::string> HTTPURLMAP
+{
+    {eHttpType::getinfo,        SERVER_ADDRESS"/getinfo"},
+    {eHttpType::signup,         SERVER_ADDRESS"/signup"},
+    {eHttpType::login,          SERVER_ADDRESS"/login"},
+    {eHttpType::journal_list,   SERVER_ADDRESS"/journal/list"},
+    {eHttpType::journal_add,    SERVER_ADDRESS"/journal/add"}
+};
 
-//接口URL
-#define MYDEF_URL_SIGNUP        SERVER_ADDRESS"/signup" //注册
-#define MYDEF_URL_LOGIN         SERVER_ADDRESS"/login"  //登录
-#define MYDEF_URL_JOURNAL_LIST  SERVER_ADDRESS"/journal/list" //信息
-#define MYDEF_URL_GETINFO       SERVER_ADDRESS"/getinfo" //获取用户信息
 
 
-
+////////ZORDER////////
+#define MYDFE_ZORDER_MSG 1000   //弹窗消息
 
 
 

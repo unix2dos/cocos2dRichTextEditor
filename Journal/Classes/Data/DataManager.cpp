@@ -6,6 +6,7 @@
 //
 
 #include "Journal.h"
+#include "Define.h"
 #include "DataUser.h"
 #include "DataJournal.h"
 #include "HttpManager.h"
