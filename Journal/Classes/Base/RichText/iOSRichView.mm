@@ -13,6 +13,7 @@
 
 
 iOSRichView::iOSRichView()
+:m_richviewType(RichViewType::none)
 {
 }
 
@@ -35,8 +36,13 @@ static RichViewController *g_richview = nullptr;
 
 void iOSRichView::writeJournal()
 {
-    _enableRichView(true);
+    if (m_richviewType != RichViewType::none)
+    {
+        return;
+    }
+    m_richviewType = RichViewType::write;
     
+    _enableRichView(true);
     g_richview.title = @"Write Journal";
     g_richview.placeholder = @"Please tap to start editing";
     [g_richview setCanEditer:true];
@@ -45,8 +51,13 @@ void iOSRichView::writeJournal()
 
 void iOSRichView::showJournal(std::string strContext)
 {
-    _enableRichView(true);
+    if (m_richviewType != RichViewType::none)
+    {
+        return;
+    }
+    m_richviewType = RichViewType::show_self;
     
+    _enableRichView(true);
     NSString*html = [NSString stringWithUTF8String:strContext.c_str()];
     [g_richview setHTML:html];
     g_richview.title = @"";
@@ -55,7 +66,12 @@ void iOSRichView::showJournal(std::string strContext)
 void iOSRichView::closeJournal(std::string strContext)
 {
     _enableRichView(false);
-    addJournal(strContext);
+ 
+    if (m_richviewType == RichViewType::write && strContext != "")
+    {
+        addJournal(strContext);
+    }
+    m_richviewType = RichViewType::none;
 }
 
 
