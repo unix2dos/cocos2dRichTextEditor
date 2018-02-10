@@ -19,6 +19,9 @@ public:
     virtual void closeJournal(std::string strContext) override;
 private:
     void _enableRichView(bool enable);
+    
+private:
+    
 };
 
 #endif /* iOSRichView_h */

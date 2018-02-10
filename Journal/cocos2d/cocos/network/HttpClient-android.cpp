@@ -886,14 +886,14 @@ HttpClient::HttpClient()
 , _cookie(nullptr)
 , _requestSentinel(new HttpRequest())
 {
-    CCLOG("In the constructor of HttpClient!");
+//    CCLOG("In the constructor of HttpClient!");
     increaseThreadCount();
     _scheduler = Director::getInstance()->getScheduler();
 }
 
 HttpClient::~HttpClient()
 {
-    CCLOG("In the destructor of HttpClient!");
+//    CCLOG("In the destructor of HttpClient!");
     CC_SAFE_RELEASE(_requestSentinel);
 }
 

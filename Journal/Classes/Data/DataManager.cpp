@@ -66,6 +66,7 @@ void CDataManager::parseServeData(eHttpType myType, HttpResponseInfo rep)
     }
     
     switch (myType) {
+        case eHttpType::getinfo:
         case eHttpType::signup:
         case eHttpType::login:
             m_pDataUser->parseServeData(rep);

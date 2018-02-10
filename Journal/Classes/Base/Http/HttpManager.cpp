@@ -98,7 +98,9 @@ bool CHttpManager::HttpSendRequest(HttpRequest::Type type, eHttpType myType, std
     HttpClient::getInstance()->send(request);
     request->release();
     
-    log("request type = %d, data = %s\n", (int)myType, data.c_str());
+    std::string stringType = HTTPURLMAP[myType];
+    stringType = stringType.substr(strlen(SERVER_ADDRESS));
+    log("request type= %s data= %s\n", stringType.c_str(), data.c_str());
  
     return true;
 
@@ -144,8 +146,9 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
         }
     }
     
-    
-    log("response type = %d, code = %d data = %s\n", (int)myType, (int)response->getResponseCode(), m_mapHttpStatus[myType].jsonRoot.toStyledString().c_str());
+    std::string stringType = HTTPURLMAP[myType];
+    stringType = stringType.substr(strlen(SERVER_ADDRESS));
+    log("response type= %s code= %d data= %s\n", stringType.c_str(), (int)response->getResponseCode(), m_mapHttpStatus[myType].jsonRoot.toStyledString().c_str());
     
     //数据解析
     CDataManager::getInstance()->parseServeData(myType, m_mapHttpStatus[myType]);

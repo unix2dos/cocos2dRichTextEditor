@@ -107,8 +107,7 @@ void CLayerLogin::_initUI()
     auto label3 = Label::createWithTTF("Find Password", MY_FONT_ENGLISH, 35);
     btnFindPassword->setTitleLabel(label3);
 
-    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);
-
+//    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:111111
 }
 
 

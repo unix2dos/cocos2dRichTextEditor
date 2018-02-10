@@ -55,6 +55,7 @@ void iOSRichView::showJournal(std::string strContext)
 void iOSRichView::closeJournal(std::string strContext)
 {
     _enableRichView(false);
+    addJournal(strContext);
 }
 
 

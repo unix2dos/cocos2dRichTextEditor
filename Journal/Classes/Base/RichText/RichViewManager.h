@@ -20,6 +20,9 @@ public:
     virtual void showJournal(std::string strContext) = 0;
     virtual void closeJournal(std::string strContext) = 0;
     
+protected:
+    void addJournal(std::string strContext);
+    
     
 private:
     static CRichViewManager* m_pInstance;

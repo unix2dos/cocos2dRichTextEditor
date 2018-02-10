@@ -19,11 +19,11 @@
 enum class eHttpType
 {
     none = 0,
-    getinfo = 1,//获取用户信息
-    signup = 2, //注册
-    login = 3,  //登录
-    journal_list = 3,//日志信息
-    journal_add = 3,//添加日志
+    getinfo,     //获取用户信息
+    signup,      //注册
+    login,       //登录
+    journal_list,//日志信息
+    journal_add, //添加日志
 };
 static std::map<eHttpType, std::string> HTTPURLMAP
 {

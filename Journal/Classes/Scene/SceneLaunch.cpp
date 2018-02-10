@@ -25,9 +25,9 @@ bool CSceneLaunch::init()
     if (!CSceneBase::init()){
         return false;
     }    
-    //TODO: 这是启动页面
-    scheduleOnce([](float dt){
-        CSceneManager::jumpToScene(eSceneType::main);
-    }, 1.0f, "abc");
+//    //这是启动页面
+//    scheduleOnce([](float dt){
+//        CSceneManager::jumpToScene(eSceneType::main);
+//    }, 1.0f, "abc");
     return true;
 }

@@ -26,7 +26,7 @@
     self.shouldShowKeyboard = NO;
     self.alwaysShowToolbar = NO;
     self.receiveEditorDidChangeEvents = NO;
-    self.formatHTML = NO;//此处禁止
+    self.formatHTML = NO;
     self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold
                                  ,ZSSRichTextEditorToolbarItalic
                                  ,ZSSRichTextEditorToolbarUnderline
@@ -46,7 +46,7 @@
 
 
 - (void)back {
-    NSLog(@"%@", [self getHTML]);
+//    NSLog(@"%@", [self getHTML]);
     CRichViewManager::getInstance()->closeJournal([[self getHTML] UTF8String]);
 }
 
@@ -58,17 +58,6 @@
 
 //    NSLog(@"Text Has Changed: %@", text);
     NSLog(@"HTML Has Changed: %@", html);
-}
-
-- (void)hashtagRecognizedWithWord:(NSString *)word {
-    
-    NSLog(@"Hashtag has been recognized: %@", word);
-}
-
-- (void)mentionRecognizedWithWord:(NSString *)word {
-    
-    NSLog(@"Mention has been recognized: %@", word);
-    
 }
 
 - (void)didReceiveMemoryWarning
