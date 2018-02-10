@@ -9,7 +9,8 @@
 #import "RichViewController.h"
 #import "ZSSDemoPickerViewController.h"
 #import "DemoModalViewController.h"
-#import "RichTextManager.h"
+#import "RichViewManager.h"
+
 
 @interface RichViewController ()
 
@@ -40,14 +41,13 @@
 
 //    NSString *html = @"<h1>Large Editor</h1>"
 //    [self setHTML:html];
-
 }
 
 
 
 - (void)back {
     NSLog(@"%@", [self getHTML]);
-    CRichTextManager::getInstance()->exitRichView();
+    CRichViewManager::getInstance()->closeJournal([[self getHTML] UTF8String]);
 }
 
 - (void)edit {

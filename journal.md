@@ -69,3 +69,9 @@ FIXED_HEIGHT| dWidth * k2   dHeight*k2 // 96 320
     }
     glview->setDesignResolutionSize(designSize.width, designSize.height,ResolutionPolicy::NO_BORDER);
 ```
+
+
+### TestFlight
+
+* 登录app帐号, 设置boundle id
+* 

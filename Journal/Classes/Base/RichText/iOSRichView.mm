@@ -1,56 +1,65 @@
-USING_NS_CC;
+//
+//  iOSRichView.m
+//  Journal-mobile
+//
+//  Created by liuwei on 2018/2/10.
+//
 
-#include "NotificationManager.h"
+
+#include "RichViewManager.h"
 #include "RichViewController.h"
-#include "RichTextManager.h"
+#include "NotificationManager.h"
+#include "iOSRichView.h"
 
 
-static CRichTextManager* g_RichTextManager = nullptr;
-//oc type
+iOSRichView::iOSRichView()
+{
+}
+
+iOSRichView::~iOSRichView()
+{
+}
+
+CRichViewManager* CRichViewManager::getInstance()
+{
+    if (m_pInstance == nullptr)
+    {
+        m_pInstance = new iOSRichView;
+    }
+    return m_pInstance;
+}
+
 static UINavigationController *g_nav = nullptr;
 static RichViewController *g_richview = nullptr;
 
-CRichTextManager::CRichTextManager()
-{
-}
 
-CRichTextManager::~CRichTextManager()
-{
-}
-
-CRichTextManager* CRichTextManager::getInstance()
-{
-    if (g_RichTextManager == nullptr)
-    {
-        g_RichTextManager = new CRichTextManager;
-    }
-    return g_RichTextManager;
-}
-
-void CRichTextManager::writeJournal()
+void iOSRichView::writeJournal()
 {
     _enableRichView(true);
     
     g_richview.title = @"Write Journal";
     g_richview.placeholder = @"Please tap to start editing";
-//    [g_richview setCanEditer:true];
+    [g_richview setCanEditer:true];
 }
 
-void CRichTextManager::showJournal(std::string strContext)
-{    
-    _enableRichView(true);
 
+void iOSRichView::showJournal(std::string strContext)
+{
+    _enableRichView(true);
+    
     NSString*html = [NSString stringWithUTF8String:strContext.c_str()];
     [g_richview setHTML:html];
     g_richview.title = @"";
 }
 
-void CRichTextManager::exitRichView()
+void iOSRichView::closeJournal(std::string strContext)
 {
     _enableRichView(false);
 }
 
-void CRichTextManager::_enableRichView(bool enable)
+
+
+void iOSRichView::_enableRichView(bool enable)
 {
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     if (g_nav)
@@ -59,7 +68,7 @@ void CRichTextManager::_enableRichView(bool enable)
         [nav willMoveToParentViewController:nil];
         [nav.view removeFromSuperview];
         [nav removeFromParentViewController];
-
+        
         g_nav = nullptr;
         g_richview = nullptr;
         NotificationManager::getInstance()->notify(NOTIFY_TYPE::JOURNAL_BG, (void*)0);
@@ -72,7 +81,7 @@ void CRichTextManager::_enableRichView(bool enable)
         [root addChildViewController:g_nav];
         [root.view addSubview:g_nav.view];
         [g_nav didMoveToParentViewController:root];
-
+        
         NotificationManager::getInstance()->notify(NOTIFY_TYPE::JOURNAL_BG, (void*)1);
     }
 }
@@ -89,6 +98,3 @@ void CRichTextManager::_enableRichView(bool enable)
 //        textField.textColor = [UIColor blackColor];
 //        textField.borderStyle = UITextBorderStyleRoundedRect;
 //        textField.keyboardType = UIKeyboardTypeDefault;
-
-
-

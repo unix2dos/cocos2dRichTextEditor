@@ -43,3 +43,11 @@ NSString *str= [NSString stringWithUTF8String:str1.c_str()];
 NSString *str;
 [str UTF8String]
 ```
+
+
+###  include import
+
+```
+#include是c/c++导入头文件的关键字，
+#import 是oc导入头文件的关键字，#import会自动导入一次，不会重复导入，不会引起交叉编译
+```

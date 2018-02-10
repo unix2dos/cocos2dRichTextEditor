@@ -127,7 +127,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     //跳到启动场景
 //    CSceneManager::jumpToScene(eSceneType::launch);//有图换上
-    CSceneManager::jumpToScene(eSceneType::login);
+    CSceneManager::jumpToScene(eSceneType::main);
 
     return true;
 }

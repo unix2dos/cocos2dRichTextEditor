@@ -128,6 +128,8 @@
 		014B0F53202AD973008D0CA7 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F52202AD973008D0CA7 /* jsoncpp.cpp */; };
 		014B0F65202C20FC008D0CA7 /* NotificationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */; };
 		014B0F67202C20FC008D0CA7 /* HttpManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F64202C20FC008D0CA7 /* HttpManager.cpp */; };
+		0189F44A202E8BC2009F08B0 /* RichViewManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0189F448202E8BC2009F08B0 /* RichViewManager.cpp */; };
+		0189F451202E8F18009F08B0 /* iOSRichView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0189F450202E8F18009F08B0 /* iOSRichView.mm */; };
 		0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABD12025487B00C6C656 /* LayerWebView.cpp */; };
 		0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE42025771A00C6C656 /* SceneManager.cpp */; };
 		0193ABE92025795F00C6C656 /* SceneBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE72025795F00C6C656 /* SceneBase.cpp */; };
@@ -137,7 +139,6 @@
 		01A778A2202D69E500CFA7E2 /* LayerSignUp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01A778A0202D69E500CFA7E2 /* LayerSignUp.cpp */; };
 		01A778A5202D6AB100CFA7E2 /* LayerLogin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01A778A3202D6AB100CFA7E2 /* LayerLogin.cpp */; };
 		01A778A8202D6B2200CFA7E2 /* SceneLogin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01A778A6202D6B2200CFA7E2 /* SceneLogin.cpp */; };
-		01BA7D5E2026FB57002EA80C /* RichTextManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7D5B2026FB56002EA80C /* RichTextManager.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		01BA7F6A20270AAB002EA80C /* RichViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F6920270AAB002EA80C /* RichViewController.mm */; };
 		01BA7F7E202805D6002EA80C /* LayerJournals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F7C202805D6002EA80C /* LayerJournals.cpp */; };
 		01BA7F812028065E002EA80C /* LayerArchive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F7F2028065E002EA80C /* LayerArchive.cpp */; };
@@ -386,6 +387,10 @@
 		014B0F61202C20FC008D0CA7 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		014B0F63202C20FC008D0CA7 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
 		014B0F64202C20FC008D0CA7 /* HttpManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HttpManager.cpp; sourceTree = "<group>"; };
+		0189F448202E8BC2009F08B0 /* RichViewManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RichViewManager.cpp; sourceTree = "<group>"; };
+		0189F449202E8BC2009F08B0 /* RichViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RichViewManager.h; sourceTree = "<group>"; };
+		0189F450202E8F18009F08B0 /* iOSRichView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = iOSRichView.mm; sourceTree = "<group>"; };
+		0189F452202E8F2A009F08B0 /* iOSRichView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSRichView.h; sourceTree = "<group>"; };
 		0193ABD12025487B00C6C656 /* LayerWebView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerWebView.cpp; sourceTree = "<group>"; };
 		0193ABD22025487B00C6C656 /* LayerWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWebView.h; sourceTree = "<group>"; };
 		0193ABE42025771A00C6C656 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
@@ -405,8 +410,6 @@
 		01A778A6202D6B2200CFA7E2 /* SceneLogin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneLogin.cpp; sourceTree = "<group>"; };
 		01A778A7202D6B2200CFA7E2 /* SceneLogin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneLogin.h; sourceTree = "<group>"; };
 		01A778AC202D7A7100CFA7E2 /* LoginDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginDefine.h; sourceTree = "<group>"; };
-		01BA7D5B2026FB56002EA80C /* RichTextManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RichTextManager.mm; sourceTree = "<group>"; };
-		01BA7D5C2026FB56002EA80C /* RichTextManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichTextManager.h; sourceTree = "<group>"; };
 		01BA7F6720270AAB002EA80C /* RichViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichViewController.h; sourceTree = "<group>"; };
 		01BA7F6920270AAB002EA80C /* RichViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RichViewController.mm; sourceTree = "<group>"; };
 		01BA7F7C202805D6002EA80C /* LayerJournals.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerJournals.cpp; sourceTree = "<group>"; };
@@ -829,8 +832,10 @@
 		01BA7D5A2026FB56002EA80C /* RichText */ = {
 			isa = PBXGroup;
 			children = (
-				01BA7D5B2026FB56002EA80C /* RichTextManager.mm */,
-				01BA7D5C2026FB56002EA80C /* RichTextManager.h */,
+				0189F448202E8BC2009F08B0 /* RichViewManager.cpp */,
+				0189F449202E8BC2009F08B0 /* RichViewManager.h */,
+				0189F450202E8F18009F08B0 /* iOSRichView.mm */,
+				0189F452202E8F2A009F08B0 /* iOSRichView.h */,
 				01BA7F6920270AAB002EA80C /* RichViewController.mm */,
 				01BA7F6720270AAB002EA80C /* RichViewController.h */,
 			);
@@ -1044,7 +1049,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = GJWWDUCB79;
+						DevelopmentTeam = QUJYMFLN6Z;
 					};
 				};
 			};
@@ -1243,7 +1248,6 @@
 				0117956C2029874D00770759 /* ZSSLargeViewController.m in Sources */,
 				01BA7F6A20270AAB002EA80C /* RichViewController.mm in Sources */,
 				011795C42029874D00770759 /* HRColorPickerViewController.m in Sources */,
-				01BA7D5E2026FB57002EA80C /* RichTextManager.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				011795C32029874D00770759 /* HRCgUtil.m in Sources */,
 				0128F36F202D8F2D0056ABA6 /* LayerMsg.cpp in Sources */,
@@ -1261,8 +1265,10 @@
 				011795C62029874D00770759 /* HRBrightnessCursor.m in Sources */,
 				011795682029874D00770759 /* ZSSDemoViewController.m in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
+				0189F451202E8F18009F08B0 /* iOSRichView.mm in Sources */,
 				01A778A8202D6B2200CFA7E2 /* SceneLogin.cpp in Sources */,
 				0117956F2029874D00770759 /* ZSSAppDelegate.m in Sources */,
+				0189F44A202E8BC2009F08B0 /* RichViewManager.cpp in Sources */,
 				01BA7F812028065E002EA80C /* LayerArchive.cpp in Sources */,
 				011795C72029874D00770759 /* CYRLayoutManager.m in Sources */,
 				014B0F53202AD973008D0CA7 /* jsoncpp.cpp in Sources */,
@@ -1317,7 +1323,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = GJWWDUCB79;
+				DEVELOPMENT_TEAM = QUJYMFLN6Z;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -1337,6 +1343,7 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.abc.journal;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1352,7 +1359,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = GJWWDUCB79;
+				DEVELOPMENT_TEAM = QUJYMFLN6Z;
 				ENABLE_BITCODE = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1371,6 +1378,7 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.abc.journal;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";

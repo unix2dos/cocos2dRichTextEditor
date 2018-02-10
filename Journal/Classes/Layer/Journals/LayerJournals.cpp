@@ -7,11 +7,11 @@
 
 #include "Journal.h"
 #include "Define.h"
-#include "RichTextManager.h"
 #include "DataManager.h"
 #include "DataJournal.h"
 #include "DataUser.h"
 #include "JournalsCell.h"
+#include "RichViewManager.h"
 #include "LayerMain.h"
 #include "LayerJournalClassify.h"
 #include "LayerJournals.h"
@@ -73,7 +73,7 @@ void CLayerJournals::_initUI()
     auto btnAdd = Button::create("btn_add.png");
     btnAdd->setPosition(Vec2(width, bg->getContentSize().height/2 + 100));
     btnAdd->addClickEventListener([](Ref* r){
-        CRichTextManager::getInstance()->writeJournal();
+        CRichViewManager::getInstance()->writeJournal();
     });
     bg->addChild(btnAdd);
     
@@ -173,7 +173,7 @@ void CLayerJournals::tableCellTouched(cocos2d::extension::TableView* table, coco
     }
     
     int idx = static_cast<int>(cell->getIdx());
-    CRichTextManager::getInstance()->showJournal(m_showJournals[idx].strContent);
+    CRichViewManager::getInstance()->showJournal(m_showJournals[idx].strContent);
 }
 
 cocos2d::Size CLayerJournals::tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)
