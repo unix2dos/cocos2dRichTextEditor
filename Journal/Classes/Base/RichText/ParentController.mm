@@ -27,6 +27,8 @@ static RichViewController *g_richview = nullptr;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
     //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
     g_richview = [[RichViewController alloc] init];
+    g_richview.placeholder = @"Please tap to start editing";
+    
     [self addChildViewController:g_richview];
     [self.view addSubview:g_richview.view];
 }
@@ -46,8 +48,6 @@ static RichViewController *g_richview = nullptr;
 
 
 - (void)writeJournal {
-    g_richview.title = @"Write Journal";
-    g_richview.placeholder = @"Please tap to start editing";
     [g_richview setHTML:@""];
     [g_richview setCanEditer:true];
 }
@@ -55,8 +55,8 @@ static RichViewController *g_richview = nullptr;
 
 - (void)showJournal {
     auto journal = CRichViewManager::getInstance()->getJournal();
-    NSString *html= [NSString stringWithUTF8String:journal.strContent.c_str()];
-    [g_richview setHTML:html];
+    [g_richview setHTML:[NSString stringWithUTF8String:journal.strContent.c_str()]];
+    
     auto type = CRichViewManager::getInstance()->getRichViewType();
     [g_richview setCanEditer:(type == RichViewType::show_self)];
 }

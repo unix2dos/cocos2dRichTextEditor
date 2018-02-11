@@ -244,7 +244,7 @@ static CGFloat kDefaultScale = 0.5;
     self.receiveEditorDidChangeEvents = NO;
     self.alwaysShowToolbar = NO;
     self.shouldShowKeyboard = YES;
-    self.formatHTML = YES;
+    self.formatHTML = NO;
     self.canEditer = NO;
     
     //Initalise enabled toolbar items array
@@ -278,12 +278,7 @@ static CGFloat kDefaultScale = 0.5;
         toolbarCropper.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         toolbarCropper.clipsToBounds = YES;
         
-        // Use a toolbar so that we can tint
-//        UIToolbar *keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(-7, -1, 44, 44)];
-//        [toolbarCropper addSubview:keyboardToolbar];
-//
-//        self.keyboardItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ZSSkeyboard.png"] style:UIBarButtonItemStylePlain target:self action:@selector(dismissKeyboard)];
-//        keyboardToolbar.items = @[self.keyboardItem];
+        
         NSBundle* bundle = [NSBundle bundleForClass:[ZSSRichTextEditor class]];
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
         
@@ -292,7 +287,7 @@ static CGFloat kDefaultScale = 0.5;
         [btn setImage:image forState:UIControlStateNormal];
         [btn setTintColor:[self barButtonItemDefaultColor]];
         
-                [toolbarCropper addSubview:btn];
+        [toolbarCropper addSubview:btn];
         [self.toolbarHolder addSubview:toolbarCropper];
         
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.6f, 44)];
