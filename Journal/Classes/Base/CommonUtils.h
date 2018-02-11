@@ -21,8 +21,12 @@ static int getTimeStamp()
 // 格式化时间戳
 static std::string getTimeString(int timeStamp)
 {
-    return cocos2d::StringUtils::format("%d",timeStamp);
-//    return "2016-01-02";
+    time_t rawtime = timeStamp;
+    struct tm * dt;
+    char buffer [30];
+    dt = localtime(&rawtime);
+    strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", dt);
+    return std::string(buffer);
 }
 
 
@@ -57,8 +61,14 @@ static std::string buildServeJson(Json::Value root)
 //移除html tags
 static std::string removeHtmlTags(std::string html)
 {
-    std::regex e ("<[^>]*>");
-    return std::regex_replace (html, e, "");
+    std::string str = html;
+    std::regex e1 ("<[^>]*>");
+    str = std::regex_replace (str, e1, " ");
+    
+    std::regex e2 ("&nbsp;");
+    str = std::regex_replace (str, e2, " ");
+
+    return str;
 }
 
 

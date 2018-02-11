@@ -43,6 +43,10 @@ void CLayerJournalEx::_initUI()
     m_winSize = Director::getInstance()->getWinSize();
     
     m_fTableViewHeight = m_winSize.height - MAIN_BOTTOM_HEIGHT;
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    m_fTableViewHeight -= 50;
+#endif
+    
     m_pTableView = TableView::create(this, Size(m_winSize.width, m_fTableViewHeight));
     m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     m_pTableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);

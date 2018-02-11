@@ -108,6 +108,12 @@ void CLayerLogin::_initUI()
     btnFindPassword->setTitleLabel(label3);
 
 //    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:111111
+    //TODO:222222太烦了
+    Json::Value root;
+    root["username"] = "4@qq.com";
+    root["password"] = "4";
+    string strJson = buildServeJson(root);
+    CHttpManager::getInstance()->HttpPost(eHttpType::login, strJson);
 }
 
 
