@@ -29,12 +29,8 @@ static RichViewController *g_richview = nullptr;
     g_richview = [[RichViewController alloc] init];
     [self addChildViewController:g_richview];
     [self.view addSubview:g_richview.view];
-    
-    
-    
-    
-
 }
+
 
 
 - (void)back {
@@ -46,9 +42,7 @@ static RichViewController *g_richview = nullptr;
     [g_richview setHTML:@""];
 }
 
-- (void)edit {
-//    [self setCanEditer:true];
-}
+
 
 - (void)writeJournal {
     g_richview.title = @"Write Journal";
@@ -59,11 +53,8 @@ static RichViewController *g_richview = nullptr;
 
 - (void)showJournal:(NSString *)html {
     [g_richview setHTML:html];
+    [g_richview setCanEditer:false];
 }
-
-
-
-
 
 
 

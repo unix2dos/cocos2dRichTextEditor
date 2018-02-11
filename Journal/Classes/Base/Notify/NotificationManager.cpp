@@ -6,7 +6,7 @@
 //
 //
 
-
+#include "Define.h"
 #include "NotificationManager.h"
 
 

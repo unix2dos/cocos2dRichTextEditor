@@ -9,9 +9,8 @@
 #ifndef NotificationManager_h
 #define NotificationManager_h
 
-#include "NotificationDefine.h"
 
-
+enum class NOTIFY_TYPE;
 class CNotificationDelegate
 {
 public:

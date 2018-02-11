@@ -10,18 +10,22 @@
 
 struct Journal_Info
 {
+    int journalId;//id
     std::string strTitle;//标题
     std::string strContent;//内容
     int createTime;//创建时间
+    int modifyTime;//修改时间
     std::vector<std::string> vecMessage;//留言
     int lickCount;//点赞数量
     bool isPublic;//是否公开
     
     Journal_Info()
     {
+        journalId = 0;
         strTitle = "";
         strContent = "";
         createTime = 0;
+        modifyTime = 0;
         vecMessage.clear();
         lickCount = 0;
         isPublic = true;
@@ -38,6 +42,9 @@ public:
 public:
     void parseServeData(HttpResponseInfo rep);
     const std::vector<Journal_Info>& getJournals();
+    
+    void parseAddJorunal(HttpResponseInfo rep);
+    
     
 private:
     std::vector<Journal_Info> m_vecJournals;

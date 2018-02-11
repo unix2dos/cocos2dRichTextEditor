@@ -31,4 +31,6 @@ void CRichViewManager::addJournal(std::string strContext)
     root["published"] = "1";
     string strJson = buildServeJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::journal_add, strJson);
+    
+    
 }

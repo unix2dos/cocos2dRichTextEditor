@@ -21,13 +21,13 @@
 CLayerMain::CLayerMain()
 :m_status(MainStatus::Journals)
 {
-    NotificationManager::getInstance()->registerNotification(NOTIFY_TYPE::JOURNAL_BG, this);
+//    NotificationManager::getInstance()->registerNotification(NOTIFY_TYPE::JOURNAL_BG, this);
 }
 
 
 CLayerMain::~CLayerMain()
 {
-    NotificationManager::getInstance()->unregisterNotification(NOTIFY_TYPE::JOURNAL_BG, this);
+//    NotificationManager::getInstance()->unregisterNotification(NOTIFY_TYPE::JOURNAL_BG, this);
 }
 
 
@@ -44,25 +44,9 @@ bool CLayerMain::init()
 
 void CLayerMain::notifyEvent(NOTIFY_TYPE type, void* pVoid)
 {
-    if (type == NOTIFY_TYPE::JOURNAL_BG)
-    {
-        int show = *((int*)&pVoid);
-        if (show)
-        {
-            auto layer = LayerColor::create(Color4B(255, 255, 255, 255));
-            layer->setName("journalBg");
-            layer->setLocalZOrder(1000);
-            this->addChild(layer);
-        }
-        else
-        {
-            auto layer = this->getChildByName("journalBg");
-            if (layer)
-            {
-                layer->removeFromParent();
-            }
-        }
-    }
+//    if (type == NOTIFY_TYPE::JOURNAL_BG)
+//    {
+//    }
 }
 
 

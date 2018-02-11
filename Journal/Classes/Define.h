@@ -35,6 +35,11 @@ static std::map<eHttpType, std::string> HTTPURLMAP
 };
 
 
+///NOTIFY_TYPE
+enum class NOTIFY_TYPE
+{
+};
+
 
 ////////ZORDER////////
 #define MYDFE_ZORDER_MSG 1000   //弹窗消息

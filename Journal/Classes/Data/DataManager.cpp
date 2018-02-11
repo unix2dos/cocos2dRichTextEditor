@@ -72,6 +72,9 @@ void CDataManager::parseServeData(eHttpType myType, HttpResponseInfo rep)
             m_pDataUser->parseServeData(rep);
             m_pDataJournal->parseServeData(rep);
             break;
+        case eHttpType::journal_add:
+            m_pDataJournal->parseAddJorunal(rep);
+            break;
         default:
             break;
     }

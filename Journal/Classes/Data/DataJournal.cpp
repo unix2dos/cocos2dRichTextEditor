@@ -74,7 +74,7 @@ void CDataJournal::parseServeData(HttpResponseInfo rep)
         
         Journal_Info info;
         info.strTitle = it["title"].asString();
-        info.strContent = content["text"].asString();
+//        info.strContent = content["text"].asString();
         info.createTime = getTimeStamp() - rand() % 1000; //TODO:1111111
 //        info.vecMessage = vector<std::string>();
 //        info.lickCount = rand() % 255;
@@ -91,4 +91,10 @@ void CDataJournal::parseServeData(HttpResponseInfo rep)
 const std::vector<Journal_Info>& CDataJournal::getJournals()
 {
     return m_vecJournals;
+}
+
+
+void CDataJournal::parseAddJorunal(HttpResponseInfo rep)
+{
+//    auto id = rep.jsonRoot["data"].asInt();
 }

@@ -383,7 +383,6 @@
 		014B0F56202B018F008D0CA7 /* Journal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
 		014B0F57202B01B8008D0CA7 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationManager.cpp; sourceTree = "<group>"; };
-		014B0F5E202C20FC008D0CA7 /* NotificationDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationDefine.h; sourceTree = "<group>"; };
 		014B0F5F202C20FC008D0CA7 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
 		014B0F61202C20FC008D0CA7 /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		014B0F63202C20FC008D0CA7 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
@@ -755,7 +754,6 @@
 		014B0F5C202C20FC008D0CA7 /* Notify */ = {
 			isa = PBXGroup;
 			children = (
-				014B0F5E202C20FC008D0CA7 /* NotificationDefine.h */,
 				014B0F5F202C20FC008D0CA7 /* NotificationManager.h */,
 				014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */,
 			);

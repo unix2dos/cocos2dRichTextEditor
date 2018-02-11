@@ -89,14 +89,6 @@ void iOSRichViewManager::closeJournal(std::string strContext)
 void iOSRichViewManager::_enableRichView(bool enable)
 {
     g_naviview.view.hidden = !enable;
-    if (enable)
-    {
-        NotificationManager::getInstance()->notify(NOTIFY_TYPE::JOURNAL_BG, (void*)1);
-    }
-    else
-    {
-        NotificationManager::getInstance()->notify(NOTIFY_TYPE::JOURNAL_BG, (void*)0);
-    }
 }
 
 //void iOSRichViewManager::_enableRichView(bool enable)
