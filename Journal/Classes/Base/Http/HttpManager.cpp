@@ -98,10 +98,16 @@ bool CHttpManager::HttpSendRequest(HttpRequest::Type type, eHttpType myType, std
     HttpClient::getInstance()->send(request);
     request->release();
     
-    std::string stringType = HTTPURLMAP[myType];
-    stringType = stringType.substr(strlen(SERVER_ADDRESS));
-    log("request type= %s data= %s\n", stringType.c_str(), data.c_str());
- 
+
+    {
+        std::string strHead = "";
+        for (auto&it : headers) {
+            strHead += it;
+        }
+        std::string strUrl = url.substr(strlen(SERVER_ADDRESS));
+        log("--------------------------------\nrequest type= %s data= %s\nheader= %s\n--------------------------------\n", strUrl.c_str(), data.c_str(), strHead.c_str());
+    }
+
     return true;
 
 }
@@ -146,9 +152,17 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
         }
     }
     
-    std::string stringType = HTTPURLMAP[myType];
-    stringType = stringType.substr(strlen(SERVER_ADDRESS));
-    log("response type= %s code= %d data= %s\n", stringType.c_str(), (int)response->getResponseCode(), m_mapHttpStatus[myType].jsonRoot.toStyledString().c_str());
+
+    {
+        std::vector<char> *buffer = response->getResponseHeader();
+        std::string strHead = "";
+        strHead.assign(buffer->begin(), buffer->end());
+        std::string url = response->getHttpRequest()->getUrl();
+        url = url.substr(strlen(SERVER_ADDRESS));
+        log("++++++++++++++++++++++++++++++++\nresponse type= %s code= %d data= %shead= %s\n++++++++++++++++++++++++++++++++\n", url.c_str(), (int)response->getResponseCode(), m_mapHttpStatus[myType].jsonRoot.toStyledString().c_str(), strHead.c_str());
+    }
+
+    
     
     //数据解析
     CDataManager::getInstance()->parseServeData(myType, m_mapHttpStatus[myType]);

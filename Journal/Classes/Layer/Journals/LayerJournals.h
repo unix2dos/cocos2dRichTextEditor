@@ -17,10 +17,12 @@ enum class ShowType
 };
 
 
+#include "NotificationManager.h"
 #include "DataJournal.h"
 class CLayerJournals: public Layer
 , public cocos2d::extension::TableViewDataSource
 , public cocos2d::extension::TableViewDelegate
+, public CNotificationDelegate
 {
 public:
     CLayerJournals();
@@ -33,10 +35,12 @@ public:
     virtual cocos2d::Size tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)override;
     virtual cocos2d::extension::TableViewCell* tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)override;
     virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
+    virtual void notifyEvent(NOTIFY_TYPE type, void* pVoid = nullptr) override;
 public:
     void setShowType(ShowType type);
 private:
     void _initUI();
+    void _updateData();
 private:
     Size m_winSize;
     float m_fTableViewHeight;

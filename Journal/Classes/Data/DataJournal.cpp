@@ -6,7 +6,9 @@
 //
 
 #include "Journal.h"
+#include "Define.h"
 #include "HttpManager.h"
+#include "NotificationManager.h"
 #include "CommonUtils.h"
 #include "DataJournal.h"
 using namespace std;
@@ -51,11 +53,6 @@ CDataJournal::CDataJournal()
 //        info.isPublic = i < 8;
 //        m_vecJournals.push_back(info);
 //    }
-    
-    //根据创建时间排序
-//    std::sort(m_vecJournals.begin(), m_vecJournals.end(), [](const Journal_Info&lhs, const Journal_Info& rhs){
-//        return lhs.createTime < rhs.createTime;
-//    });
 }
 
 CDataJournal::~CDataJournal()
@@ -70,22 +67,17 @@ void CDataJournal::parseServeData(HttpResponseInfo rep)
     auto journals = data["journals"];
     for (auto& it : journals)
     {
-        auto content = it["content"];//content
+        //        auto content = it["content"];//TODO:111111
         
         Journal_Info info;
         info.strTitle = it["title"].asString();
-//        info.strContent = content["text"].asString();
-        info.createTime = getTimeStamp() - rand() % 1000; //TODO:1111111
-//        info.vecMessage = vector<std::string>();
-//        info.lickCount = rand() % 255;
+        info.strContent = it["content"].asString();
+        info.createTime = atoi(it["timestamp_create"].asString().c_str());
         info.isPublic = atoi(it["published"].asString().c_str());
         m_vecJournals.push_back(info);
     }
     
-    
-    std::sort(m_vecJournals.begin(), m_vecJournals.end(), [](const Journal_Info&lhs, const Journal_Info& rhs){
-        return lhs.createTime < rhs.createTime;
-    });
+    NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
 }
 
 const std::vector<Journal_Info>& CDataJournal::getJournals()
@@ -96,5 +88,14 @@ const std::vector<Journal_Info>& CDataJournal::getJournals()
 
 void CDataJournal::parseAddJorunal(HttpResponseInfo rep)
 {
-//    auto id = rep.jsonRoot["data"].asInt();
+    auto data = rep.jsonRoot["data"];
+    //    auto content = data["content"];//TODO:1111111
+    
+    Journal_Info info;
+    info.strTitle = data["title"].asString();
+    info.strContent = data["content"].asString();
+    info.createTime = atoi(data["timestamp_create"].asString().c_str());
+    info.isPublic = atoi(data["published"].asString().c_str());
+    m_vecJournals.push_back(info);
+    NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
 }

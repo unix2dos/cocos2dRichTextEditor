@@ -7,11 +7,12 @@
 
 #include "Journal.h"
 #include "Define.h"
+#include "NotificationManager.h"
+#include "RichViewManager.h"
 #include "DataManager.h"
 #include "DataJournal.h"
 #include "DataUser.h"
 #include "JournalsCell.h"
-#include "RichViewManager.h"
 #include "LayerMain.h"
 #include "LayerJournalClassify.h"
 #include "LayerJournals.h"
@@ -25,11 +26,13 @@ CLayerJournals::CLayerJournals()
 ,m_fTableViewHeight(0.0f)
 ,m_showType(ShowType::None)
 {
+    NotificationManager::getInstance()->registerNotification(NOTIFY_TYPE::journal_data_change, this);
 }
 
 
 CLayerJournals::~CLayerJournals()
 {
+    NotificationManager::getInstance()->unregisterNotification(NOTIFY_TYPE::journal_data_change, this);
 }
 
 
@@ -119,8 +122,21 @@ void CLayerJournals::setShowType(ShowType type)
     }
     
     m_showType = type;
+    _updateData();
+}
+
+void CLayerJournals::notifyEvent(NOTIFY_TYPE type, void* pVoid)
+{
+    if (type == NOTIFY_TYPE::journal_data_change)
+    {
+        _updateData();
+    }
+}
+
+void CLayerJournals::_updateData()
+{
     m_showJournals = CDataManager::getInstance()->getDataJournal()->getJournals();
-    if (type == ShowType::Public)
+    if (m_showType == ShowType::Public)
     {
         for (auto it = m_showJournals.begin(); it != m_showJournals.end();)
         {
@@ -134,7 +150,7 @@ void CLayerJournals::setShowType(ShowType type)
             }
         }
     }
-    else if (type == ShowType::Private)
+    else if (m_showType == ShowType::Private)
     {
         for (auto it = m_showJournals.begin(); it != m_showJournals.end();)
         {
@@ -148,13 +164,18 @@ void CLayerJournals::setShowType(ShowType type)
             }
         }
     }
+    
+    //排个序
+    std::sort(m_showJournals.begin(), m_showJournals.end(), [](const Journal_Info&lhs, const Journal_Info& rhs){
+        return lhs.createTime > rhs.createTime;
+    });
+    
+    //刷新tableview
     if (m_pTableView)
     {
         m_pTableView->reloadData();
     }
 }
-
-
 
 void CLayerJournals::scrollViewDidScroll(cocos2d::extension::ScrollView* view)
 {

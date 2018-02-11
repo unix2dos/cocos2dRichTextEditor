@@ -67,6 +67,7 @@ void CLayerMain::_initUI()
     
 
 //    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:111
+//    CHttpManager::getInstance()->HttpGet(eHttpType::journal_list, "/public=-1");//TODO:111
 }
 
 void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)

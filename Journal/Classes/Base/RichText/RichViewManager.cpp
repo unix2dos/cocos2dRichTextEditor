@@ -27,10 +27,11 @@ void CRichViewManager::addJournal(std::string strContext)
     Json::Value root;
     root["tags"] = "none";
     root["title"] = "none";
+    
+//    Json::Value content;
+    //    content["text"] = strContext;//TODO:1111111111
     root["content"] = strContext;
     root["published"] = "1";
     string strJson = buildServeJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::journal_add, strJson);
-    
-    
 }

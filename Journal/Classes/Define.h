@@ -38,6 +38,7 @@ static std::map<eHttpType, std::string> HTTPURLMAP
 ///NOTIFY_TYPE
 enum class NOTIFY_TYPE
 {
+    journal_data_change,//日志数据变化
 };
 
 
