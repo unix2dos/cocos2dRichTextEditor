@@ -67,9 +67,8 @@ void CDataJournal::parseServeData(HttpResponseInfo rep)
     auto journals = data["journals"];
     for (auto& it : journals)
     {
-        //        auto content = it["content"];//TODO:111111
-        
         Journal_Info info;
+        info.strId = it["id"].asString();
         info.strTitle = it["title"].asString();
         info.strContent = it["content"].asString();
         info.createTime = atoi(it["timestamp_create"].asString().c_str());
@@ -88,14 +87,34 @@ const std::vector<Journal_Info>& CDataJournal::getJournals()
 
 void CDataJournal::parseAddJorunal(HttpResponseInfo rep)
 {
-    auto data = rep.jsonRoot["data"];
-    //    auto content = data["content"];//TODO:1111111
-    
+    auto it = rep.jsonRoot["data"];
     Journal_Info info;
-    info.strTitle = data["title"].asString();
-    info.strContent = data["content"].asString();
-    info.createTime = atoi(data["timestamp_create"].asString().c_str());
-    info.isPublic = atoi(data["published"].asString().c_str());
+    info.strId = it["id"].asString();
+    info.strTitle = it["title"].asString();
+    info.strContent = it["content"].asString();
+    info.createTime = atoi(it["timestamp_create"].asString().c_str());
+    info.isPublic = atoi(it["published"].asString().c_str());
     m_vecJournals.push_back(info);
+    
+    NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
+}
+
+void CDataJournal::parseUpdateJorunal(HttpResponseInfo rep)
+{
+    auto it = rep.jsonRoot["data"];
+    Journal_Info info;
+    info.strId = it["id"].asString();
+    info.strTitle = it["title"].asString();
+    info.strContent = it["content"].asString();
+    info.createTime = atoi(it["timestamp_create"].asString().c_str());
+    info.isPublic = atoi(it["published"].asString().c_str());
+    
+    for (auto& it : m_vecJournals) {
+        if (it.strId == info.strId) {
+            it = info;
+            break;
+        }
+    }
+
     NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
 }

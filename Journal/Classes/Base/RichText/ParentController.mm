@@ -6,7 +6,7 @@
 //
 
 #import "RichViewManager.h"
-#include "RichViewController.h"
+#import "RichViewController.h"
 #import "ParentController.h"
 
 @interface ParentController ()
@@ -35,11 +35,12 @@ static RichViewController *g_richview = nullptr;
 
 - (void)back {
     //    NSLog(@"%@", [self getHTML]);
-    std::string strContent = [[g_richview getHTML] UTF8String];
-    CRichViewManager::getInstance()->closeJournal(strContent);
-    
     [g_richview.view endEditing:YES];//键盘消失
-    [g_richview setHTML:@""];
+    
+    auto& journal = CRichViewManager::getInstance()->getJournal();
+    journal.strContent = [[g_richview getHTML] UTF8String];
+    
+    CRichViewManager::getInstance()->closeJournal();
 }
 
 
@@ -51,9 +52,13 @@ static RichViewController *g_richview = nullptr;
     [g_richview setCanEditer:true];
 }
 
-- (void)showJournal:(NSString *)html {
+
+- (void)showJournal {
+    auto journal = CRichViewManager::getInstance()->getJournal();
+    NSString *html= [NSString stringWithUTF8String:journal.strContent.c_str()];
     [g_richview setHTML:html];
-    [g_richview setCanEditer:false];
+    auto type = CRichViewManager::getInstance()->getRichViewType();
+    [g_richview setCanEditer:(type == RichViewType::show_self)];
 }
 
 

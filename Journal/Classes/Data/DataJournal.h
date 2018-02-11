@@ -10,7 +10,7 @@
 
 struct Journal_Info
 {
-    int journalId;//id
+    std::string strId;//id
     std::string strTitle;//标题
     std::string strContent;//内容
     int createTime;//创建时间
@@ -21,7 +21,7 @@ struct Journal_Info
     
     Journal_Info()
     {
-        journalId = 0;
+        strId = "";
         strTitle = "";
         strContent = "";
         createTime = 0;
@@ -44,7 +44,7 @@ public:
     const std::vector<Journal_Info>& getJournals();
     
     void parseAddJorunal(HttpResponseInfo rep);
-    
+    void parseUpdateJorunal(HttpResponseInfo rep);
     
 private:
     std::vector<Journal_Info> m_vecJournals;

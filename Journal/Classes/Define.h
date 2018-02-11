@@ -24,6 +24,7 @@ enum class eHttpType
     login,       //登录
     journal_list,//日志信息
     journal_add, //添加日志
+    journal_update,//修改日志
 };
 static std::map<eHttpType, std::string> HTTPURLMAP
 {
@@ -31,7 +32,8 @@ static std::map<eHttpType, std::string> HTTPURLMAP
     {eHttpType::signup,         SERVER_ADDRESS"/signup"},
     {eHttpType::login,          SERVER_ADDRESS"/login"},
     {eHttpType::journal_list,   SERVER_ADDRESS"/journal/list"},
-    {eHttpType::journal_add,    SERVER_ADDRESS"/journal/add"}
+    {eHttpType::journal_add,    SERVER_ADDRESS"/journal/add"},
+    {eHttpType::journal_update, SERVER_ADDRESS"/journal/update"}
 };
 
 

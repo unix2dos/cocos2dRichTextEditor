@@ -16,7 +16,6 @@ static UINavigationController *g_naviview = nullptr;
 static ParentController *g_parent = nullptr;
 
 iOSRichViewManager::iOSRichViewManager()
-:m_richviewType(RichViewType::none)
 {
 }
 
@@ -37,6 +36,8 @@ CRichViewManager* CRichViewManager::getInstance()
 
 void iOSRichViewManager::initRichView()
 {
+    CRichViewManager::initRichView();
+    
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     g_parent = [[ParentController alloc] init];
     g_naviview = [[UINavigationController alloc] initWithRootViewController:g_parent];
@@ -47,49 +48,46 @@ void iOSRichViewManager::initRichView()
 }
 
 
-void iOSRichViewManager::writeJournal()
+
+void iOSRichViewManager::newJournal()
 {
-    if (m_richviewType != RichViewType::none)
-    {
-        return;
-    }
-    m_richviewType = RichViewType::write;
+    CRichViewManager::newJournal();
     
     _enableRichView(true);
     [g_parent writeJournal];
 }
 
-
-void iOSRichViewManager::showJournal(std::string strContext)
+void iOSRichViewManager::showJournal(const Journal_Info& info, bool myself)
 {
-    if (m_richviewType != RichViewType::none)
-    {
-        return;
-    }
-    m_richviewType = RichViewType::show_self;
+    CRichViewManager::showJournal(info, myself);
     
     _enableRichView(true);
-    [g_parent showJournal:[NSString stringWithUTF8String:strContext.c_str()]];
+    [g_parent showJournal];
 }
 
 
-void iOSRichViewManager::closeJournal(std::string strContext)
+void iOSRichViewManager::closeJournal()
 {
-    if (m_richviewType == RichViewType::write && strContext != "")
-    {
-        addJournal(strContext);
-    }
-    
+    CRichViewManager::closeJournal();
     _enableRichView(false);
-    m_richviewType = RichViewType::none;
 }
-
 
 
 void iOSRichViewManager::_enableRichView(bool enable)
 {
     g_naviview.view.hidden = !enable;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 //void iOSRichViewManager::_enableRichView(bool enable)
 //{

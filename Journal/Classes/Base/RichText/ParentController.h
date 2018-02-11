@@ -15,7 +15,7 @@
 
 - (void)writeJournal;
 
-- (void)showJournal:(NSString *)html;
+- (void)showJournal;
 
 @end
 
