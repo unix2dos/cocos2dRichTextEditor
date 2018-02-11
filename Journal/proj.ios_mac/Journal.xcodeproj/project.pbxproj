@@ -129,7 +129,8 @@
 		014B0F65202C20FC008D0CA7 /* NotificationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F5D202C20FC008D0CA7 /* NotificationManager.cpp */; };
 		014B0F67202C20FC008D0CA7 /* HttpManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F64202C20FC008D0CA7 /* HttpManager.cpp */; };
 		0189F44A202E8BC2009F08B0 /* RichViewManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0189F448202E8BC2009F08B0 /* RichViewManager.cpp */; };
-		0189F451202E8F18009F08B0 /* iOSRichView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0189F450202E8F18009F08B0 /* iOSRichView.mm */; };
+		0189F451202E8F18009F08B0 /* iOSRichViewManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0189F450202E8F18009F08B0 /* iOSRichViewManager.mm */; };
+		0189F457202F3AD5009F08B0 /* ParentController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0189F456202F3AD5009F08B0 /* ParentController.mm */; };
 		0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABD12025487B00C6C656 /* LayerWebView.cpp */; };
 		0193ABE62025771A00C6C656 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE42025771A00C6C656 /* SceneManager.cpp */; };
 		0193ABE92025795F00C6C656 /* SceneBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0193ABE72025795F00C6C656 /* SceneBase.cpp */; };
@@ -389,8 +390,10 @@
 		014B0F64202C20FC008D0CA7 /* HttpManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HttpManager.cpp; sourceTree = "<group>"; };
 		0189F448202E8BC2009F08B0 /* RichViewManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RichViewManager.cpp; sourceTree = "<group>"; };
 		0189F449202E8BC2009F08B0 /* RichViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RichViewManager.h; sourceTree = "<group>"; };
-		0189F450202E8F18009F08B0 /* iOSRichView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = iOSRichView.mm; sourceTree = "<group>"; };
-		0189F452202E8F2A009F08B0 /* iOSRichView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSRichView.h; sourceTree = "<group>"; };
+		0189F450202E8F18009F08B0 /* iOSRichViewManager.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = iOSRichViewManager.mm; sourceTree = "<group>"; };
+		0189F452202E8F2A009F08B0 /* iOSRichViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSRichViewManager.h; sourceTree = "<group>"; };
+		0189F456202F3AD5009F08B0 /* ParentController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ParentController.mm; sourceTree = "<group>"; };
+		0189F458202F3AE5009F08B0 /* ParentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParentController.h; sourceTree = "<group>"; };
 		0193ABD12025487B00C6C656 /* LayerWebView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerWebView.cpp; sourceTree = "<group>"; };
 		0193ABD22025487B00C6C656 /* LayerWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWebView.h; sourceTree = "<group>"; };
 		0193ABE42025771A00C6C656 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
@@ -834,8 +837,10 @@
 			children = (
 				0189F448202E8BC2009F08B0 /* RichViewManager.cpp */,
 				0189F449202E8BC2009F08B0 /* RichViewManager.h */,
-				0189F450202E8F18009F08B0 /* iOSRichView.mm */,
-				0189F452202E8F2A009F08B0 /* iOSRichView.h */,
+				0189F450202E8F18009F08B0 /* iOSRichViewManager.mm */,
+				0189F452202E8F2A009F08B0 /* iOSRichViewManager.h */,
+				0189F456202F3AD5009F08B0 /* ParentController.mm */,
+				0189F458202F3AE5009F08B0 /* ParentController.h */,
 				01BA7F6920270AAB002EA80C /* RichViewController.mm */,
 				01BA7F6720270AAB002EA80C /* RichViewController.h */,
 			);
@@ -1265,7 +1270,8 @@
 				011795C62029874D00770759 /* HRBrightnessCursor.m in Sources */,
 				011795682029874D00770759 /* ZSSDemoViewController.m in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
-				0189F451202E8F18009F08B0 /* iOSRichView.mm in Sources */,
+				0189F457202F3AD5009F08B0 /* ParentController.mm in Sources */,
+				0189F451202E8F18009F08B0 /* iOSRichViewManager.mm in Sources */,
 				01A778A8202D6B2200CFA7E2 /* SceneLogin.cpp in Sources */,
 				0117956F2029874D00770759 /* ZSSAppDelegate.m in Sources */,
 				0189F44A202E8BC2009F08B0 /* RichViewManager.cpp in Sources */,

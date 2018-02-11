@@ -1,12 +1,12 @@
 //
-//  iOSRichView.h
+//  iOSRichViewManager.h
 //  Journal
 //
 //  Created by liuwei on 2018/2/10.
 //
 
-#ifndef iOSRichView_h
-#define iOSRichView_h
+#ifndef iOSRichViewManager_h
+#define iOSRichViewManager_h
 
 enum class RichViewType
 {
@@ -16,20 +16,22 @@ enum class RichViewType
     show_others,
 };
 
-class iOSRichView : public CRichViewManager
+
+class iOSRichViewManager : public CRichViewManager
 {
 public:
-    iOSRichView();
-    virtual ~iOSRichView();
+    iOSRichViewManager();
+    virtual ~iOSRichViewManager();
+    
 public:
+    virtual void initRichView() override;
     virtual void writeJournal() override;
     virtual void showJournal(std::string strContext) override;
     virtual void closeJournal(std::string strContext) override;
-private:
-    void _enableRichView(bool enable);
     
 private:
+    void _enableRichView(bool enable);
     RichViewType m_richviewType;
 };
 
-#endif /* iOSRichView_h */
+#endif /* iOSRichViewManager_h */

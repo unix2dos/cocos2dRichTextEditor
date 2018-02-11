@@ -9,7 +9,7 @@
 #import "RichViewController.h"
 #import "ZSSDemoPickerViewController.h"
 #import "DemoModalViewController.h"
-#import "RichViewManager.h"
+
 
 
 @interface RichViewController ()
@@ -18,11 +18,10 @@
 
 @implementation RichViewController
 
-
+//理论上这个类不应该变化了
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.title = @"";
-//    self.placeholder = @"Please tap to start editing";
+
     self.shouldShowKeyboard = NO;
     self.alwaysShowToolbar = NO;
     self.receiveEditorDidChangeEvents = NO;
@@ -33,29 +32,17 @@
                                  ,ZSSRichTextEditorToolbarUnorderedList
                                  ,ZSSRichTextEditorToolbarOrderedList
                                  ];
-    
-    
-    // Save
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
-
-//    NSString *html = @"<h1>Large Editor</h1>"
-//    [self setHTML:html];
+    //    self.title = @"";
+    //    self.placeholder = @"Please tap to start editing";
+    //    NSString *html = @"<h1>Large Editor</h1>"
+    //    [self setHTML:html];
 }
 
 
 
-- (void)back {
-//    NSLog(@"%@", [self getHTML]);
-    CRichViewManager::getInstance()->closeJournal([[self getHTML] UTF8String]);
-}
 
-- (void)edit {
-    [self setCanEditer:true];
-}
 
 - (void)editorDidChangeWithText:(NSString *)text andHTML:(NSString *)html {
-
 //    NSLog(@"Text Has Changed: %@", text);
     NSLog(@"HTML Has Changed: %@", html);
 }

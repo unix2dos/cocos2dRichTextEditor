@@ -50,7 +50,7 @@
                                   preserveBackbuffer: NO
                                           sharegroup: nil
                                        multiSampling: cocos2d::GLViewImpl::_multisamplingCount > 0 ? YES : NO
-                                     numberOfSamples: cocos2d::GLViewImpl::_multisamplingCount ];//TODO: 此处修改, 需要官方确认
+                                     numberOfSamples: cocos2d::GLViewImpl::_multisamplingCount ];
     
     // Enable or disable multiple touches
     [eaglView setMultipleTouchEnabled:NO];
@@ -103,7 +103,7 @@
 
 //fix not hide status on ios7
 - (BOOL)prefersStatusBarHidden {
-    return YES;//控制是否显示电池时间
+    return NO;//控制是否显示电池时间
 }
 
 // Controls the application's preferred home indicator auto-hiding when this view controller is shown.

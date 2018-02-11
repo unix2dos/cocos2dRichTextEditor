@@ -45,7 +45,7 @@ USING_NS_CC;
 #include "Journal.h"
 #include "Define.h"
 #include "SceneManager.h"
-
+#include "RichViewManager.h"
 
 AppDelegate::AppDelegate()
 {
@@ -126,9 +126,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->setSearchPaths(path);
     
     //跳到启动场景
-//    CSceneManager::jumpToScene(eSceneType::launch);//有图换上
+//    CSceneManager::jumpToScene(eSceneType::launch);//启动页面
+//    CSceneManager::jumpToScene(eSceneType::main);
     CSceneManager::jumpToScene(eSceneType::login);
-
+    CRichViewManager::getInstance()->initRichView();
     return true;
 }
 
