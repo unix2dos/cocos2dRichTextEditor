@@ -26,14 +26,16 @@ static UITextField *g_textField = nullptr;
     
     //nav item
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Switch" style:UIBarButtonItemStylePlain target:self action:@selector(edit)];
+    self.navigationItem.title = @"Public";
+    
+    //rich view
     g_richview = [[RichViewController alloc] init];
     g_richview.placeholder = @"enter content";
-    
     [self addChildViewController:g_richview];
     [self.view addSubview:g_richview.view];
     
-    
+    //title
     CGSize viewSize = self.view.frame.size;
     auto offX = 10;
     g_textField = [[UITextField alloc]init];
@@ -54,8 +56,7 @@ static UITextField *g_textField = nullptr;
 
 - (void)back {
     //    NSLog(@"%@", [self getHTML]);
-    
-    //键盘消失
+    //keyboard hidden
     [g_richview.view endEditing:YES];
     [g_textField endEditing:YES];
     
@@ -69,11 +70,26 @@ static UITextField *g_textField = nullptr;
 }
 
 
+- (void)edit {
+    auto type = CRichViewManager::getInstance()->getRichViewType();
+    if (type == RichViewType::show_self || type == RichViewType::write)
+    {
+        auto& journal = CRichViewManager::getInstance()->getJournal();
+        journal.isPublic = !journal.isPublic;
+        //switch
+        [self showSwitch];
+    }
+}
+
+
 
 - (void)writeJournal {
     [g_richview setHTML:@""];
     [g_richview setCanEditer:true];
     [g_textField setText:@""];
+    
+    //switch
+    [self showSwitch];
 }
 
 
@@ -85,6 +101,26 @@ static UITextField *g_textField = nullptr;
     auto type = CRichViewManager::getInstance()->getRichViewType();
     [g_richview setCanEditer:(type == RichViewType::show_self)];
     g_textField.enabled = (type == RichViewType::show_self);
+    
+    //switch
+    [self showSwitch];
+}
+
+- (void)showSwitch {
+    auto journal = CRichViewManager::getInstance()->getJournal();
+    auto type = CRichViewManager::getInstance()->getRichViewType();
+    if (type == RichViewType::show_others)
+    {
+        self.navigationItem.title = @"";
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+        [self.navigationItem.rightBarButtonItem setTintColor: [UIColor clearColor]];
+    }
+    else
+    {
+        self.navigationItem.title = journal.isPublic ? @"Public" : @"Private";
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+        [self.navigationItem.rightBarButtonItem setTintColor:nil];
+    }
 }
 
 @end
