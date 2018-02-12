@@ -73,5 +73,34 @@ FIXED_HEIGHT| dWidth * k2   dHeight*k2 // 96 320
 
 ### TestFlight
 
-* 登录app帐号, 设置boundle id
-* 
+1. 设置boundle id
+2. xcode 登录帐号
+3. add push
+4. 网页开发者后台, connect->我的APP
+5. APP消息 价格销售范围 各种app信息
+6. Xcode : Generic ios Device
+7. Xcode : Project Archive
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

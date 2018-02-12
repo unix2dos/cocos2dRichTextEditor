@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		011795662029874D00770759 /* 76.png in Resources */ = {isa = PBXBuildFile; fileRef = 011794D62029874C00770759 /* 76.png */; };
-		011795672029874D00770759 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 011794D72029874C00770759 /* InfoPlist.strings */; };
 		011795682029874D00770759 /* ZSSDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 011794DE2029874C00770759 /* ZSSDemoViewController.m */; };
 		011795692029874D00770759 /* ZSSSelectiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 011794E02029874C00770759 /* ZSSSelectiveViewController.m */; };
 		0117956A2029874D00770759 /* ZSSDemoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 011794E22029874C00770759 /* ZSSDemoList.m */; };
@@ -112,13 +110,8 @@
 		011795CC2029874D00770759 /* HRColorCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 011795522029874C00770759 /* HRColorCursor.m */; };
 		011795CD2029874D00770759 /* ZSSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0117955B2029874C00770759 /* ZSSTextView.m */; };
 		011795CE2029874D00770759 /* jQuery.js in Resources */ = {isa = PBXBuildFile; fileRef = 0117955C2029874C00770759 /* jQuery.js */; };
-		011795CF2029874D00770759 /* 120.png in Resources */ = {isa = PBXBuildFile; fileRef = 0117955E2029874C00770759 /* 120.png */; };
-		011795D02029874D00770759 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0117955F2029874C00770759 /* Icon@2x.png */; };
-		011795D12029874D00770759 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 011795602029874C00770759 /* Default-568h@2x.png */; };
 		011795D22029874D00770759 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 011795612029874C00770759 /* main.m */; };
 		011795D32029874D00770759 /* ZSSRichTextEditor-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 011795622029874C00770759 /* ZSSRichTextEditor-Info.plist */; };
-		011795D42029874D00770759 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011795632029874C00770759 /* Images.xcassets */; };
-		011795D52029874D00770759 /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = 011795642029874C00770759 /* 152.png */; };
 		011795D62029874D00770759 /* DemoModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 011795652029874C00770759 /* DemoModalViewController.m */; };
 		011795DC2029892D00770759 /* DataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DA2029892D00770759 /* DataManager.cpp */; };
 		011795DF20298AA000770759 /* DataUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DD20298A9F00770759 /* DataUser.cpp */; };
@@ -228,8 +221,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		011794D62029874C00770759 /* 76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 76.png; sourceTree = "<group>"; };
-		011794D82029874C00770759 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		011794D92029874C00770759 /* ZSSRichTextEditor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZSSRichTextEditor-Prefix.pch"; sourceTree = "<group>"; };
 		011794DB2029874C00770759 /* ZSSPlaceholderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSPlaceholderViewController.h; sourceTree = "<group>"; };
 		011794DC2029874C00770759 /* ZSSCustomButtonsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSCustomButtonsViewController.h; sourceTree = "<group>"; };
@@ -359,13 +350,8 @@
 		0117955B2029874C00770759 /* ZSSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSSTextView.m; sourceTree = "<group>"; };
 		0117955C2029874C00770759 /* jQuery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jQuery.js; sourceTree = "<group>"; };
 		0117955D2029874C00770759 /* DemoModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoModalViewController.h; sourceTree = "<group>"; };
-		0117955E2029874C00770759 /* 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120.png; sourceTree = "<group>"; };
-		0117955F2029874C00770759 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		011795602029874C00770759 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		011795612029874C00770759 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		011795622029874C00770759 /* ZSSRichTextEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ZSSRichTextEditor-Info.plist"; sourceTree = "<group>"; };
-		011795632029874C00770759 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		011795642029874C00770759 /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152.png; sourceTree = "<group>"; };
 		011795652029874C00770759 /* DemoModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoModalViewController.m; sourceTree = "<group>"; };
 		011795DA2029892D00770759 /* DataManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataManager.cpp; sourceTree = "<group>"; };
 		011795DB2029892D00770759 /* DataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
@@ -393,6 +379,7 @@
 		0189F452202E8F2A009F08B0 /* iOSRichViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSRichViewManager.h; sourceTree = "<group>"; };
 		0189F456202F3AD5009F08B0 /* ParentController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ParentController.mm; sourceTree = "<group>"; };
 		0189F458202F3AE5009F08B0 /* ParentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParentController.h; sourceTree = "<group>"; };
+		0189F459203127D5009F08B0 /* Journal-mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Journal-mobile.entitlements"; sourceTree = "<group>"; };
 		0193ABD12025487B00C6C656 /* LayerWebView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerWebView.cpp; sourceTree = "<group>"; };
 		0193ABD22025487B00C6C656 /* LayerWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWebView.h; sourceTree = "<group>"; };
 		0193ABE42025771A00C6C656 /* SceneManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneManager.cpp; sourceTree = "<group>"; };
@@ -538,19 +525,12 @@
 		011794D52029874C00770759 /* RichTextEditor */ = {
 			isa = PBXGroup;
 			children = (
-				011794D62029874C00770759 /* 76.png */,
-				011794D72029874C00770759 /* InfoPlist.strings */,
 				011794D92029874C00770759 /* ZSSRichTextEditor-Prefix.pch */,
 				011794DA2029874C00770759 /* Classes */,
 				011794ED2029874C00770759 /* Source */,
 				0117955D2029874C00770759 /* DemoModalViewController.h */,
-				0117955E2029874C00770759 /* 120.png */,
-				0117955F2029874C00770759 /* Icon@2x.png */,
-				011795602029874C00770759 /* Default-568h@2x.png */,
 				011795612029874C00770759 /* main.m */,
 				011795622029874C00770759 /* ZSSRichTextEditor-Info.plist */,
-				011795632029874C00770759 /* Images.xcassets */,
-				011795642029874C00770759 /* 152.png */,
 				011795652029874C00770759 /* DemoModalViewController.m */,
 			);
 			path = RichTextEditor;
@@ -919,6 +899,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0189F459203127D5009F08B0 /* Journal-mobile.entitlements */,
 				46880B8319C43A87006E1F66 /* Classes */,
 				46880B7519C43A67006E1F66 /* Resources */,
 				1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */,
@@ -1052,7 +1033,13 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = GJWWDUCB79;
+						DevelopmentTeam = XZ7JUHX7AK;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1113,7 +1100,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0117957A2029874D00770759 /* ZSSleftjustify@2x.png in Resources */,
-				011795D42029874D00770759 /* Images.xcassets in Resources */,
 				011795CE2029874D00770759 /* jQuery.js in Resources */,
 				011795932029874D00770759 /* ZSSstrikethrough@2x.png in Resources */,
 				011795BD2029874D00770759 /* ZSSimage.png in Resources */,
@@ -1127,7 +1113,6 @@
 				011795992029874D00770759 /* ZSSh2.png in Resources */,
 				0117959C2029874D00770759 /* ZSSimageDevice.png in Resources */,
 				011795B32029874D00770759 /* ZSSstrikethrough.png in Resources */,
-				011795D52029874D00770759 /* 152.png in Resources */,
 				011795902029874D00770759 /* ZSSh6@2x.png in Resources */,
 				011795972029874D00770759 /* ZSSkeyboard.png in Resources */,
 				011795762029874D00770759 /* ZSSsuperscript@2x.png in Resources */,
@@ -1140,7 +1125,6 @@
 				011795952029874D00770759 /* ZSSimage@2x.png in Resources */,
 				011795AD2029874D00770759 /* ZSSpicker@2x.png in Resources */,
 				011795B52029874D00770759 /* ZSSparagraph@2x.png in Resources */,
-				011795672029874D00770759 /* InfoPlist.strings in Resources */,
 				011795B92029874D00770759 /* ZSSsuperscript.png in Resources */,
 				011795B82029874D00770759 /* ZSStable.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
@@ -1154,13 +1138,11 @@
 				011795BA2029874D00770759 /* ZSSfonts@2x.png in Resources */,
 				011795942029874D00770759 /* ZSSclearstyle@2x.png in Resources */,
 				0117957D2029874D00770759 /* ZSStextcolor.png in Resources */,
-				011795662029874D00770759 /* 76.png in Resources */,
 				011795982029874D00770759 /* ZSSredo.png in Resources */,
 				011795732029874D00770759 /* ZSSoutdent@2x.png in Resources */,
 				0117958E2029874D00770759 /* ZSSbgcolor.png in Resources */,
 				011795BE2029874D00770759 /* editor.html in Resources */,
 				011795962029874D00770759 /* ZSSkeyboard@2x.png in Resources */,
-				011795CF2029874D00770759 /* 120.png in Resources */,
 				011795822029874D00770759 /* ZSSundo.png in Resources */,
 				011795842029874D00770759 /* ZSSparagraph.png in Resources */,
 				011795872029874D00770759 /* ZSSunlink@2x.png in Resources */,
@@ -1198,9 +1180,7 @@
 				011795722029874D00770759 /* ZSStable@2x.png in Resources */,
 				0117959D2029874D00770759 /* ZSSundo@2x.png in Resources */,
 				011795A82029874D00770759 /* ZSSlink.png in Resources */,
-				011795D12029874D00770759 /* Default-568h@2x.png in Resources */,
 				0117959A2029874D00770759 /* ZSSh3.png in Resources */,
-				011795D02029874D00770759 /* Icon@2x.png in Resources */,
 				011795A72029874D00770759 /* ZSSitalic@2x.png in Resources */,
 				0117959B2029874D00770759 /* ZSSindent@2x.png in Resources */,
 				011795B02029874D00770759 /* ZSSquicklink@2x.png in Resources */,
@@ -1308,26 +1288,18 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		011794D72029874C00770759 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				011794D82029874C00770759 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Journal-mobile.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = GJWWDUCB79;
+				DEVELOPMENT_TEAM = XZ7JUHX7AK;
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -1347,7 +1319,8 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.abc.journal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levon.journal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1361,9 +1334,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Journal-mobile.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMPRESS_PNG_FILES = NO;
-				DEVELOPMENT_TEAM = GJWWDUCB79;
+				DEVELOPMENT_TEAM = XZ7JUHX7AK;
 				ENABLE_BITCODE = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1382,7 +1358,8 @@
 					"$(_COCOS_LIB_IOS_BEGIN)",
 					"$(_COCOS_LIB_IOS_END)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.abc.journal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.levon.journal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
