@@ -251,7 +251,7 @@ static CGFloat kDefaultScale = 0.5;
     self.enabledToolbarItems = [[NSArray alloc] init];
     
     //Frame for the source view and editor view
-    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect frame = CGRectMake(0, 120, self.view.frame.size.width, self.view.frame.size.height);//TODO: 120
     
     //Source View
     [self createSourceViewWithFrame:frame];
