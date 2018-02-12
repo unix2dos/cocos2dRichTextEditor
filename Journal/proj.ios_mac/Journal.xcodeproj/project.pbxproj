@@ -116,6 +116,8 @@
 		011795DC2029892D00770759 /* DataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DA2029892D00770759 /* DataManager.cpp */; };
 		011795DF20298AA000770759 /* DataUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795DD20298A9F00770759 /* DataUser.cpp */; };
 		011795E220298AB400770759 /* DataJournal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011795E020298AB400770759 /* DataJournal.cpp */; };
+		012440C3203148F400ADCB1C /* Default-568h.png in Resources */ = {isa = PBXBuildFile; fileRef = 012440C0203148F400ADCB1C /* Default-568h.png */; };
+		012440C4203148F400ADCB1C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 012440C2203148F400ADCB1C /* Default-568h@2x.png */; };
 		0128F36F202D8F2D0056ABA6 /* LayerMsg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0128F36E202D8F2D0056ABA6 /* LayerMsg.cpp */; };
 		014467DD202A94DA0045AE3E /* ArchiveCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014467DB202A94DA0045AE3E /* ArchiveCell.cpp */; };
 		014B0F53202AD973008D0CA7 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 014B0F52202AD973008D0CA7 /* jsoncpp.cpp */; };
@@ -359,6 +361,8 @@
 		011795DE20298A9F00770759 /* DataUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataUser.h; sourceTree = "<group>"; };
 		011795E020298AB400770759 /* DataJournal.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataJournal.cpp; sourceTree = "<group>"; };
 		011795E120298AB400770759 /* DataJournal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataJournal.h; sourceTree = "<group>"; };
+		012440C0203148F400ADCB1C /* Default-568h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h.png"; sourceTree = "<group>"; };
+		012440C2203148F400ADCB1C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0128F36D202D8F2D0056ABA6 /* LayerMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerMsg.h; sourceTree = "<group>"; };
 		0128F36E202D8F2D0056ABA6 /* LayerMsg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayerMsg.cpp; sourceTree = "<group>"; };
 		014467DB202A94DA0045AE3E /* ArchiveCell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ArchiveCell.cpp; sourceTree = "<group>"; };
@@ -888,6 +892,8 @@
 				1AF87B581F6F77D6007BE51C /* Info.plist */,
 				1AF87B591F6F77D6007BE51C /* LaunchScreen.storyboard */,
 				1AF87B5A1F6F77D6007BE51C /* LaunchScreenBackground.png */,
+				012440C0203148F400ADCB1C /* Default-568h.png */,
+				012440C2203148F400ADCB1C /* Default-568h@2x.png */,
 				1AF87B5B1F6F77D6007BE51C /* main.m */,
 				1AF87B5C1F6F77D6007BE51C /* Prefix.pch */,
 				1AF87B5D1F6F77D6007BE51C /* RootViewController.h */,
@@ -1144,6 +1150,7 @@
 				011795BE2029874D00770759 /* editor.html in Resources */,
 				011795962029874D00770759 /* ZSSkeyboard@2x.png in Resources */,
 				011795822029874D00770759 /* ZSSundo.png in Resources */,
+				012440C4203148F400ADCB1C /* Default-568h@2x.png in Resources */,
 				011795842029874D00770759 /* ZSSparagraph.png in Resources */,
 				011795872029874D00770759 /* ZSSunlink@2x.png in Resources */,
 				011795802029874D00770759 /* ZSSoutdent.png in Resources */,
@@ -1178,6 +1185,7 @@
 				011795832029874D00770759 /* ZSScenterjustify.png in Resources */,
 				011795A02029874D00770759 /* ZSSh3@2x.png in Resources */,
 				011795722029874D00770759 /* ZSStable@2x.png in Resources */,
+				012440C3203148F400ADCB1C /* Default-568h.png in Resources */,
 				0117959D2029874D00770759 /* ZSSundo@2x.png in Resources */,
 				011795A82029874D00770759 /* ZSSlink.png in Resources */,
 				0117959A2029874D00770759 /* ZSSh3.png in Resources */,

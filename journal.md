@@ -86,18 +86,44 @@ FIXED_HEIGHT| dWidth * k2   dHeight*k2 // 96 320
 
 
 
+### 启动页面
+
+从第一代iPhone开始到现在的iPhone X，苹果提供了三套启动画面的配置方法，按时间周期分别为`Static Launch Images`、`Images Asset Catalog`和`Launch Screen Storyboard`。
+
+#### Static Launch Images 在Info.plist中配置一下UILaunchImages就够了。
+
+Cocos2d-x从1.0版本开始到最新的3.15版本，也一直都是使用这种方式来适配不同的分辨率。通过提供目标设备分辨率的启动图片并配置在Info.plist中，使游戏在目标设备上能够全屏显示。
 
 
+这样做的弊端：
+
+* 每出一款新分辨率的iOS设备，需要重新配置这个Info.plist，并提供新的启动图片
+
+* 由于上一点，游戏需要重新适配，并出新包，提交AppStore审核
+
+* 人工修改文本文件，容易出错
+
+* 新添加的启动图片会增加游戏包体
+
+#### 可视化资源管理（Images Asset Catalog）
+Images.xcassets 可视化增加
+
+此方法解决了人工修改Info.plist的麻烦，而且如果设置了错误分辨率的图片，Xcode打包的时候会提示出错。
+
+但是此方法还是没法适配未来可能出现的新分辨率的设备，即针对新分辨率设备需要重新出包，也没解决包体增大的问题。
 
 
+#### 布局文件（Launch Screen Storyboard)）强烈推荐
 
+* 拷贝[LaunchScreen.storyboard](https://raw.githubusercontent.com/cocos2d/cocos2d-x/v3/tests/cpp-empty-test/proj.ios/LaunchScreen.storyboard)和[LaunchScreenBackground.png](https://github.com/cocos2d/cocos2d-x/raw/v3/tests/cpp-empty-test/proj.ios/LaunchScreenBackground.png)到`proj.ios`或者`ios`目录。
 
+* 添加LaunchScreen.storyboard和LaunchScreenBackground.png进Xcode工程, 并确认在`Build Phases` -> `Copy Bundle Resource`存在这两个文件
 
+* 工程配置中General -> App Icons and Launch Images中设置Launch Screen File为LaunchScreen。会出现info.plist里面
 
+* 删除Info.plist中无用的UILaunchImages字段
 
-
-
-
+* 删除无用的旧的启动图片，Default.png, Default@2x.png, Default-568h@2x.png等
 
 
 
