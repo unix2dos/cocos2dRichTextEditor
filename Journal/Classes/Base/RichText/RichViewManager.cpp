@@ -28,20 +28,14 @@ void CRichViewManager::initRichView()
 
 void CRichViewManager::newJournal()
 {
+    m_journalInfo = Journal_Info();
     m_richviewType = RichViewType::write;
 }
 
 void CRichViewManager::showJournal(const Journal_Info& info, bool myself)
 {
     m_journalInfo = info;
-    if (myself)
-    {
-        m_richviewType = RichViewType::show_self;
-    }
-    else
-    {
-        m_richviewType = RichViewType::show_others;
-    }
+    m_richviewType = myself? RichViewType::show_self : RichViewType::show_others;
 }
 
 void CRichViewManager::closeJournal()
@@ -75,9 +69,18 @@ void CRichViewManager::requestAddJournal()
         return;
     }
     
+    if (m_journalInfo.strTitle == "")
+    {
+        m_journalInfo.strTitle = m_journalInfo.strContent.substr(0, m_journalInfo.strContent.find("<"));
+        if (m_journalInfo.strTitle == "")
+        {
+            m_journalInfo.strTitle = "Journal";
+        }
+    }
+    
     Json::Value root;
     root["tags"] = "none";
-    root["title"] = "none";
+    root["title"] = m_journalInfo.strTitle;
     root["content"] = m_journalInfo.strContent;
     root["published"] = m_journalInfo.isPublic ? "1" : "0";
     string strJson = buildServeJson(root);
@@ -90,7 +93,7 @@ void CRichViewManager::requestUpdateJournal()
     Json::Value root;
     root["id"] = m_journalInfo.strId;
     root["tags"] = "none";
-    root["title"] = "none";
+    root["title"] = m_journalInfo.strTitle;
     root["content"] = m_journalInfo.strContent;
     root["published"] = m_journalInfo.isPublic ? "1" : "0";
     string strJson = buildServeJson(root);
