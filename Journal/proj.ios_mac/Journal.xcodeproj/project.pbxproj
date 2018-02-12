@@ -223,6 +223,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0112D4F320318B17006D9DB9 /* RichViewDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RichViewDefine.h; sourceTree = "<group>"; };
 		011794D92029874C00770759 /* ZSSRichTextEditor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZSSRichTextEditor-Prefix.pch"; sourceTree = "<group>"; };
 		011794DB2029874C00770759 /* ZSSPlaceholderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSPlaceholderViewController.h; sourceTree = "<group>"; };
 		011794DC2029874C00770759 /* ZSSCustomButtonsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSSCustomButtonsViewController.h; sourceTree = "<group>"; };
@@ -825,6 +826,7 @@
 				0189F458202F3AE5009F08B0 /* ParentController.h */,
 				01BA7F6920270AAB002EA80C /* RichViewController.mm */,
 				01BA7F6720270AAB002EA80C /* RichViewController.h */,
+				0112D4F320318B17006D9DB9 /* RichViewDefine.h */,
 			);
 			path = RichText;
 			sourceTree = "<group>";

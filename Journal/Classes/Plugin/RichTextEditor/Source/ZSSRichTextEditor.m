@@ -12,6 +12,7 @@
 #import "ZSSBarButtonItem.h"
 #import "HRColorUtil.h"
 #import "ZSSTextView.h"
+#import "RichViewDefine.h"
 
 @import JavaScriptCore;
 
@@ -251,7 +252,7 @@ static CGFloat kDefaultScale = 0.5;
     self.enabledToolbarItems = [[NSArray alloc] init];
     
     //Frame for the source view and editor view
-    CGRect frame = CGRectMake(0, 120, self.view.frame.size.width, self.view.frame.size.height);//TODO: 120
+    CGRect frame = CGRectMake(0, RICH_OFFSET_HEIGHT, self.view.frame.size.width, self.view.frame.size.height-RICH_OFFSET_HEIGHT);
     
     //Source View
     [self createSourceViewWithFrame:frame];
@@ -1033,7 +1034,12 @@ static CGFloat kDefaultScale = 0.5;
 }
 
 - (void)dismissKeyboard {
-    [self.view endEditing:YES];
+//    [self.view endEditing:YES];
+    UIView* parentview = [self.view superview];
+    NSArray *subviews = parentview.subviews;
+    for(UIView *view in subviews){
+        [view endEditing:YES];
+    }
 }
 
 - (void)showHTMLSource:(ZSSBarButtonItem *)barButtonItem {
@@ -1926,6 +1932,10 @@ static CGFloat kDefaultScale = 0.5;
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)isFirstResponder {
+    return [[self.editorView stringByEvaluatingJavaScriptFromString:@"document.activeElement.id=='zss_editor_content'"] isEqualToString:@"true"];
+}
+
 
 #pragma mark - Keyboard status
 
@@ -1963,7 +1973,7 @@ static CGFloat kDefaultScale = 0.5;
             
             // Editor View
             CGRect editorFrame = self.editorView.frame;
-            editorFrame.size.height = (self.view.frame.size.height - keyboardHeight) - sizeOfToolbar - extraHeight;
+            editorFrame.size.height = (self.view.frame.size.height - keyboardHeight) - sizeOfToolbar - extraHeight - RICH_OFFSET_HEIGHT;
             self.editorView.frame = editorFrame;
             self.editorViewFrame = self.editorView.frame;
             self.editorView.scrollView.contentInset = UIEdgeInsetsZero;
@@ -1971,7 +1981,7 @@ static CGFloat kDefaultScale = 0.5;
             
             // Source View
             CGRect sourceFrame = self.sourceView.frame;
-            sourceFrame.size.height = (self.view.frame.size.height - keyboardHeight) - sizeOfToolbar - extraHeight;
+            sourceFrame.size.height = (self.view.frame.size.height - keyboardHeight) - sizeOfToolbar - extraHeight - RICH_OFFSET_HEIGHT;
             self.sourceView.frame = sourceFrame;
             
             // Provide editor with keyboard height and editor view height
@@ -1996,13 +2006,11 @@ static CGFloat kDefaultScale = 0.5;
             
             // Editor View
             CGRect editorFrame = self.editorView.frame;
-            
             if (_alwaysShowToolbar) {
-                editorFrame.size.height = ((self.view.frame.size.height - sizeOfToolbar) - extraHeight);
+                editorFrame.size.height = ((self.view.frame.size.height - sizeOfToolbar) - extraHeight -RICH_OFFSET_HEIGHT);
             } else {
-                editorFrame.size.height = self.view.frame.size.height;
+                editorFrame.size.height = self.view.frame.size.height - RICH_OFFSET_HEIGHT;
             }
-            
             self.editorView.frame = editorFrame;
             self.editorViewFrame = self.editorView.frame;
             self.editorView.scrollView.contentInset = UIEdgeInsetsZero;
@@ -2010,13 +2018,11 @@ static CGFloat kDefaultScale = 0.5;
             
             // Source View
             CGRect sourceFrame = self.sourceView.frame;
-            
             if (_alwaysShowToolbar) {
-                sourceFrame.size.height = ((self.view.frame.size.height - sizeOfToolbar) - extraHeight);
+                sourceFrame.size.height = ((self.view.frame.size.height - sizeOfToolbar) - extraHeight - RICH_OFFSET_HEIGHT);
             } else {
-                sourceFrame.size.height = self.view.frame.size.height;
+                sourceFrame.size.height = self.view.frame.size.height - RICH_OFFSET_HEIGHT;
             }
-            
             self.sourceView.frame = sourceFrame;
             
             [self setFooterHeight:0];
