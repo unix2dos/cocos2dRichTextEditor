@@ -7,6 +7,7 @@
 
 #import "RichViewManager.h"
 #import "RichViewController.h"
+#import "RichViewDefine.h"
 #import "ParentController.h"
 
 @interface ParentController ()
@@ -35,20 +36,26 @@ static UITextField *g_textField = nullptr;
     [self addChildViewController:g_richview];
     [self.view addSubview:g_richview.view];
     
+    
+
+
     //title
+    int offX = 10;
+    CGRect navFrame = self.navigationController.navigationBar.frame;
+    int offY = navFrame.size.height + navFrame.origin.y;
+    
     CGSize viewSize = self.view.frame.size;
-    auto offX = 10;
     g_textField = [[UITextField alloc]init];
-    g_textField.frame = CGRectMake(offX, 60, viewSize.width-offX*2, 60);
+    g_textField.frame = CGRectMake(offX, offY, viewSize.width-offX*2, RICH_OFFSET_HEIGHT-offY);
     g_textField.placeholder = @"enter title";
     g_textField.font = [UIFont systemFontOfSize:20];
     g_textField.textColor = [UIColor blackColor];
     g_textField.borderStyle = UITextBorderStyleNone;
     g_textField.keyboardType = UIKeyboardTypeDefault;
     [self.view addSubview:g_textField];
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 60, viewSize.width-offX*2, 1)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, RICH_OFFSET_HEIGHT-offY, viewSize.width-offX*2, 1)];
     line.backgroundColor = [UIColor lightGrayColor];
-    line.alpha = 0.2f;
+    line.alpha = 0.3f;
     [g_textField addSubview:line];
 }
 
