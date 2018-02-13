@@ -32,6 +32,7 @@ public:
     virtual void showJournal(const Journal_Info& info, bool myself);
     virtual void closeJournal();
     
+public:
     Journal_Info& getJournal();
     RichViewType getRichViewType();
     
@@ -40,6 +41,7 @@ public:
     
 private:
     Journal_Info m_journalInfo;
+    Journal_Info m_bakInfo;
     RichViewType m_richviewType;
 };
 

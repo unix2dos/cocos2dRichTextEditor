@@ -28,18 +28,42 @@ void CRichViewManager::initRichView()
 
 void CRichViewManager::newJournal()
 {
-    m_journalInfo = Journal_Info();
+    m_bakInfo = m_journalInfo = Journal_Info();
     m_richviewType = RichViewType::write;
 }
 
 void CRichViewManager::showJournal(const Journal_Info& info, bool myself)
 {
-    m_journalInfo = info;
+    m_bakInfo = m_journalInfo = info;
     m_richviewType = myself? RichViewType::show_self : RichViewType::show_others;
 }
 
 void CRichViewManager::closeJournal()
 {
+    //对比两个info, 有更改才会请求
+    bool bChange = false;
+    do {
+        if (m_bakInfo.isPublic != m_journalInfo.isPublic)
+        {
+            bChange = true;
+            break;
+        }
+        if (m_bakInfo.strTitle != m_journalInfo.strTitle)
+        {
+            bChange = true;
+            break;
+        }
+        if (m_bakInfo.strContent != m_journalInfo.strContent)
+        {
+            bChange = true;
+            break;
+        }
+    }while(0);
+    if (bChange == false)
+    {
+        return;
+    }
+
     if (m_richviewType == RichViewType::write)
     {
         requestAddJournal();

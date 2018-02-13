@@ -62,7 +62,6 @@ static UITextField *g_textField = nullptr;
 
 
 - (void)back {
-    //    NSLog(@"%@", [self getHTML]);
     //keyboard hidden
     [g_richview.view endEditing:YES];
     [g_textField endEditing:YES];
@@ -79,7 +78,7 @@ static UITextField *g_textField = nullptr;
 
 - (void)edit {
     auto type = CRichViewManager::getInstance()->getRichViewType();
-    if (type == RichViewType::show_self || type == RichViewType::write)
+    if (type != RichViewType::show_others)
     {
         auto& journal = CRichViewManager::getInstance()->getJournal();
         journal.isPublic = !journal.isPublic;
@@ -116,7 +115,7 @@ static UITextField *g_textField = nullptr;
 - (void)showSwitch {
     auto journal = CRichViewManager::getInstance()->getJournal();
     auto type = CRichViewManager::getInstance()->getRichViewType();
-    if (type == RichViewType::show_others)
+    if (type == RichViewType::show_others)//其他人不显示
     {
         self.navigationItem.title = @"";
         [self.navigationItem.rightBarButtonItem setEnabled:NO];
