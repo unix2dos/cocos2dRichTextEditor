@@ -9,6 +9,7 @@
 #include "Define.h"
 #include "CommonUtils.h"
 #include "DataJournal.h"
+#include "LayerComment.h"
 #include "JournalExCell.h"
 
 
@@ -99,6 +100,6 @@ void CJournalExCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     btnComment->setPosition(Vec2(150, 30));
     this->addChild(btnComment);
     btnComment->addClickEventListener([&](Ref* r){
-        
+        Director::getInstance()->getRunningScene()->addChild(CLayerComment::create());//直接加到最上面
     });
 }

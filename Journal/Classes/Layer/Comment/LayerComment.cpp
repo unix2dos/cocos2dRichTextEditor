@@ -13,6 +13,7 @@
 
 
 #define COMMENT_CELL_SIZE 11 //table显示的cell数量
+#define COMMENT_BOTTOM_HEIGHT 100 //评论框高度
 
 
 CLayerComment::CLayerComment()
@@ -44,18 +45,69 @@ void CLayerComment::_initUI()
 {
     m_winSize = Director::getInstance()->getWinSize();
     
-    m_fTableViewHeight = m_winSize.height - MAIN_BOTTOM_HEIGHT;
+    m_fTableViewHeight = m_winSize.height;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     m_fTableViewHeight -= 50;
 #endif
+    auto layer = LayerColor::create(Color4B(255, 255, 255, 255));
+    this->addChild(layer);
+    
+    auto diffY = 30;
+    auto btnBack = Button::create("ui_back.png");
+    btnBack->setPosition(Vec2(30, m_fTableViewHeight-diffY));
+    this->addChild(btnBack);
+    btnBack->addClickEventListener([&](Ref* r){
+        this->removeFromParent();
+    });
+    auto label = Label::createWithTTF("COMMENT", MY_FONT_CHINESE, 30);
+    label->setPosition(Vec2(m_winSize.width/2, m_fTableViewHeight-diffY));
+    label->setTextColor(Color4B(0,0,0,255));
+    this->addChild(label);
+    m_fTableViewHeight -= diffY*2;
+    m_fTableViewHeight -= COMMENT_BOTTOM_HEIGHT;
+    
+    
     
     m_pTableView = TableView::create(this, Size(m_winSize.width, m_fTableViewHeight));
     m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     m_pTableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
     m_pTableView->setDelegate(this);
-    m_pTableView->setPositionY(MAIN_BOTTOM_HEIGHT);
+    m_pTableView->setPositionY(COMMENT_BOTTOM_HEIGHT);
     this->addChild(m_pTableView);
     m_pTableView->reloadData();
+    
+    
+    //评论框
+    {
+        auto layerColor = LayerColor::create(Color4B(240, 240, 240, 255), m_winSize.width, COMMENT_BOTTOM_HEIGHT);
+        this->addChild(layerColor);
+        
+        auto node = Node::create();
+        auto pBack = Sprite::create("login_input.png");
+        node->addChild(pBack);
+        
+        auto editBoxSize = Size(480, 70);
+        ui::EditBox* r = ui::EditBox::create(editBoxSize, ui::Scale9Sprite::create());
+        r->setPlaceHolder("add comment");
+        r->setPlaceholderFontSize(40);
+        r->setPlaceholderFontColor(Color3B::GRAY);
+        r->setFontColor(Color3B::BLACK);
+        r->setFontSize(40);
+        node->addChild(r);
+        node->setPosition(Vec2(layerColor->getContentSize().width/2, layerColor->getContentSize().height/2));
+        layerColor->addChild(node);
+
+        
+        
+        auto btnSend = Button::create("btn_like1.png");
+        btnSend->addClickEventListener([=](Ref* ref){
+            auto text = r->getText();
+            log("fuck %s\n", text);
+        });
+        btnSend->setTitleText("SEND");
+        btnSend->setPosition(Vec2(layerColor->getContentSize().width*.9, layerColor->getContentSize().height/2));
+        layerColor->addChild(btnSend);
+    }
 }
 
 

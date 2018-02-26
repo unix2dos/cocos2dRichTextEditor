@@ -72,7 +72,11 @@ void CDataJournal::parseJournalsData(HttpResponseInfo rep)
         info.strTitle = it["title"].asString();
         
         auto content = parseJson(it["content"].asString());
-        info.strContent = content["text"].asString();
+        if (content.isObject())
+        {
+            info.strContent = content["text"].asString();
+        }
+ 
         
         info.createTime = atoi(it["timestamp_create"].asString().c_str());
         info.isPublic = atoi(it["published"].asString().c_str());

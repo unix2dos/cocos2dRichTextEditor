@@ -111,8 +111,8 @@ void CLayerLogin::_initUI()
     if (MY_DEBUG)
     {
         Json::Value root;
-        root["username"] = "21@qq.com";
-        root["password"] = "21";
+        root["username"] = "20@qq.com";
+        root["password"] = "20";
         string strJson = buildJson(root);
         CHttpManager::getInstance()->HttpPost(eHttpType::login, strJson);
     }
