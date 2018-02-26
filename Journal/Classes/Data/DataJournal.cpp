@@ -60,7 +60,7 @@ CDataJournal::~CDataJournal()
 }
 
 
-void CDataJournal::parseServeData(HttpResponseInfo rep)
+void CDataJournal::parseJournalsData(HttpResponseInfo rep)
 {
     m_vecJournals.clear();
     auto data = rep.jsonRoot["data"];
@@ -79,13 +79,27 @@ void CDataJournal::parseServeData(HttpResponseInfo rep)
     NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
 }
 
-const std::vector<Journal_Info>& CDataJournal::getJournals()
+
+void CDataJournal::parseRecommendJournals(HttpResponseInfo rep)
 {
-    return m_vecJournals;
+    m_vecRecommend.clear();
+    auto journals = rep.jsonRoot["data"];
+    for (auto& it : journals)
+    {
+        Journal_Info info;
+        info.strId = it["id"].asString();
+        info.strTitle = it["title"].asString();
+        info.strContent = it["content"].asString();
+        info.createTime = atoi(it["timestamp_create"].asString().c_str());
+        info.isPublic = atoi(it["published"].asString().c_str());
+        m_vecRecommend.push_back(info);
+    }
 }
 
 
-void CDataJournal::parseAddJorunal(HttpResponseInfo rep)
+
+
+void CDataJournal::parseAddJournal(HttpResponseInfo rep)
 {
     auto it = rep.jsonRoot["data"];
     Journal_Info info;
@@ -99,7 +113,9 @@ void CDataJournal::parseAddJorunal(HttpResponseInfo rep)
     NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
 }
 
-void CDataJournal::parseUpdateJorunal(HttpResponseInfo rep)
+
+
+void CDataJournal::parseUpdateJournal(HttpResponseInfo rep)
 {
     auto it = rep.jsonRoot["data"];
     Journal_Info info;
@@ -117,4 +133,16 @@ void CDataJournal::parseUpdateJorunal(HttpResponseInfo rep)
     }
 
     NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
+}
+
+
+
+const std::vector<Journal_Info>& CDataJournal::getJournals()
+{
+    return m_vecJournals;
+}
+
+const std::vector<Journal_Info>& CDataJournal::getRecommendJournals()
+{
+    return m_vecRecommend;
 }

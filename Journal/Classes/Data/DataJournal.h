@@ -40,14 +40,17 @@ public:
     ~CDataJournal();
     
 public:
-    void parseServeData(HttpResponseInfo rep);
-    const std::vector<Journal_Info>& getJournals();
+    void parseJournalsData(HttpResponseInfo rep);
+    void parseAddJournal(HttpResponseInfo rep);
+    void parseUpdateJournal(HttpResponseInfo rep);
+    void parseRecommendJournals(HttpResponseInfo rep);
     
-    void parseAddJorunal(HttpResponseInfo rep);
-    void parseUpdateJorunal(HttpResponseInfo rep);
+    const std::vector<Journal_Info>& getJournals();
+    const std::vector<Journal_Info>& getRecommendJournals();
     
 private:
     std::vector<Journal_Info> m_vecJournals;
+    std::vector<Journal_Info> m_vecRecommend;
 };
 
 #endif /* DataJournal_hpp */

@@ -153,7 +153,8 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
     }
     
 
-    {
+    if (MY_DEBUG)
+    {//请求消息
         std::vector<char> *buffer = response->getResponseHeader();
         std::string strHead = "";
         strHead.assign(buffer->begin(), buffer->end());
@@ -164,10 +165,10 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
 
     
     
-    //数据解析
+    //数据解析,错误统一处理
     CDataManager::getInstance()->parseServeData(myType, m_mapHttpStatus[myType]);
 
-    //消息回调
+    //回调通知,需要处理错误
     for (const auto& it : m_setDataRegister)
     {
         it->endWithHttpData(myType, m_mapHttpStatus[myType]);

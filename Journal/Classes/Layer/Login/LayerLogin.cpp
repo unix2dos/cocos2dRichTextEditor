@@ -107,7 +107,7 @@ void CLayerLogin::_initUI()
     auto label3 = Label::createWithTTF("Find Password", MY_FONT_CHINESE, 35);
     btnFindPassword->setTitleLabel(label3);
 
-//    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:111111
+//    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:如果有cookie机制,就直接getinfo
     if (MY_DEBUG)
     {
         Json::Value root;

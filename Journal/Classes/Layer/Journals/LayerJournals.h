@@ -46,6 +46,7 @@ private:
     float m_fTableViewHeight;
     cocos2d::extension::TableView* m_pTableView;
     
+private:
     ShowType m_showType;
     std::vector<Journal_Info> m_showJournals;
 };

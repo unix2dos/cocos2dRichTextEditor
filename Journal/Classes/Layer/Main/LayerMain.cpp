@@ -64,21 +64,9 @@ void CLayerMain::_initUI()
     
     //显示默认
     this->setMainStatus(m_status);
-    
 
 //    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:111
 //    CHttpManager::getInstance()->HttpGet(eHttpType::journal_list, "/public=-1");//TODO:111
-}
-
-void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
-{
-//    if (myType == eHttpType::login)
-//    {
-//        if (rep.status != eHttpStatus::success)
-//        {
-//            log("Error %s", rep.msg.c_str());
-//        }
-//    }
 }
 
 
@@ -137,6 +125,18 @@ void CLayerMain::_initButtons()
 }
 
 
+void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
+{
+    if (myType == eHttpType::journal_recommend)
+    {
+        if (rep.status == eHttpStatus::success)
+        {
+            _showJournalEx();
+        }
+    }
+}
+
+
 
 void CLayerMain::setMainStatus(MainStatus status)
 {
@@ -163,7 +163,7 @@ void CLayerMain::setMainStatus(MainStatus status)
             _showArchive();
             break;
         case MainStatus::JournalEx:
-            _showJournalEx();
+            CHttpManager::getInstance()->HttpGet(eHttpType::journal_recommend);
             break;
         default:
             break;

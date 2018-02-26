@@ -18,7 +18,7 @@ public:
     virtual void onEnter() override;
     virtual void onExit() override;
 public:
-    void updateCell(int idx);
+    void updateCell(const std::vector<Journal_Info>&info, int idx);
 private:
     Size m_winSize;
 };

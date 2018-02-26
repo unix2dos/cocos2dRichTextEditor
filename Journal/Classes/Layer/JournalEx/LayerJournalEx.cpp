@@ -7,10 +7,12 @@
 
 #include "Journal.h"
 #include "LayerMain.h"
+#include "DataManager.h"
+#include "DataJournal.h"
 #include "JournalExCell.h"
 #include "LayerJournalEx.h"
 
-#define JOURNALEX_CELL_SIZE 11 //table显示的cell数量
+#define JOURNALEX_CELL_SIZE 5 //table显示的cell数量
 
 
 CLayerJournalEx::CLayerJournalEx()
@@ -87,11 +89,13 @@ cocos2d::extension::TableViewCell* CLayerJournalEx::tableCellAtIndex(cocos2d::ex
         cell = CJournalExCell::create();
         cell->setContentSize(tableCellSizeForIndex(table,idx));
     }
-    dynamic_cast<CJournalExCell*>(cell)->updateCell(static_cast<int>(idx));
+    auto data = CDataManager::getInstance()->getDataJournal()->getRecommendJournals();
+    dynamic_cast<CJournalExCell*>(cell)->updateCell(data, static_cast<int>(idx));
     return cell;
 }
 
 ssize_t CLayerJournalEx::numberOfCellsInTableView(cocos2d::extension::TableView *table)
 {
-    return 20;
+    auto data = CDataManager::getInstance()->getDataJournal()->getRecommendJournals();
+    return data.size();
 }
