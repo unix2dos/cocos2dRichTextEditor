@@ -70,7 +70,10 @@ void CDataJournal::parseJournalsData(HttpResponseInfo rep)
         Journal_Info info;
         info.strId = it["id"].asString();
         info.strTitle = it["title"].asString();
-        info.strContent = it["content"].asString();
+        
+        auto content = parseJson(it["content"].asString());
+        info.strContent = content["text"].asString();
+        
         info.createTime = atoi(it["timestamp_create"].asString().c_str());
         info.isPublic = atoi(it["published"].asString().c_str());
         m_vecJournals.push_back(info);
@@ -89,7 +92,13 @@ void CDataJournal::parseRecommendJournals(HttpResponseInfo rep)
         Journal_Info info;
         info.strId = it["id"].asString();
         info.strTitle = it["title"].asString();
-        info.strContent = it["content"].asString();
+        
+        auto content = parseJson(it["content"].asString());
+        if (content.isObject())
+        {
+            info.strContent = content["text"].asString();
+        }
+        
         info.createTime = atoi(it["timestamp_create"].asString().c_str());
         info.isPublic = atoi(it["published"].asString().c_str());
         m_vecRecommend.push_back(info);
@@ -105,7 +114,13 @@ void CDataJournal::parseAddJournal(HttpResponseInfo rep)
     Journal_Info info;
     info.strId = it["id"].asString();
     info.strTitle = it["title"].asString();
-    info.strContent = it["content"].asString();
+    
+    auto content = parseJson(it["content"].asString());
+    if (content.isObject())
+    {
+        info.strContent = content["text"].asString();
+    }
+    
     info.createTime = atoi(it["timestamp_create"].asString().c_str());
     info.isPublic = atoi(it["published"].asString().c_str());
     m_vecJournals.push_back(info);
@@ -121,7 +136,13 @@ void CDataJournal::parseUpdateJournal(HttpResponseInfo rep)
     Journal_Info info;
     info.strId = it["id"].asString();
     info.strTitle = it["title"].asString();
-    info.strContent = it["content"].asString();
+    
+    auto content = parseJson(it["content"].asString());
+    if (content.isObject())
+    {
+        info.strContent = content["text"].asString();
+    }
+    
     info.createTime = atoi(it["timestamp_create"].asString().c_str());
     info.isPublic = atoi(it["published"].asString().c_str());
     

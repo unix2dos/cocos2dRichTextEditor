@@ -30,8 +30,8 @@ static std::string getTimeString(int timeStamp)
 }
 
 
-//解析服务器json
-static Json::Value parseServeJson(std::string strJson)
+//解析json
+static Json::Value parseJson(std::string strJson)
 {
     Json::CharReaderBuilder builder;
     Json::CharReader* reader = builder.newCharReader();
@@ -39,7 +39,7 @@ static Json::Value parseServeJson(std::string strJson)
     std::string errors;
     bool ok = reader->parse(strJson.c_str(), strJson.c_str() + strJson.size(), &root, &errors);
     delete reader;
-    if (ok && root.isObject() && root.isMember("ret") && root.isMember("msg") && root.isMember("data"))
+    if (ok)
     {
         return root;
     }
@@ -47,8 +47,21 @@ static Json::Value parseServeJson(std::string strJson)
 }
 
 
-//构建服务器json
-static std::string buildServeJson(Json::Value root)
+//解析服务器json
+static Json::Value parseServeJson(std::string strJson)
+{
+    Json::Value root = parseJson(strJson);
+    if (root != Json::nullValue && root.isObject() && root.isMember("ret") && root.isMember("msg") && root.isMember("data"))
+    {
+        return root;
+    }
+    return Json::nullValue;
+}
+
+
+
+//构建json
+static std::string buildJson(Json::Value root)
 {
     Json::StreamWriterBuilder builder;
     builder.settings_["indentation"] = "";

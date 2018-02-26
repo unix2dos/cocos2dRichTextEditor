@@ -88,7 +88,7 @@ void CLayerSignUp::_initUI()
         root["username"] = strEmail;
         root["password"] = strPass;
         root["alias"] = strAlias;
-        string strJson = buildServeJson(root);
+        string strJson = buildJson(root);
         CHttpManager::getInstance()->HttpPost(eHttpType::signup, strJson);
 
     });

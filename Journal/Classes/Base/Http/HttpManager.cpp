@@ -98,7 +98,7 @@ bool CHttpManager::HttpSendRequest(HttpRequest::Type type, eHttpType myType, std
     HttpClient::getInstance()->send(request);
     request->release();
     
-
+    if (MY_DEBUG)
     {
         std::string strHead = "";
         for (auto&it : headers) {
@@ -154,7 +154,7 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
     
 
     if (MY_DEBUG)
-    {//请求消息
+    {
         std::vector<char> *buffer = response->getResponseHeader();
         std::string strHead = "";
         strHead.assign(buffer->begin(), buffer->end());

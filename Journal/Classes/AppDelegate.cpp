@@ -122,7 +122,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     path.clear();
     path.push_back("fonts");
     path.push_back("res");
-    path.push_back("res/ui");
+    path.push_back("res/common");
+    path.push_back("res/journal");
+    path.push_back("res/login");
+    path.push_back("res/main");
     FileUtils::getInstance()->setSearchPaths(path);
     
     //跳到启动场景

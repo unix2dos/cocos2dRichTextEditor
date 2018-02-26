@@ -76,7 +76,7 @@ void CLayerLogin::_initUI()
         Json::Value root;
         root["username"] = strEmail;
         root["password"] = strPass;
-        string strJson = buildServeJson(root);
+        string strJson = buildJson(root);
         CHttpManager::getInstance()->HttpPost(eHttpType::login, strJson);
     });
     this->addChild(btnLogin);
@@ -111,9 +111,9 @@ void CLayerLogin::_initUI()
     if (MY_DEBUG)
     {
         Json::Value root;
-        root["username"] = "4@qq.com";
-        root["password"] = "4";
-        string strJson = buildServeJson(root);
+        root["username"] = "21@qq.com";
+        root["password"] = "21";
+        string strJson = buildJson(root);
         CHttpManager::getInstance()->HttpPost(eHttpType::login, strJson);
     }
 }

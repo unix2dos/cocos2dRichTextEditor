@@ -40,7 +40,6 @@ void CRichViewManager::showJournal(const Journal_Info& info, bool myself)
 
 void CRichViewManager::closeJournal()
 {
-    m_richviewType = RichViewType::none;
     //对比两个info, 有更改才会请求
     bool bChange = false;
     do {
@@ -60,19 +59,21 @@ void CRichViewManager::closeJournal()
             break;
         }
     }while(0);
-    if (bChange == false)
+    
+    
+    if (bChange)
     {
-        return;
+        if (m_richviewType == RichViewType::write)
+        {
+            requestAddJournal();
+        }
+        else if (m_richviewType == RichViewType::show_self)
+        {
+            requestUpdateJournal();
+        }
     }
 
-    if (m_richviewType == RichViewType::write)
-    {
-        requestAddJournal();
-    }
-    else if (m_richviewType == RichViewType::show_self)
-    {
-        requestUpdateJournal();
-    }
+    m_richviewType = RichViewType::none;
 }
 
 
@@ -106,9 +107,14 @@ void CRichViewManager::requestAddJournal()
     Json::Value root;
     root["tags"] = "none";
     root["title"] = m_journalInfo.strTitle;
-    root["content"] = m_journalInfo.strContent;
+    
+    Json::Value content;
+    content["text"] = m_journalInfo.strContent;
+    root["content"] = content;
+
+
     root["published"] = m_journalInfo.isPublic ? "1" : "0";
-    string strJson = buildServeJson(root);
+    string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::journal_add, strJson);
 }
 
@@ -119,8 +125,12 @@ void CRichViewManager::requestUpdateJournal()
     root["id"] = m_journalInfo.strId;
     root["tags"] = "none";
     root["title"] = m_journalInfo.strTitle;
-    root["content"] = m_journalInfo.strContent;
+    
+    Json::Value content;
+    content["text"] = m_journalInfo.strContent;
+    root["content"] = content;
+    
     root["published"] = m_journalInfo.isPublic ? "1" : "0";
-    string strJson = buildServeJson(root);
+    string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::journal_update, strJson);
 }
