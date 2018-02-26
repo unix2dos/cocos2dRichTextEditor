@@ -7,6 +7,7 @@
 
 #include "Journal.h"
 #include "LayerMain.h"
+#include "RichViewManager.h"
 #include "DataManager.h"
 #include "DataJournal.h"
 #include "JournalExCell.h"
@@ -75,6 +76,13 @@ void CLayerJournalEx::tableCellTouched(cocos2d::extension::TableView* table, coc
     {
         return;
     }
+    if (CRichViewManager::getInstance()->getRichViewType() != RichViewType::none)
+    {
+        return;
+    }
+    auto data = CDataManager::getInstance()->getDataJournal()->getRecommendJournals();
+    int idx = static_cast<int>(cell->getIdx());
+    CRichViewManager::getInstance()->showJournal(data[idx], false);
 }
 
 cocos2d::Size CLayerJournalEx::tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)

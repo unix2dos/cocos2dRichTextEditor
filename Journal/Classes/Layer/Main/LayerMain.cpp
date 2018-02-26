@@ -30,6 +30,13 @@ CLayerMain::~CLayerMain()
 //    NotificationManager::getInstance()->unregisterNotification(NOTIFY_TYPE::JOURNAL_BG, this);
 }
 
+void CLayerMain::notifyEvent(NOTIFY_TYPE type, void* pVoid)
+{
+    //    if (type == NOTIFY_TYPE::JOURNAL_BG)
+    //    {
+    //    }
+}
+
 
 bool CLayerMain::init()
 {
@@ -42,12 +49,6 @@ bool CLayerMain::init()
     return true;
 }
 
-void CLayerMain::notifyEvent(NOTIFY_TYPE type, void* pVoid)
-{
-//    if (type == NOTIFY_TYPE::JOURNAL_BG)
-//    {
-//    }
-}
 
 
 void CLayerMain::_initUI()
@@ -129,7 +130,7 @@ void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
 {
     if (myType == eHttpType::journal_recommend)
     {
-        if (rep.status == eHttpStatus::success)
+        if (rep.status == eHttpStatus::success && m_status == MainStatus::JournalEx)
         {
             _showJournalEx();
         }
@@ -232,6 +233,10 @@ void CLayerMain::_showJournalEx()
     }
     else
     {
-        it->second->setVisible(true);
+        it->second->removeFromParent();//TODO: 暂且每次都刷新
+        auto layer = CLayerJournalEx::create();
+        this->addChild(layer, 1);
+        m_mapLayers["JournalEx"] = layer;
+//        it->second->setVisible(true);
     }
 }

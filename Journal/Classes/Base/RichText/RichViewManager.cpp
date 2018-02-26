@@ -40,6 +40,7 @@ void CRichViewManager::showJournal(const Journal_Info& info, bool myself)
 
 void CRichViewManager::closeJournal()
 {
+    m_richviewType = RichViewType::none;
     //对比两个info, 有更改才会请求
     bool bChange = false;
     do {

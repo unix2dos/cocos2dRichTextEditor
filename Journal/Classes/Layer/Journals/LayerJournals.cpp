@@ -80,7 +80,7 @@ void CLayerJournals::_initUI()
     });
     bg->addChild(btnAdd);
     
-    //搜索不做
+    //TODO: 搜索不做
     auto btnSearch = Button::create("btn_search.png");
     btnSearch->setPosition(Vec2(width, bg->getContentSize().height/2));
     btnSearch->addClickEventListener([](Ref* r){
@@ -97,7 +97,7 @@ void CLayerJournals::_initUI()
     bg->addChild(btnDrawer);
     
     
-    //滚动顶部汉字????
+    //TODO: 滚动顶部汉字?细节先不做?
     
     
     
@@ -192,7 +192,10 @@ void CLayerJournals::tableCellTouched(cocos2d::extension::TableView* table, coco
     {
         return;
     }
-    
+    if (CRichViewManager::getInstance()->getRichViewType() != RichViewType::none)
+    {
+        return;
+    }
     int idx = static_cast<int>(cell->getIdx());
     CRichViewManager::getInstance()->showJournal(m_showJournals[idx], true);
 }
