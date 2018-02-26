@@ -34,7 +34,7 @@ bool CLayerMsg::init(std::string msg)
     label->setVerticalAlignment(TextVAlignment::TOP);
     label->setOverflow(Label::Overflow::RESIZE_HEIGHT);
     
-    TTFConfig ttfConfig(MY_FONT_ENGLISH, 30, GlyphCollection::DYNAMIC);
+    TTFConfig ttfConfig(MY_FONT_CHINESE, 30, GlyphCollection::DYNAMIC);
     label->setTTFConfig(ttfConfig);
     label->setTextColor(Color4B(98, 36, 4, 255));
     label->setDimensions(1000, 500);

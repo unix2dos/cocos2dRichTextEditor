@@ -93,7 +93,7 @@ void CLayerJournalClassify::_initUI()
     all->setAnchorPoint(Vec2(.5, 1));
     all->setPosition(Vec2(classify->getContentSize().width*.5f, classify->getContentSize().height*.8));
     classify->addChild(all);
-    auto labelall = Label::createWithTTF("All Journals", MY_FONT_ENGLISH, 30);
+    auto labelall = Label::createWithTTF("All Journals", MY_FONT_CHINESE, 30);
     labelall->setPosition(Vec2(20, all->getContentSize().height/2));
     labelall->setTextColor(Color4B(0,0,0,255));
     labelall->setAnchorPoint(Vec2(0, 0.5));
@@ -108,7 +108,7 @@ void CLayerJournalClassify::_initUI()
     pub->setAnchorPoint(Vec2(.5,1));
     pub->setPosition(Vec2(classify->getContentSize().width*.5f, classify->getContentSize().height*.8-100));
     classify->addChild(pub);
-    auto labelpub = Label::createWithTTF("Public Journals", MY_FONT_ENGLISH, 30);
+    auto labelpub = Label::createWithTTF("Public Journals", MY_FONT_CHINESE, 30);
     labelpub->setPosition(Vec2(20, all->getContentSize().height/2));
     labelpub->setTextColor(Color4B(0,0,0,255));
     labelpub->setAnchorPoint(Vec2(0, 0.5));
@@ -123,7 +123,7 @@ void CLayerJournalClassify::_initUI()
     pri->setAnchorPoint(Vec2(.5,1));
     pri->setPosition(Vec2(classify->getContentSize().width*.5f, classify->getContentSize().height*.8-200));
     classify->addChild(pri);
-    auto labelpri = Label::createWithTTF("Private Journals", MY_FONT_ENGLISH, 30);
+    auto labelpri = Label::createWithTTF("Private Journals", MY_FONT_CHINESE, 30);
     labelpri->setPosition(Vec2(20, all->getContentSize().height/2));
     labelpri->setTextColor(Color4B(0,0,0,255));
     labelpri->setAnchorPoint(Vec2(0, 0.5));

@@ -47,7 +47,7 @@ void CLayerSignUp::_initUI()
     auto logo = Sprite::create("logo.png");
     logo->setPosition(Vec2(m_winSize.width*.5f, m_winSize.height*.8));
     this->addChild(logo);
-    auto label = Label::createWithTTF("SignUp", MY_FONT_ENGLISH, 50);
+    auto label = Label::createWithTTF("SignUp", MY_FONT_CHINESE, 50);
     label->setPosition(Vec2(logo->getContentSize().width/2, -50));
     label->setTextColor(Color4B(0,0,0,255));
     logo->addChild(label);
@@ -93,7 +93,7 @@ void CLayerSignUp::_initUI()
 
     });
     this->addChild(btnSignUp);
-    auto label1 = Label::createWithTTF("Sign Up", MY_FONT_ENGLISH, 35);
+    auto label1 = Label::createWithTTF("Sign Up", MY_FONT_CHINESE, 35);
     btnSignUp->setTitleLabel(label1);
 
     //back
@@ -106,7 +106,7 @@ void CLayerSignUp::_initUI()
         this->removeFromParent();
     });
     this->addChild(btnBack);
-    auto label2 = Label::createWithTTF("Back", MY_FONT_ENGLISH, 35);
+    auto label2 = Label::createWithTTF("Back", MY_FONT_CHINESE, 35);
     btnBack->setTitleLabel(label2);
 
 }

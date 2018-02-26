@@ -63,7 +63,7 @@ void CLayerJournals::_initUI()
     
     //名字
     auto username = CDataManager::getInstance()->getDataUser()->getUserInfo().alias;
-    auto labelname = Label::createWithTTF(username, MY_FONT_ENGLISH, 35);
+    auto labelname = Label::createWithTTF(username, MY_FONT_CHINESE, 35);
     labelname->setPosition(Vec2(bg->getContentSize().width/2, 50));
     labelname->enableBold();
     bg->addChild(labelname);

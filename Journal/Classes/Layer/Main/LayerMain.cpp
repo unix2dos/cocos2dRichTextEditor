@@ -94,7 +94,7 @@ void CLayerMain::_initButtons()
         this->setMainStatus(MainStatus::Journals);
     });
     layerColor->addChild(btnJournals);
-    auto label1 = Label::createWithTTF("Journals", MY_FONT_ENGLISH, 30);
+    auto label1 = Label::createWithTTF("Journals", MY_FONT_CHINESE, 30);
     label1->setPosition(Vec2(btnJournals->getContentSize().width/2, -30));
     label1->setTextColor(Color4B(0,0,0,255));
     label1->setName("text");
@@ -109,7 +109,7 @@ void CLayerMain::_initButtons()
         this->setMainStatus(MainStatus::Archive);
     });
     layerColor->addChild(btnArchive);
-    auto label2 = Label::createWithTTF("Archive", MY_FONT_ENGLISH, 30);
+    auto label2 = Label::createWithTTF("Archive", MY_FONT_CHINESE, 30);
     label2->setPosition(Vec2(btnArchive->getContentSize().width/2, -30));
     label2->setTextColor(Color4B(0,0,0,255));
     label2->setName("text");
@@ -124,7 +124,7 @@ void CLayerMain::_initButtons()
         this->setMainStatus(MainStatus::JournalEx);
     });
     layerColor->addChild(btnJournalEx);
-    auto label3 = Label::createWithTTF("JournalEx", MY_FONT_ENGLISH, 30);
+    auto label3 = Label::createWithTTF("JournalEx", MY_FONT_CHINESE, 30);
     label3->setPosition(Vec2(btnJournalEx->getContentSize().width/2, -30));
     label3->setTextColor(Color4B(0,0,0,255));
     label3->setName("text");

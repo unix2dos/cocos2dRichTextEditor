@@ -11,7 +11,10 @@
 #define MY_DESIGNSIZE_W  1000.0f //设计分辨率宽
 #define MY_DESIGNSIZE_H  1334.0f //设计分辨率高
 
-#define MY_FONT_ENGLISH "arial.ttf" //字体
+#define MY_FONT_ENGLISH "arial.ttf" //英文字体
+#define MY_FONT_CHINESE "chinese.ttf"//中文字体
+
+#define MY_DEBUG 1//测试阶段,发布版本修改成0
 
 
 ////////HTTP////////

@@ -65,7 +65,7 @@ void CJournalExCell::updateCell(int idx)
     
     
     std::string name = StringUtils::format("levonfly%d",idx);
-    auto labelName = Label::createWithTTF(name, MY_FONT_ENGLISH, 30);
+    auto labelName = Label::createWithTTF(name, MY_FONT_CHINESE, 30);
     labelName->setPosition(Vec2(getContentSize().width*0.2, getContentSize().height/2 + 25));
     labelName->setTextColor(Color4B(0,0,0,255));
     labelName->setAnchorPoint(Vec2(0, 0.5));
@@ -73,7 +73,7 @@ void CJournalExCell::updateCell(int idx)
     
     
     std::string email = StringUtils::format("levonfly@gmail.com");
-    auto labelEmail = Label::createWithTTF(email, MY_FONT_ENGLISH, 30);
+    auto labelEmail = Label::createWithTTF(email, MY_FONT_CHINESE, 30);
     labelEmail->setPosition(Vec2(getContentSize().width*0.2, getContentSize().height/2 - 25));
     labelEmail->setTextColor(Color4B(114,114,114,255));
     labelEmail->setAnchorPoint(Vec2(0, 0.5));

@@ -63,14 +63,14 @@ void CJournalsCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     auto data = info[idx];
     
     
-    auto labelTime = Label::createWithTTF(getTimeString(data.createTime), MY_FONT_ENGLISH, 20);
+    auto labelTime = Label::createWithTTF(getTimeString(data.createTime), MY_FONT_CHINESE, 20);
     labelTime->setPosition(Vec2(30, getContentSize().height* .7 + 40));
     labelTime->setTextColor(Color4B(114,114,114,255));
     labelTime->setAnchorPoint(Vec2(0, 0.5));
     this->addChild(labelTime);
     
 
-    auto labelTitle = Label::createWithTTF(data.strTitle, MY_FONT_ENGLISH, 30);
+    auto labelTitle = Label::createWithTTF(data.strTitle, MY_FONT_CHINESE, 30);
     labelTitle->setPosition(Vec2(30, getContentSize().height* .7));
     labelTitle->setTextColor(Color4B(0,0,0,255));
     labelTitle->setAnchorPoint(Vec2(0, 0.5));
@@ -78,7 +78,7 @@ void CJournalsCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     this->addChild(labelTitle);
     
     std::string strContext = removeHtmlTags(data.strContent);
-    auto labelPreview = Label::createWithTTF(strContext, MY_FONT_ENGLISH, 20);
+    auto labelPreview = Label::createWithTTF(strContext, MY_FONT_CHINESE, 20);
     labelPreview->setPosition(Vec2(30, getContentSize().height* .7 - 40));
     labelPreview->setTextColor(Color4B(114,114,114,255));
     labelPreview->setAnchorPoint(Vec2(0, 1));
