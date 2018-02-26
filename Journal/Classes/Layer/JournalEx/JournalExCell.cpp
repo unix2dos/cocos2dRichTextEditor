@@ -83,6 +83,22 @@ void CJournalExCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     labelPreview->setTextColor(Color4B(114,114,114,255));
     labelPreview->setAnchorPoint(Vec2(0, 1));
     labelPreview->setLineSpacing(10);
-    labelPreview->setDimensions(getContentSize().width* .8, getContentSize().height* .4);
+    labelPreview->setDimensions(getContentSize().width* .8, getContentSize().height* .25);
     this->addChild(labelPreview);
+    
+    
+    auto btnLike = Button::create("btn_like1.png");
+    btnLike->setPosition(Vec2(70, 30));
+    this->addChild(btnLike);
+    btnLike->addClickEventListener([&](Ref* r){
+        
+    });
+    
+    
+    auto btnComment = Button::create("btn_comment.png");
+    btnComment->setPosition(Vec2(150, 30));
+    this->addChild(btnComment);
+    btnComment->addClickEventListener([&](Ref* r){
+        
+    });
 }

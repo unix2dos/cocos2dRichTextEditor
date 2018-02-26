@@ -13,7 +13,7 @@
 #include "JournalExCell.h"
 #include "LayerJournalEx.h"
 
-#define JOURNALEX_CELL_SIZE 5 //table显示的cell数量
+#define JOURNALEX_CELL_SIZE 4.5 //table显示的cell数量
 
 
 CLayerJournalEx::CLayerJournalEx()

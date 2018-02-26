@@ -142,6 +142,8 @@
 		01BA7F8B20284C2E002EA80C /* JournalsCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01BA7F8920284C2E002EA80C /* JournalsCell.cpp */; };
 		01CA8D682029431C002F1934 /* JournalExCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01CA8D662029431C002F1934 /* JournalExCell.cpp */; };
 		01CA8D6C20295143002F1934 /* LayerJournalClassify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01CA8D6A20295143002F1934 /* LayerJournalClassify.cpp */; };
+		01E0AA7C2043E73100D1B7AA /* LayerComment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E0AA7A2043E73100D1B7AA /* LayerComment.cpp */; };
+		01E0AA7F2043E75200D1B7AA /* CommentCell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E0AA7D2043E75200D1B7AA /* CommentCell.cpp */; };
 		1A88B2641FC3D9C9005C14AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A88B2631FC3D9C9005C14AE /* Images.xcassets */; };
 		1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */; };
 		1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB07180E9839004C840B /* libcocos2d iOS.a */; };
@@ -418,6 +420,10 @@
 		01CA8D672029431C002F1934 /* JournalExCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JournalExCell.h; sourceTree = "<group>"; };
 		01CA8D6A20295143002F1934 /* LayerJournalClassify.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerJournalClassify.cpp; sourceTree = "<group>"; };
 		01CA8D6B20295143002F1934 /* LayerJournalClassify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerJournalClassify.h; sourceTree = "<group>"; };
+		01E0AA7A2043E73100D1B7AA /* LayerComment.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LayerComment.cpp; sourceTree = "<group>"; };
+		01E0AA7B2043E73100D1B7AA /* LayerComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerComment.h; sourceTree = "<group>"; };
+		01E0AA7D2043E75200D1B7AA /* CommentCell.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommentCell.cpp; sourceTree = "<group>"; };
+		01E0AA7E2043E75200D1B7AA /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		1A88B2631FC3D9C9005C14AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
@@ -789,6 +795,7 @@
 				01BA7F7A2028058F002EA80C /* Journals */,
 				01BA7F792028058F002EA80C /* Archive */,
 				01BA7F7B2028058F002EA80C /* JournalEx */,
+				01E0AA782043E71C00D1B7AA /* Comment */,
 				0193ABF2202580FB00C6C656 /* Main */,
 			);
 			path = Layer;
@@ -864,6 +871,17 @@
 				01CA8D672029431C002F1934 /* JournalExCell.h */,
 			);
 			path = JournalEx;
+			sourceTree = "<group>";
+		};
+		01E0AA782043E71C00D1B7AA /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				01E0AA7A2043E73100D1B7AA /* LayerComment.cpp */,
+				01E0AA7B2043E73100D1B7AA /* LayerComment.h */,
+				01E0AA7D2043E75200D1B7AA /* CommentCell.cpp */,
+				01E0AA7E2043E75200D1B7AA /* CommentCell.h */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -1218,6 +1236,7 @@
 				011795702029874D00770759 /* ZSSColorViewController.m in Sources */,
 				011795CC2029874D00770759 /* HRColorCursor.m in Sources */,
 				014467DD202A94DA0045AE3E /* ArchiveCell.cpp in Sources */,
+				01E0AA7F2043E75200D1B7AA /* CommentCell.cpp in Sources */,
 				011795D62029874D00770759 /* DemoModalViewController.m in Sources */,
 				0193ABF52025811200C6C656 /* LayerMain.cpp in Sources */,
 				011795CA2029874D00770759 /* CYRTextView.m in Sources */,
@@ -1252,6 +1271,7 @@
 				0117956E2029874D00770759 /* ZSSDemoPickerViewController.m in Sources */,
 				011795C02029874D00770759 /* ZSSBarButtonItem.m in Sources */,
 				011795C82029874D00770759 /* CYRToken.m in Sources */,
+				01E0AA7C2043E73100D1B7AA /* LayerComment.cpp in Sources */,
 				0117956D2029874D00770759 /* ZSSCustomButtonsViewController.m in Sources */,
 				011795DF20298AA000770759 /* DataUser.cpp in Sources */,
 				0193ABD32025487B00C6C656 /* LayerWebView.cpp in Sources */,
