@@ -9,6 +9,7 @@
 #include "Define.h"
 #include "DataManager.h"
 #include "DataJournal.h"
+#include "LayerComment.h"
 #include "CommentCell.h"
 
 CCommentCell::CCommentCell()
@@ -50,29 +51,52 @@ void CCommentCell::updateCell(int idx)
 {
     this->setLocalZOrder(idx);
     this->removeAllChildren();
-    
-    
-    auto data = CDataManager::getInstance()->getDataJournal()->getJournalComments();
-    
-//    if (idx < 19) //TODO: data size
+
 //    {
 //        auto draw = DrawNode::create();
-//        draw->drawLine(Point(getContentSize().width*0.2, 0), Point(getContentSize().width, 0), Color4F::GRAY);
+//        draw->drawLine(Point(0, getContentSize().height), Point(getContentSize().width, getContentSize().height), Color4F::GRAY);
 //        this->addChild(draw);
 //    }
+//    {
+//        auto draw = DrawNode::create();
+//        draw->drawLine(Point(0, 0), Point(getContentSize().width, 0), Color4F::GRAY);
+//        this->addChild(draw);
+//    }
+
     
-//    auto avater = Sprite::create("avatar_default.png");
-//    avater->setPosition(Vec2(getContentSize().width*0.1, getContentSize().height/2));
-//    avater->setScale(0.5f);
-//    this->addChild(avater);
-//
-//
-//    std::string name = StringUtils::format("%d",idx);
-//    auto labelName = Label::createWithTTF(name, MY_FONT_CHINESE, 30);
-//    labelName->setPosition(Vec2(getContentSize().width*0.2, getContentSize().height/2 + 25));
-//    labelName->setTextColor(Color4B(0,0,0,255));
-//    labelName->setAnchorPoint(Vec2(0, 0.5));
-//    this->addChild(labelName);
+    auto avater = Sprite::create("avatar_default.png");
+    avater->setPosition(Vec2(20, getContentSize().height - 30));
+    avater->setScale(0.5f);
+    avater->setAnchorPoint(Vec2(0, 1));
+    this->addChild(avater);
+
+    auto data = CDataManager::getInstance()->getDataJournal()->getJournalComments()[idx];
+    auto labelName = Label::createWithTTF(data.strUserId, MY_FONT_CHINESE, 30);
+    labelName->setPosition(Vec2(130, getContentSize().height - 40));
+    labelName->setTextColor(Color4B(0,0,0,255));
+    labelName->setAnchorPoint(Vec2(0, 1));
+    labelName->enableBold();
+    this->addChild(labelName);
+    
+    
+    auto labelContent = Label::createWithTTF(data.strContent, MY_FONT_CHINESE, 30);
+    labelContent->setPosition(Vec2(130, getContentSize().height - 90));
+    labelContent->setTextColor(Color4B(0,0,0,255));
+    labelContent->setAnchorPoint(Vec2(0, 1));
+    labelContent->setDimensions(getContentSize().width - COMMENT_WIDTH_OFFSET, 0);
+    labelContent->setOverflow(Label::Overflow::RESIZE_HEIGHT);
+    this->addChild(labelContent);
+
+    //    auto a = labelContent->getBoundingBox();
+    //    auto b = labelContent->getContentSize();
+    //    log("width %f height %f\n", labelContent->getWidth(), labelContent->getHeight());
+    //    log("size %f %f\n", labelContent->getDimensions().width, labelContent->getDimensions().height);
+    //    log("a %f %f\n", a.size.width, a.size.height);
+    //    log("b %f %f\n", b.width, b.height);
+    //    log("b %d %f \n",idx, b.height);
+    
+
+    
 //
 //
 //    std::string email = StringUtils::format("-------------");

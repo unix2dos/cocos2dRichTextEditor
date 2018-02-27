@@ -173,7 +173,7 @@ void CDataJournal::parseCommentsList(HttpResponseInfo rep)
         Comment_Info info;
         info.strId = it["id"].asString();
         info.strUserId = it["user_id"].asString();
-        //        info.strJournalId = it["user_id"].asString();//TODO:可以做校验
+        info.strJournalId = it["journal_id"].asString();
         
         auto content = parseJson(it["content"].asString());
         if (content.isObject())

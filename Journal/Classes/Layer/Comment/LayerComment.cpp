@@ -15,8 +15,8 @@
 #include "LayerComment.h"
 
 
-#define COMMENT_CELL_SIZE 11 //table显示的cell数量
-#define COMMENT_BOTTOM_HEIGHT 100 //评论框高度
+
+
 
 
 CLayerComment::CLayerComment()
@@ -71,7 +71,7 @@ void CLayerComment::_initUI()
     label->setTextColor(Color4B(0,0,0,255));
     this->addChild(label);
     m_fTableViewHeight -= diffY*2;//减去伪导航栏
-    m_fTableViewHeight -= COMMENT_BOTTOM_HEIGHT;//评论栏
+    m_fTableViewHeight -= COMMENT_INPUT_HEIGHT;//评论栏
     
     
     
@@ -79,14 +79,14 @@ void CLayerComment::_initUI()
     m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     m_pTableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
     m_pTableView->setDelegate(this);
-    m_pTableView->setPositionY(COMMENT_BOTTOM_HEIGHT);
+    m_pTableView->setPositionY(COMMENT_INPUT_HEIGHT);
     this->addChild(m_pTableView);
     m_pTableView->reloadData();
     
     
     //评论框
     {
-        auto layerColor = LayerColor::create(Color4B(240, 240, 240, 255), m_winSize.width, COMMENT_BOTTOM_HEIGHT);
+        auto layerColor = LayerColor::create(Color4B(240, 240, 240, 255), m_winSize.width, COMMENT_INPUT_HEIGHT);
         this->addChild(layerColor);
         
         auto node = Node::create();
@@ -134,7 +134,20 @@ void CLayerComment::tableCellTouched(cocos2d::extension::TableView* table, cocos
 
 cocos2d::Size CLayerComment::tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)
 {
-    return Size(m_winSize.width, m_fTableViewHeight/COMMENT_CELL_SIZE);
+    auto data = CDataManager::getInstance()->getDataJournal()->getJournalComments()[idx];
+    auto labelContent = Label::createWithTTF(data.strContent, MY_FONT_CHINESE, 30);
+    labelContent->setDimensions(m_winSize.width-COMMENT_WIDTH_OFFSET, 0);
+    auto height = labelContent->getContentSize().height;
+//    log("height %ld %f",  idx, height);
+    if (height < COMMENT_HEIGHT_MIN)
+    {
+        height = COMMENT_HEIGHT_MIN;//不足最小高度, 因为有头像
+    }
+    else
+    {
+        height += COMMENT_HEIGHT_PADDING;//加延长,还要加用户名高度
+    }
+    return Size(m_winSize.width, height);
 }
 
 cocos2d::extension::TableViewCell* CLayerComment::tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)
@@ -142,8 +155,8 @@ cocos2d::extension::TableViewCell* CLayerComment::tableCellAtIndex(cocos2d::exte
     TableViewCell *cell = table->dequeueCell();
     if (!cell) {
         cell = CCommentCell::create();
-        cell->setContentSize(tableCellSizeForIndex(table,idx));
     }
+    cell->setContentSize(tableCellSizeForIndex(table,idx));
     dynamic_cast<CCommentCell*>(cell)->updateCell(static_cast<int>(idx));
     return cell;
 }

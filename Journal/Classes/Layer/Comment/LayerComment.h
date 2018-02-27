@@ -8,6 +8,12 @@
 #ifndef LayerComment_hpp
 #define LayerComment_hpp
 
+#define COMMENT_INPUT_HEIGHT   100 //评论框高度
+
+#define COMMENT_WIDTH_OFFSET   200 //评论条目宽度差值
+#define COMMENT_HEIGHT_MIN     160 //评论条目最小高度
+#define COMMENT_HEIGHT_PADDING 140 //评论条目高度落差
+
 class CLayerComment: public Layer
 , public cocos2d::extension::TableViewDataSource
 , public cocos2d::extension::TableViewDelegate
