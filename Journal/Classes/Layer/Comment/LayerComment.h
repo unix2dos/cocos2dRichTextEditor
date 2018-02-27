@@ -14,9 +14,12 @@
 #define COMMENT_HEIGHT_MIN     160 //评论条目最小高度
 #define COMMENT_HEIGHT_PADDING 140 //评论条目高度落差
 
+#include "HttpManager.h"
+
 class CLayerComment: public Layer
 , public cocos2d::extension::TableViewDataSource
 , public cocos2d::extension::TableViewDelegate
+, public CDataHttpDelegate
 {
 public:
     CLayerComment();
@@ -29,6 +32,8 @@ public:
     virtual cocos2d::Size tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)override;
     virtual cocos2d::extension::TableViewCell* tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)override;
     virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
+    
+    virtual void endWithHttpData(eHttpType myType, HttpResponseInfo rep) override;
 public:
     void setJournalId(int journalId);
 private:

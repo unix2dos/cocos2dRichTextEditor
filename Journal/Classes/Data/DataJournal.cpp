@@ -184,7 +184,26 @@ void CDataJournal::parseCommentsList(HttpResponseInfo rep)
         info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
         m_vecComments.push_back(info);
     }
+}
+
+
+void CDataJournal::parseCommentAdd(HttpResponseInfo rep)
+{
+    auto it = rep.jsonRoot["data"];
     
+    Comment_Info info;
+    info.strId = it["id"].asString();
+    info.strUserId = it["user_id"].asString();
+    info.strJournalId = it["journal_id"].asString();
+    
+    auto content = parseJson(it["content"].asString());
+    if (content.isObject())
+    {
+        info.strContent = content["text"].asString();
+    }
+    info.createTime = atoi(it["timestamp_create"].asString().c_str());
+    info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
+    m_vecComments.push_back(info);
 }
 
 

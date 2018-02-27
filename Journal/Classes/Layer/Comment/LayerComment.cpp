@@ -17,8 +17,6 @@
 
 
 
-
-
 CLayerComment::CLayerComment()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
@@ -104,9 +102,12 @@ void CLayerComment::_initUI()
         node->setPosition(Vec2(layerColor->getContentSize().width/2, layerColor->getContentSize().height/2));
         layerColor->addChild(node);
         
-        auto btnSend = Button::create("btn_like1.png");//TODO: like几
+        auto btnSend = Button::create("btn_like1.png");//TODO: 用个其他图片
         btnSend->addClickEventListener([=](Ref* ref){
+            //请求添加评论
             _requestAddComment(r->getText());
+            //置空
+            r->setText("");
         });
         btnSend->setTitleText("SEND");
         btnSend->setPosition(Vec2(layerColor->getContentSize().width*.9, layerColor->getContentSize().height/2));
@@ -177,6 +178,10 @@ void CLayerComment::setJournalId(int journalId)
 
 void CLayerComment::_requestAddComment(std::string text)
 {
+    if (text == "")
+    {
+        return;
+    }
     Json::Value root;
     root["journal_id"] = m_iJournalId;
     Json::Value content;
@@ -184,4 +189,17 @@ void CLayerComment::_requestAddComment(std::string text)
     root["content"] = buildJson(content);
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
+}
+
+
+void CLayerComment::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
+{
+    if (myType == eHttpType::comment_add)
+    {
+        if (rep.status == eHttpStatus::success)
+        {
+            m_pTableView->reloadData();
+            m_pTableView->setContentOffset(Vec2(0,m_pTableView->maxContainerOffset().y));
+        }
+    }
 }

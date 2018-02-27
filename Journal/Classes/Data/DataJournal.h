@@ -54,6 +54,7 @@ public:
     
     void parseJournalsEx(HttpResponseInfo rep);
     void parseCommentsList(HttpResponseInfo rep);
+    void parseCommentAdd(HttpResponseInfo rep);
     
     const std::vector<Journal_Info>& getJournals();
     const std::vector<Journal_Info>& getJournalsEx();
