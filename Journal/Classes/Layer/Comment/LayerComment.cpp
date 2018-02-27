@@ -7,6 +7,7 @@
 
 #include "Journal.h"
 #include "Define.h"
+#include "CommonUtils.h"
 #include "LayerMain.h"
 #include "CommentCell.h"
 #include "LayerComment.h"
@@ -19,6 +20,7 @@
 CLayerComment::CLayerComment()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
+,m_iJournalId(-1)
 {
     
 }
@@ -99,10 +101,9 @@ void CLayerComment::_initUI()
 
         
         
-        auto btnSend = Button::create("btn_like1.png");
+        auto btnSend = Button::create("btn_like1.png");//TODO: like几
         btnSend->addClickEventListener([=](Ref* ref){
-            auto text = r->getText();
-            log("fuck %s\n", text);
+            _requestAddComment(r->getText());
         });
         btnSend->setTitleText("SEND");
         btnSend->setPosition(Vec2(layerColor->getContentSize().width*.9, layerColor->getContentSize().height/2));
@@ -110,6 +111,17 @@ void CLayerComment::_initUI()
     }
 }
 
+
+void CLayerComment::_requestAddComment(std::string text)
+{
+    Json::Value root;
+    root["journal_id"] = m_iJournalId;
+    Json::Value content;
+    content["text"] = text;
+    root["content"] = content;
+    string strJson = buildJson(root);
+    CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
+}
 
 
 void CLayerComment::scrollViewDidScroll(cocos2d::extension::ScrollView* view)
@@ -148,4 +160,10 @@ cocos2d::extension::TableViewCell* CLayerComment::tableCellAtIndex(cocos2d::exte
 ssize_t CLayerComment::numberOfCellsInTableView(cocos2d::extension::TableView *table)
 {
     return 20;
+}
+
+
+void CLayerComment::setJournalId(int journalId)
+{
+    m_iJournalId = journalId;
 }

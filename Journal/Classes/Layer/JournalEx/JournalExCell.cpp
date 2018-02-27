@@ -10,6 +10,8 @@
 #include "CommonUtils.h"
 #include "DataJournal.h"
 #include "LayerComment.h"
+#include "HttpManager.h"
+#include "LayerJournalEx.h"
 #include "JournalExCell.h"
 
 
@@ -92,14 +94,20 @@ void CJournalExCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     btnLike->setPosition(Vec2(70, 30));
     this->addChild(btnLike);
     btnLike->addClickEventListener([&](Ref* r){
-        
+        //请求喜欢日志
+        auto layer = dynamic_cast<CLayerJournalEx*>(this->getUserObject());
+        layer->setJournalId(atoi(data.strId.c_str()));
+        layer->requestLikeJournal();
     });
     
     
     auto btnComment = Button::create("btn_comment.png");
     btnComment->setPosition(Vec2(150, 30));
     this->addChild(btnComment);
-    btnComment->addClickEventListener([&](Ref* r){
-        Director::getInstance()->getRunningScene()->addChild(CLayerComment::create());//直接加到最上面
+    btnComment->addClickEventListener([=](Ref* r){
+        //请求留言列表
+        auto layer = dynamic_cast<CLayerJournalEx*>(this->getUserObject());
+        layer->setJournalId(atoi(data.strId.c_str()));
+        layer->requestCommentList();
     });
 }

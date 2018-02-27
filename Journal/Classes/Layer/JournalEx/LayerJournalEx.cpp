@@ -6,11 +6,13 @@
 //
 
 #include "Journal.h"
+#include "Define.h"
 #include "LayerMain.h"
 #include "RichViewManager.h"
 #include "DataManager.h"
 #include "DataJournal.h"
 #include "JournalExCell.h"
+#include "LayerComment.h"
 #include "LayerJournalEx.h"
 
 #define JOURNALEX_CELL_SIZE 4.5 //table显示的cell数量
@@ -19,6 +21,7 @@
 CLayerJournalEx::CLayerJournalEx()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
+,m_iJournalId(-1)
 {
     
 }
@@ -96,6 +99,7 @@ cocos2d::extension::TableViewCell* CLayerJournalEx::tableCellAtIndex(cocos2d::ex
     if (!cell) {
         cell = CJournalExCell::create();
         cell->setContentSize(tableCellSizeForIndex(table,idx));
+        cell->setUserObject(this);
     }
     auto data = CDataManager::getInstance()->getDataJournal()->getRecommendJournals();
     dynamic_cast<CJournalExCell*>(cell)->updateCell(data, static_cast<int>(idx));
@@ -106,4 +110,34 @@ ssize_t CLayerJournalEx::numberOfCellsInTableView(cocos2d::extension::TableView 
 {
     auto data = CDataManager::getInstance()->getDataJournal()->getRecommendJournals();
     return data.size();
+}
+
+
+void CLayerJournalEx::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
+{
+    if (myType == eHttpType::comment_list)
+    {
+        if (rep.status == eHttpStatus::success)
+        {
+            auto layer = CLayerComment::create();
+            layer->setJournalId(m_iJournalId);
+            Director::getInstance()->getRunningScene()->addChild(layer);//直接加到最上面
+        }
+    }
+}
+
+void CLayerJournalEx::requestCommentList()
+{
+    std::string str = StringUtils::format("/jid=%d", m_iJournalId);
+    CHttpManager::getInstance()->HttpGet(eHttpType::comment_list, str);
+}
+
+void CLayerJournalEx::requestLikeJournal()
+{
+    
+}
+
+void CLayerJournalEx::setJournalId(int journalId)
+{
+    m_iJournalId = journalId;
 }

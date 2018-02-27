@@ -29,6 +29,7 @@ enum class eHttpType
     journal_add, //添加日志
     journal_update,//修改日志
     journal_recommend,//推荐日志
+    comment_list,//留言信息
     comment_add,//留言增加
     comment_reply,//留言回复
     comment_update,//留言更新
@@ -43,6 +44,7 @@ static std::map<eHttpType, std::string> HTTPURLMAP
     {eHttpType::journal_add,    SERVER_ADDRESS"/journal/add"},
     {eHttpType::journal_update, SERVER_ADDRESS"/journal/update"},
     {eHttpType::journal_recommend, SERVER_ADDRESS"/journal/recommend"},
+    {eHttpType::comment_list,   SERVER_ADDRESS"/comment/get"},
     {eHttpType::comment_add,    SERVER_ADDRESS"/comment/add"},
     {eHttpType::comment_reply,  SERVER_ADDRESS"/comment/addreply"},
     {eHttpType::comment_update, SERVER_ADDRESS"/comment/update"},
