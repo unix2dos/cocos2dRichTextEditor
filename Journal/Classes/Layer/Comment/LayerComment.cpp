@@ -20,6 +20,7 @@
 CLayerComment::CLayerComment()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
+,m_type(CommentType::self)
 {
     
 }
@@ -36,17 +37,22 @@ bool CLayerComment::init()
         return false;
     }
     
-    _initUI();
-    
     return true;
+}
+
+
+void CLayerComment::onEnter()
+{
+    Layer::onEnter();
+    _initUI();
 }
 
 
 void CLayerComment::_initUI()
 {
     m_winSize = Director::getInstance()->getWinSize();
-    
     m_fTableViewHeight = m_winSize.height;
+    
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     m_fTableViewHeight -= 50;//电池栏
 #endif
@@ -54,7 +60,7 @@ void CLayerComment::_initUI()
     auto bg = LayerColor::create(Color4B(255, 255, 255, 255));
     this->addChild(bg);
     
-    
+    //伪导航栏
     auto diffY = 30;
     auto btnBack = Button::create("ui_back.png");
     btnBack->setPosition(Vec2(30, m_fTableViewHeight-diffY));
@@ -62,28 +68,36 @@ void CLayerComment::_initUI()
     btnBack->addClickEventListener([&](Ref* r){
         this->removeFromParent();
     });
-    
     auto label = Label::createWithTTF("COMMENT", MY_FONT_CHINESE, 30);
     label->setPosition(Vec2(m_winSize.width/2, m_fTableViewHeight-diffY));
     label->setTextColor(Color4B(0,0,0,255));
     this->addChild(label);
-    m_fTableViewHeight -= diffY*2;//减去伪导航栏
-    m_fTableViewHeight -= COMMENT_INPUT_HEIGHT;//评论栏
     
+    //减去伪导航栏
+    m_fTableViewHeight -= diffY*2;
     
-    
+    //减去评论栏
+    int inputHeight = 0;
+    if (m_type != CommentType::self)
+    {
+        inputHeight = COMMENT_INPUT_HEIGHT;
+    }
+    m_fTableViewHeight -= inputHeight;
+
+    //tableview
     m_pTableView = TableView::create(this, Size(m_winSize.width, m_fTableViewHeight));
     m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     m_pTableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
     m_pTableView->setDelegate(this);
-    m_pTableView->setPositionY(COMMENT_INPUT_HEIGHT);
+    m_pTableView->setPositionY(inputHeight);
     this->addChild(m_pTableView);
     m_pTableView->reloadData();
     
     
     //评论框
+    if (m_type != CommentType::self)
     {
-        auto layerColor = LayerColor::create(Color4B(240, 240, 240, 255), m_winSize.width, COMMENT_INPUT_HEIGHT);
+        auto layerColor = LayerColor::create(Color4B(240, 240, 240, 255), m_winSize.width, inputHeight);
         this->addChild(layerColor);
         
         auto node = Node::create();
@@ -180,4 +194,10 @@ void CLayerComment::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
             m_pTableView->setContentOffset(Vec2(0,m_pTableView->maxContainerOffset().y));
         }
     }
+}
+
+
+void CLayerComment::setCommentType(CommentType type)
+{
+    m_type = type;
 }

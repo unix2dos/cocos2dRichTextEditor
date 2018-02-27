@@ -16,6 +16,13 @@
 
 #include "HttpManager.h"
 
+
+enum class CommentType
+{
+    self,
+    others
+};
+
 class CLayerComment: public Layer
 , public cocos2d::extension::TableViewDataSource
 , public cocos2d::extension::TableViewDelegate
@@ -33,12 +40,17 @@ public:
     virtual cocos2d::extension::TableViewCell* tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)override;
     virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
     virtual void endWithHttpData(eHttpType myType, HttpResponseInfo rep) override;
+public:
+    void setCommentType(CommentType type);
+    virtual void onEnter() override;
 private:
     void _initUI();
 private:
     Size m_winSize;
     float m_fTableViewHeight;
     cocos2d::extension::TableView* m_pTableView;
+private:
+    CommentType m_type;
 };
 
 #endif /* LayerComment_hpp */
