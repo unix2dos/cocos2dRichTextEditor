@@ -10,6 +10,8 @@
 #include "CommonUtils.h"
 #include "LayerMain.h"
 #include "CommentCell.h"
+#include "DataManager.h"
+#include "DataJournal.h"
 #include "LayerComment.h"
 
 
@@ -49,10 +51,12 @@ void CLayerComment::_initUI()
     
     m_fTableViewHeight = m_winSize.height;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    m_fTableViewHeight -= 50;
+    m_fTableViewHeight -= 50;//电池栏
 #endif
-    auto layer = LayerColor::create(Color4B(255, 255, 255, 255));
-    this->addChild(layer);
+    
+    auto bg = LayerColor::create(Color4B(255, 255, 255, 255));
+    this->addChild(bg);
+    
     
     auto diffY = 30;
     auto btnBack = Button::create("ui_back.png");
@@ -61,12 +65,13 @@ void CLayerComment::_initUI()
     btnBack->addClickEventListener([&](Ref* r){
         this->removeFromParent();
     });
+    
     auto label = Label::createWithTTF("COMMENT", MY_FONT_CHINESE, 30);
     label->setPosition(Vec2(m_winSize.width/2, m_fTableViewHeight-diffY));
     label->setTextColor(Color4B(0,0,0,255));
     this->addChild(label);
-    m_fTableViewHeight -= diffY*2;
-    m_fTableViewHeight -= COMMENT_BOTTOM_HEIGHT;
+    m_fTableViewHeight -= diffY*2;//减去伪导航栏
+    m_fTableViewHeight -= COMMENT_BOTTOM_HEIGHT;//评论栏
     
     
     
@@ -98,8 +103,6 @@ void CLayerComment::_initUI()
         node->addChild(r);
         node->setPosition(Vec2(layerColor->getContentSize().width/2, layerColor->getContentSize().height/2));
         layerColor->addChild(node);
-
-        
         
         auto btnSend = Button::create("btn_like1.png");//TODO: like几
         btnSend->addClickEventListener([=](Ref* ref){
@@ -109,18 +112,6 @@ void CLayerComment::_initUI()
         btnSend->setPosition(Vec2(layerColor->getContentSize().width*.9, layerColor->getContentSize().height/2));
         layerColor->addChild(btnSend);
     }
-}
-
-
-void CLayerComment::_requestAddComment(std::string text)
-{
-    Json::Value root;
-    root["journal_id"] = m_iJournalId;
-    Json::Value content;
-    content["text"] = text;
-    root["content"] = content;
-    string strJson = buildJson(root);
-    CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
 }
 
 
@@ -159,11 +150,25 @@ cocos2d::extension::TableViewCell* CLayerComment::tableCellAtIndex(cocos2d::exte
 
 ssize_t CLayerComment::numberOfCellsInTableView(cocos2d::extension::TableView *table)
 {
-    return 20;
+    auto data = CDataManager::getInstance()->getDataJournal()->getJournalComments();
+    return data.size();
 }
 
 
 void CLayerComment::setJournalId(int journalId)
 {
     m_iJournalId = journalId;
+}
+
+
+
+void CLayerComment::_requestAddComment(std::string text)
+{
+    Json::Value root;
+    root["journal_id"] = m_iJournalId;
+    Json::Value content;
+    content["text"] = text;
+    root["content"] = buildJson(content);
+    string strJson = buildJson(root);
+    CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
 }

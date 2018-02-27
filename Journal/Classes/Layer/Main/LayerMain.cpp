@@ -233,10 +233,8 @@ void CLayerMain::_showJournalEx()
     }
     else
     {
-        it->second->removeFromParent();//TODO: 暂且每次都刷新
-        auto layer = CLayerJournalEx::create();
-        this->addChild(layer, 1);
-        m_mapLayers["JournalEx"] = layer;
-//        it->second->setVisible(true);
+        auto layer = dynamic_cast<CLayerJournalEx*>(it->second);
+        layer->updateUI();
+        it->second->setVisible(true);
     }
 }

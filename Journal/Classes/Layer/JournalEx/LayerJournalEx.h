@@ -32,6 +32,7 @@ public:
     void setJournalId(int journalId);
     void requestCommentList();
     void requestLikeJournal();
+    void updateUI();
 private:
     void _initUI();
 private:

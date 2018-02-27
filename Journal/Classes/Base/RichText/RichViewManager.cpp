@@ -110,7 +110,7 @@ void CRichViewManager::requestAddJournal()
     
     Json::Value content;
     content["text"] = m_journalInfo.strContent;
-    root["content"] = content;
+    root["content"] = buildJson(content);
 
 
     root["published"] = m_journalInfo.isPublic ? "1" : "0";
@@ -128,7 +128,7 @@ void CRichViewManager::requestUpdateJournal()
     
     Json::Value content;
     content["text"] = m_journalInfo.strContent;
-    root["content"] = content;
+    root["content"] = buildJson(content);
     
     root["published"] = m_journalInfo.isPublic ? "1" : "0";
     string strJson = buildJson(root);

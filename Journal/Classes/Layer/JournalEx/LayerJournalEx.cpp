@@ -83,7 +83,7 @@ void CLayerJournalEx::tableCellTouched(cocos2d::extension::TableView* table, coc
     {
         return;
     }
-    auto data = CDataManager::getInstance()->getDataJournal()->getRecommendJournals();
+    auto data = CDataManager::getInstance()->getDataJournal()->getJournalsEx();
     int idx = static_cast<int>(cell->getIdx());
     CRichViewManager::getInstance()->showJournal(data[idx], false);
 }
@@ -101,14 +101,14 @@ cocos2d::extension::TableViewCell* CLayerJournalEx::tableCellAtIndex(cocos2d::ex
         cell->setContentSize(tableCellSizeForIndex(table,idx));
         cell->setUserObject(this);
     }
-    auto data = CDataManager::getInstance()->getDataJournal()->getRecommendJournals();
+    auto data = CDataManager::getInstance()->getDataJournal()->getJournalsEx();
     dynamic_cast<CJournalExCell*>(cell)->updateCell(data, static_cast<int>(idx));
     return cell;
 }
 
 ssize_t CLayerJournalEx::numberOfCellsInTableView(cocos2d::extension::TableView *table)
 {
-    auto data = CDataManager::getInstance()->getDataJournal()->getRecommendJournals();
+    auto data = CDataManager::getInstance()->getDataJournal()->getJournalsEx();
     return data.size();
 }
 
@@ -119,9 +119,13 @@ void CLayerJournalEx::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
     {
         if (rep.status == eHttpStatus::success)
         {
-            auto layer = CLayerComment::create();
-            layer->setJournalId(m_iJournalId);
-            Director::getInstance()->getRunningScene()->addChild(layer);//直接加到最上面
+            if (!Director::getInstance()->getRunningScene()->getChildByName("CLayerComment"))
+            {
+                auto layer = CLayerComment::create();
+                layer->setJournalId(m_iJournalId);
+                layer->setName("CLayerComment");
+                Director::getInstance()->getRunningScene()->addChild(layer);//直接加到最上面
+            }
         }
     }
 }
@@ -134,7 +138,11 @@ void CLayerJournalEx::requestCommentList()
 
 void CLayerJournalEx::requestLikeJournal()
 {
-    
+}
+
+void CLayerJournalEx::updateUI()
+{
+    m_pTableView->reloadData();
 }
 
 void CLayerJournalEx::setJournalId(int journalId)

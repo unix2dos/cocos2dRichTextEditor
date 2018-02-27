@@ -87,9 +87,9 @@ void CDataJournal::parseJournalsData(HttpResponseInfo rep)
 }
 
 
-void CDataJournal::parseRecommendJournals(HttpResponseInfo rep)
+void CDataJournal::parseJournalsEx(HttpResponseInfo rep)
 {
-    m_vecRecommend.clear();
+    m_vecJournalsEx.clear();
     auto journals = rep.jsonRoot["data"];
     for (auto& it : journals)
     {
@@ -104,8 +104,9 @@ void CDataJournal::parseRecommendJournals(HttpResponseInfo rep)
         }
         
         info.createTime = atoi(it["timestamp_create"].asString().c_str());
+        info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
         info.isPublic = atoi(it["published"].asString().c_str());
-        m_vecRecommend.push_back(info);
+        m_vecJournalsEx.push_back(info);
     }
 }
 
@@ -126,6 +127,7 @@ void CDataJournal::parseAddJournal(HttpResponseInfo rep)
     }
     
     info.createTime = atoi(it["timestamp_create"].asString().c_str());
+    info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
     info.isPublic = atoi(it["published"].asString().c_str());
     m_vecJournals.push_back(info);
     
@@ -148,6 +150,7 @@ void CDataJournal::parseUpdateJournal(HttpResponseInfo rep)
     }
     
     info.createTime = atoi(it["timestamp_create"].asString().c_str());
+    info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
     info.isPublic = atoi(it["published"].asString().c_str());
     
     for (auto& it : m_vecJournals) {
@@ -161,13 +164,42 @@ void CDataJournal::parseUpdateJournal(HttpResponseInfo rep)
 }
 
 
+void CDataJournal::parseCommentsList(HttpResponseInfo rep)
+{
+    m_vecComments.clear();
+    auto comments = rep.jsonRoot["data"];
+    for (auto& it : comments)
+    {
+        Comment_Info info;
+        info.strId = it["id"].asString();
+        info.strUserId = it["user_id"].asString();
+        //        info.strJournalId = it["user_id"].asString();//TODO:可以做校验
+        
+        auto content = parseJson(it["content"].asString());
+        if (content.isObject())
+        {
+            info.strContent = content["text"].asString();
+        }
+        info.createTime = atoi(it["timestamp_create"].asString().c_str());
+        info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
+        m_vecComments.push_back(info);
+    }
+    
+}
+
+
 
 const std::vector<Journal_Info>& CDataJournal::getJournals()
 {
     return m_vecJournals;
 }
 
-const std::vector<Journal_Info>& CDataJournal::getRecommendJournals()
+const std::vector<Journal_Info>& CDataJournal::getJournalsEx()
 {
-    return m_vecRecommend;
+    return m_vecJournalsEx;
+}
+
+const std::vector<Comment_Info>& CDataJournal::getJournalComments()
+{
+    return m_vecComments;
 }
