@@ -6,7 +6,9 @@
 //
 
 #include "Journal.h"
+#include "Define.h"
 #include "HttpManager.h"
+#include "CommonUtils.h"
 #include "DataUser.h"
 
 
@@ -35,4 +37,25 @@ void CDataUser::parseServeData(HttpResponseInfo rep)
 const User_Info& CDataUser::getUserInfo()
 {
     return m_userInfo;
+}
+
+
+void CDataUser::requestSignUp(std::string strEmail, std::string strPass, std::string strAlias)
+{
+    Json::Value root;
+    root["username"] = strEmail;
+    root["password"] = strPass;
+    root["alias"] = strAlias;
+    string strJson = buildJson(root);
+    CHttpManager::getInstance()->HttpPost(eHttpType::signup, strJson);
+}
+
+
+void CDataUser::requestLogin(std::string strEmail, std::string strPass)
+{
+    Json::Value root;
+    root["username"] = strEmail;
+    root["password"] = strPass;
+    string strJson = buildJson(root);
+    CHttpManager::getInstance()->HttpPost(eHttpType::login, strJson);
 }

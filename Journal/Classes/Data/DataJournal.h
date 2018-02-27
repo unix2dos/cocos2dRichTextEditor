@@ -60,10 +60,23 @@ public:
     const std::vector<Journal_Info>& getJournalsEx();
     const std::vector<Comment_Info>& getJournalComments();
     
+public:
+    void requestAddJournal(const Journal_Info& info);
+    void requestUpdateJournal(const Journal_Info& info);
+    
+    void requestJournalsEx();
+    
+    void requestCommentList(int journalId);
+    void requestAddComment(std::string text);
+    
+    void requestLikeJournal(int journalId);
+    
 private:
     std::vector<Journal_Info> m_vecJournals;//只有add,update时更新, 用的时候自己排序
     std::vector<Journal_Info> m_vecJournalsEx;//推荐消息, 不排序
     std::vector<Comment_Info> m_vecComments;//只是一条日志的所有评论,用的时候自己排序
+private:
+    int m_iJournalId;
 };
 
 #endif /* DataJournal_hpp */

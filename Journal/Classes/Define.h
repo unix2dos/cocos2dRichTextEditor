@@ -22,33 +22,33 @@
 enum class eHttpType
 {
     none = 0,
-    getinfo,     //获取用户信息
-    signup,      //注册
-    login,       //登录
-    journal_list,//日志信息
-    journal_add, //添加日志
-    journal_update,//修改日志
-    journal_recommend,//推荐日志
-    comment_list,//留言信息
-    comment_add,//留言增加
+    getinfo,     //获取用户信息  CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);如果有cookie机制,就直接getinfo
+    signup,      //注册,ok
+    login,       //登录,ok
+    journal_list,//日志信息, 废弃 CHttpManager::getInstance()->HttpGet(eHttpType::journal_list, "/public=-1");
+    journal_add, //添加日志,ok
+    journal_update,//修改日志,ok
+    journal_recommend,//推荐日志,ok
+    comment_list,//留言信息,ok
+    comment_add,//留言增加,ok
     comment_reply,//留言回复
     comment_update,//留言更新
     comment_delete,//留言删除
 };
 static std::map<eHttpType, std::string> HTTPURLMAP
 {
-    {eHttpType::getinfo,        SERVER_ADDRESS"/getinfo"},
-    {eHttpType::signup,         SERVER_ADDRESS"/signup"},
-    {eHttpType::login,          SERVER_ADDRESS"/login"},
-    {eHttpType::journal_list,   SERVER_ADDRESS"/journal/list"},
-    {eHttpType::journal_add,    SERVER_ADDRESS"/journal/add"},
-    {eHttpType::journal_update, SERVER_ADDRESS"/journal/update"},
-    {eHttpType::journal_recommend, SERVER_ADDRESS"/journal/recommend"},
-    {eHttpType::comment_list,   SERVER_ADDRESS"/comment/get"},
-    {eHttpType::comment_add,    SERVER_ADDRESS"/comment/add"},
-    {eHttpType::comment_reply,  SERVER_ADDRESS"/comment/addreply"},
-    {eHttpType::comment_update, SERVER_ADDRESS"/comment/update"},
-    {eHttpType::comment_delete, SERVER_ADDRESS"/comment/delete"},
+    {eHttpType::getinfo,            SERVER_ADDRESS"/getinfo"},
+    {eHttpType::signup,             SERVER_ADDRESS"/signup"},
+    {eHttpType::login,              SERVER_ADDRESS"/login"},
+    {eHttpType::journal_list,       SERVER_ADDRESS"/journal/list"},
+    {eHttpType::journal_add,        SERVER_ADDRESS"/journal/add"},
+    {eHttpType::journal_update,     SERVER_ADDRESS"/journal/update"},
+    {eHttpType::journal_recommend,  SERVER_ADDRESS"/journal/recommend"},
+    {eHttpType::comment_list,       SERVER_ADDRESS"/comment/get"},
+    {eHttpType::comment_add,        SERVER_ADDRESS"/comment/add"},
+    {eHttpType::comment_reply,      SERVER_ADDRESS"/comment/addreply"},
+    {eHttpType::comment_update,     SERVER_ADDRESS"/comment/update"},
+    {eHttpType::comment_delete,     SERVER_ADDRESS"/comment/delete"},
 };
 
 

@@ -9,6 +9,8 @@
 #include "Define.h"
 #include "CommonUtils.h"
 #include "HttpManager.h"
+#include "DataManager.h"
+#include "DataJournal.h"
 #include "RichViewManager.h"
 
 
@@ -63,13 +65,14 @@ void CRichViewManager::closeJournal()
     
     if (bChange)
     {
+        auto dataJournal = CDataManager::getInstance()->getDataJournal();
         if (m_richviewType == RichViewType::write)
         {
-            requestAddJournal();
+            dataJournal->requestAddJournal(m_journalInfo);
         }
         else if (m_richviewType == RichViewType::show_self)
         {
-            requestUpdateJournal();
+            dataJournal->requestUpdateJournal(m_journalInfo);
         }
     }
 
@@ -85,52 +88,4 @@ Journal_Info& CRichViewManager::getJournal()
 RichViewType CRichViewManager::getRichViewType()
 {
     return m_richviewType;
-}
-
-
-void CRichViewManager::requestAddJournal()
-{
-    if (m_journalInfo.strContent == "")
-    {
-        return;
-    }
-    
-    if (m_journalInfo.strTitle == "")
-    {
-        m_journalInfo.strTitle = m_journalInfo.strContent.substr(0, m_journalInfo.strContent.find("<"));
-        if (m_journalInfo.strTitle == "")
-        {
-            m_journalInfo.strTitle = "Journal";
-        }
-    }
-    
-    Json::Value root;
-    root["tags"] = "none";
-    root["title"] = m_journalInfo.strTitle;
-    
-    Json::Value content;
-    content["text"] = m_journalInfo.strContent;
-    root["content"] = buildJson(content);
-
-
-    root["published"] = m_journalInfo.isPublic ? "1" : "0";
-    string strJson = buildJson(root);
-    CHttpManager::getInstance()->HttpPost(eHttpType::journal_add, strJson);
-}
-
-
-void CRichViewManager::requestUpdateJournal()
-{
-    Json::Value root;
-    root["id"] = m_journalInfo.strId;
-    root["tags"] = "none";
-    root["title"] = m_journalInfo.strTitle;
-    
-    Json::Value content;
-    content["text"] = m_journalInfo.strContent;
-    root["content"] = buildJson(content);
-    
-    root["published"] = m_journalInfo.isPublic ? "1" : "0";
-    string strJson = buildJson(root);
-    CHttpManager::getInstance()->HttpPost(eHttpType::journal_update, strJson);
 }

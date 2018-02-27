@@ -827,13 +827,7 @@
 			children = (
 				0189F448202E8BC2009F08B0 /* RichViewManager.cpp */,
 				0189F449202E8BC2009F08B0 /* RichViewManager.h */,
-				0189F450202E8F18009F08B0 /* iOSRichViewManager.mm */,
-				0189F452202E8F2A009F08B0 /* iOSRichViewManager.h */,
-				0189F456202F3AD5009F08B0 /* ParentController.mm */,
-				0189F458202F3AE5009F08B0 /* ParentController.h */,
-				01BA7F6920270AAB002EA80C /* RichViewController.mm */,
-				01BA7F6720270AAB002EA80C /* RichViewController.h */,
-				0112D4F320318B17006D9DB9 /* RichViewDefine.h */,
+				01FEC6B22045524E00588B0A /* ios */,
 			);
 			path = RichText;
 			sourceTree = "<group>";
@@ -882,6 +876,20 @@
 				01E0AA7E2043E75200D1B7AA /* CommentCell.h */,
 			);
 			path = Comment;
+			sourceTree = "<group>";
+		};
+		01FEC6B22045524E00588B0A /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				0189F450202E8F18009F08B0 /* iOSRichViewManager.mm */,
+				0189F452202E8F2A009F08B0 /* iOSRichViewManager.h */,
+				0189F456202F3AD5009F08B0 /* ParentController.mm */,
+				0189F458202F3AE5009F08B0 /* ParentController.h */,
+				01BA7F6920270AAB002EA80C /* RichViewController.mm */,
+				01BA7F6720270AAB002EA80C /* RichViewController.h */,
+				0112D4F320318B17006D9DB9 /* RichViewDefine.h */,
+			);
+			path = ios;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {

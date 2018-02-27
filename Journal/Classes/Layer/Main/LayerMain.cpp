@@ -9,6 +9,8 @@
 #include "Journal.h"
 #include "Define.h"
 #include "CommonUtils.h"
+#include "DataManager.h"
+#include "DataJournal.h"
 #include "LayerJournals.h"
 #include "LayerArchive.h"
 #include "LayerJournalEx.h"
@@ -67,7 +69,7 @@ void CLayerMain::_initUI()
     this->setMainStatus(m_status);
 
 //    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:111
-//    CHttpManager::getInstance()->HttpGet(eHttpType::journal_list, "/public=-1");//TODO:111
+
 }
 
 
@@ -164,7 +166,10 @@ void CLayerMain::setMainStatus(MainStatus status)
             _showArchive();
             break;
         case MainStatus::JournalEx:
-            CHttpManager::getInstance()->HttpGet(eHttpType::journal_recommend);
+        {
+            auto dataJournal = CDataManager::getInstance()->getDataJournal();
+            dataJournal->requestJournalsEx();
+        }
             break;
         default:
             break;

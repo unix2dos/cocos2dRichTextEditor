@@ -20,7 +20,6 @@
 CLayerComment::CLayerComment()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
-,m_iJournalId(-1)
 {
     
 }
@@ -105,7 +104,8 @@ void CLayerComment::_initUI()
         auto btnSend = Button::create("btn_like1.png");//TODO: 用个其他图片
         btnSend->addClickEventListener([=](Ref* ref){
             //请求添加评论
-            _requestAddComment(r->getText());
+            auto dataJournal = CDataManager::getInstance()->getDataJournal();
+            dataJournal->requestAddComment(r->getText());
             //置空
             r->setText("");
         });
@@ -168,28 +168,6 @@ ssize_t CLayerComment::numberOfCellsInTableView(cocos2d::extension::TableView *t
     return data.size();
 }
 
-
-void CLayerComment::setJournalId(int journalId)
-{
-    m_iJournalId = journalId;
-}
-
-
-
-void CLayerComment::_requestAddComment(std::string text)
-{
-    if (text == "")
-    {
-        return;
-    }
-    Json::Value root;
-    root["journal_id"] = m_iJournalId;
-    Json::Value content;
-    content["text"] = text;
-    root["content"] = buildJson(content);
-    string strJson = buildJson(root);
-    CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
-}
 
 
 void CLayerComment::endWithHttpData(eHttpType myType, HttpResponseInfo rep)

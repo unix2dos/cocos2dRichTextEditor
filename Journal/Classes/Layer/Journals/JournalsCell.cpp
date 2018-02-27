@@ -10,6 +10,8 @@
 #include "Define.h"
 #include "CommonUtils.h"
 #include "LayerJournals.h"
+#include "DataManager.h"
+#include "DataJournal.h"
 #include "JournalsCell.h"
 
 CJournalsCell::CJournalsCell()
@@ -53,7 +55,7 @@ void CJournalsCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     this->setLocalZOrder(idx);
     this->removeAllChildren();
     
-    if (idx < info.size()-1)
+//    if (idx < info.size()-1)
     {
         auto draw = DrawNode::create();
         draw->drawLine(Point(0, 0), Point(getContentSize().width, 0), Color4F::GRAY);
@@ -78,12 +80,23 @@ void CJournalsCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     this->addChild(labelTitle);
     
     std::string strContext = removeHtmlTags(data.strContent);
-    auto labelPreview = Label::createWithTTF(strContext, MY_FONT_CHINESE, 20);
-    labelPreview->setPosition(Vec2(30, getContentSize().height* .7 - 40));
-    labelPreview->setTextColor(Color4B(114,114,114,255));
-    labelPreview->setAnchorPoint(Vec2(0, 1));
-    labelPreview->setLineSpacing(10);
-    labelPreview->setDimensions(getContentSize().width* .8, getContentSize().height* .4);
-    this->addChild(labelPreview);
+    auto labelContext = Label::createWithTTF(strContext, MY_FONT_CHINESE, 20);
+    labelContext->setPosition(Vec2(30, getContentSize().height* .7 - 40));
+    labelContext->setTextColor(Color4B(114,114,114,255));
+    labelContext->setAnchorPoint(Vec2(0, 1));
+    labelContext->setLineSpacing(10);
+    labelContext->setDimensions(getContentSize().width* .8, getContentSize().height* .35);
+    this->addChild(labelContext);
+    
+    
+    auto btnComment = Button::create("btn_comment.png");
+    btnComment->setPosition(Vec2(60, 30));
+    btnComment->setScale(.8f);
+    this->addChild(btnComment);
+    btnComment->addClickEventListener([=](Ref* r){
+        //请求留言列表
+        auto dataJournal = CDataManager::getInstance()->getDataJournal();
+        dataJournal->requestCommentList(atoi(data.strId.c_str()));
+    });
 }
 

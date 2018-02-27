@@ -38,6 +38,10 @@ public:
 public:
     void parseServeData(HttpResponseInfo rep);
     const User_Info& getUserInfo();
+public:
+    void requestSignUp(std::string strEmail, std::string strPass, std::string strAlias);
+    void requestLogin(std::string strEmail, std::string strPass);
+    
 private:
     User_Info m_userInfo;
 };

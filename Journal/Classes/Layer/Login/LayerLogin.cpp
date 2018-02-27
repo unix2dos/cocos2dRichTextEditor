@@ -9,6 +9,8 @@
 #include "CommonUtils.h"
 #include "SceneManager.h"
 #include "Define.h"
+#include "DataManager.h"
+#include "DataUser.h"
 #include "LoginDefine.h"
 #include "LayerSignUp.h"
 #include "LayerLogin.h"
@@ -73,11 +75,7 @@ void CLayerLogin::_initUI()
     btnLogin->addClickEventListener([=](Ref* r){
         auto strEmail = dynamic_cast<ui::EditBox*>(email->getChildByName("EditBox"))->getText();
         auto strPass = dynamic_cast<ui::EditBox*>(password->getChildByName("EditBox"))->getText();
-        Json::Value root;
-        root["username"] = strEmail;
-        root["password"] = strPass;
-        string strJson = buildJson(root);
-        CHttpManager::getInstance()->HttpPost(eHttpType::login, strJson);
+        CDataManager::getInstance()->getDataUser()->requestLogin(strEmail, strPass);
     });
     this->addChild(btnLogin);
     auto label1 = Label::createWithTTF("Log In", MY_FONT_CHINESE, 35);
@@ -107,14 +105,9 @@ void CLayerLogin::_initUI()
     auto label3 = Label::createWithTTF("Find Password", MY_FONT_CHINESE, 35);
     btnFindPassword->setTitleLabel(label3);
 
-//    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:如果有cookie机制,就直接getinfo
     if (MY_DEBUG)
     {
-        Json::Value root;
-        root["username"] = "1@qq.com";
-        root["password"] = "1";
-        string strJson = buildJson(root);
-        CHttpManager::getInstance()->HttpPost(eHttpType::login, strJson);
+        CDataManager::getInstance()->getDataUser()->requestLogin("1@qq.com", "1");
     }
 }
 

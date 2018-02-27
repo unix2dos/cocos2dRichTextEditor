@@ -14,6 +14,7 @@
 using namespace std;
 
 CDataJournal::CDataJournal()
+:m_iJournalId(-1)
 {
     //临时数据
 //    vector<string> title = {
@@ -77,7 +78,6 @@ void CDataJournal::parseJournalsData(HttpResponseInfo rep)
             info.strContent = content["text"].asString();
         }
  
-        
         info.createTime = atoi(it["timestamp_create"].asString().c_str());
         info.isPublic = atoi(it["published"].asString().c_str());
         m_vecJournals.push_back(info);
@@ -221,4 +221,86 @@ const std::vector<Journal_Info>& CDataJournal::getJournalsEx()
 const std::vector<Comment_Info>& CDataJournal::getJournalComments()
 {
     return m_vecComments;
+}
+
+
+void CDataJournal::requestJournalsEx()
+{
+    CHttpManager::getInstance()->HttpGet(eHttpType::journal_recommend);
+}
+
+void CDataJournal::requestCommentList(int journalId)
+{
+    m_iJournalId = journalId;
+    std::string str = StringUtils::format("/jid=%d", m_iJournalId);
+    CHttpManager::getInstance()->HttpGet(eHttpType::comment_list, str);
+}
+
+void CDataJournal::requestAddComment(std::string text)
+{
+    if (text == "")
+    {
+        return;
+    }
+    Json::Value root;
+    root["journal_id"] = m_iJournalId;
+    Json::Value content;
+    content["text"] = text;
+    root["content"] = buildJson(content);
+    string strJson = buildJson(root);
+    CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
+}
+
+void CDataJournal::requestLikeJournal(int journalId)
+{
+    m_iJournalId = journalId;
+}
+
+
+void CDataJournal::requestAddJournal(const Journal_Info& info)
+{
+    Journal_Info info_bak = info;
+    if (info_bak.strContent == "")
+    {
+        return;
+    }
+    
+    if (info_bak.strTitle == "")
+    {
+        info_bak.strTitle = info_bak.strContent.substr(0, info_bak.strContent.find("<"));
+        if (info_bak.strTitle == "")
+        {
+            info_bak.strTitle = "Journal";
+        }
+    }
+    
+    Json::Value root;
+    root["tags"] = "none";
+    root["title"] = info_bak.strTitle;
+    
+    Json::Value content;
+    content["text"] = info_bak.strContent;
+    root["content"] = buildJson(content);
+    
+    
+    root["published"] = info_bak.isPublic ? "1" : "0";
+    string strJson = buildJson(root);
+    CHttpManager::getInstance()->HttpPost(eHttpType::journal_add, strJson);
+}
+
+
+void CDataJournal::requestUpdateJournal(const Journal_Info& info)
+{
+    Json::Value root;
+    root["id"] = info.strId;
+    root["tags"] = "none";
+    root["title"] = info.strTitle;
+    
+    Json::Value content;
+    content["text"] = info.strContent;
+    root["content"] = buildJson(content);
+    
+    root["published"] = info.isPublic ? "1" : "0";
+    string strJson = buildJson(root);
+    CHttpManager::getInstance()->HttpPost(eHttpType::journal_update, strJson);
 }

@@ -9,6 +9,8 @@
 #include "Define.h"
 #include "SceneManager.h"
 #include "CommonUtils.h"
+#include "DataManager.h"
+#include "DataUser.h"
 #include "LoginDefine.h"
 #include "LayerLogin.h"
 #include "LayerSignUp.h"
@@ -79,17 +81,11 @@ void CLayerSignUp::_initUI()
     btnSignUp->setPosition(Vec2(m_winSize.width/2, height));
     btnSignUp->addClickEventListener([=](Ref* r){
         
+        //发送请求
         auto strAlias = dynamic_cast<ui::EditBox*>(alias->getChildByName("EditBox"))->getText();
         auto strEmail = dynamic_cast<ui::EditBox*>(email->getChildByName("EditBox"))->getText();
         auto strPass = dynamic_cast<ui::EditBox*>(password->getChildByName("EditBox"))->getText();
-        
-        //发送请求
-        Json::Value root;
-        root["username"] = strEmail;
-        root["password"] = strPass;
-        root["alias"] = strAlias;
-        string strJson = buildJson(root);
-        CHttpManager::getInstance()->HttpPost(eHttpType::signup, strJson);
+        CDataManager::getInstance()->getDataUser()->requestSignUp(strEmail,strPass,strAlias);
 
     });
     this->addChild(btnSignUp);

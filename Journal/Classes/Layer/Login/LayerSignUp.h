@@ -10,6 +10,7 @@
 
 
 #include "HttpManager.h"
+
 class CLayerSignUp: public Layer
 , public CDataHttpDelegate
 {

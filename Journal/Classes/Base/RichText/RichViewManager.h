@@ -35,10 +35,6 @@ public:
 public:
     Journal_Info& getJournal();
     RichViewType getRichViewType();
-    
-    void requestAddJournal();
-    void requestUpdateJournal();
-    
 private:
     Journal_Info m_journalInfo;
     Journal_Info m_bakInfo;

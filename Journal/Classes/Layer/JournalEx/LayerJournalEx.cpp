@@ -21,7 +21,6 @@
 CLayerJournalEx::CLayerJournalEx()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
-,m_iJournalId(-1)
 {
     
 }
@@ -121,31 +120,16 @@ void CLayerJournalEx::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
         {
             if (!Director::getInstance()->getRunningScene()->getChildByName("CLayerComment"))
             {
-                auto layer = CLayerComment::create();
-                layer->setJournalId(m_iJournalId);
-                layer->setName("CLayerComment");
-                Director::getInstance()->getRunningScene()->addChild(layer);//直接加到最上面
+                auto layerComment = CLayerComment::create();
+                layerComment->setName("CLayerComment");
+                Director::getInstance()->getRunningScene()->addChild(layerComment);//直接加到最上面
             }
         }
     }
 }
 
-void CLayerJournalEx::requestCommentList()
-{
-    std::string str = StringUtils::format("/jid=%d", m_iJournalId);
-    CHttpManager::getInstance()->HttpGet(eHttpType::comment_list, str);
-}
-
-void CLayerJournalEx::requestLikeJournal()
-{
-}
 
 void CLayerJournalEx::updateUI()
 {
     m_pTableView->reloadData();
-}
-
-void CLayerJournalEx::setJournalId(int journalId)
-{
-    m_iJournalId = journalId;
 }

@@ -13,12 +13,13 @@
 #include "DataJournal.h"
 #include "DataUser.h"
 #include "JournalsCell.h"
+#include "LayerComment.h"
 #include "LayerMain.h"
 #include "LayerJournalClassify.h"
 #include "LayerJournals.h"
 
 
-#define JOURNAL_CELL_SIZE 3.5 //table显示的cell数量
+#define JOURNAL_CELL_SIZE 3.0 //table显示的cell数量
 
 
 CLayerJournals::CLayerJournals()
@@ -219,4 +220,21 @@ cocos2d::extension::TableViewCell* CLayerJournals::tableCellAtIndex(cocos2d::ext
 ssize_t CLayerJournals::numberOfCellsInTableView(cocos2d::extension::TableView *table)
 {
     return m_showJournals.size();
+}
+
+
+void CLayerJournals::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
+{
+    if (myType == eHttpType::comment_list)
+    {
+        if (rep.status == eHttpStatus::success)
+        {
+            if (!Director::getInstance()->getRunningScene()->getChildByName("CLayerComment"))
+            {
+                auto layerComment = CLayerComment::create();
+                layerComment->setName("CLayerComment");
+                Director::getInstance()->getRunningScene()->addChild(layerComment);//直接加到最上面
+            }
+        }
+    }
 }
