@@ -5,7 +5,8 @@
 //  Created by liuwei on 2018/2/3.
 //
 
-USING_NS_CC;
+
+#include "Journal.h"
 #include "SceneBase.h"
 #include "SceneMain.h"
 #include "SceneLogin.h"

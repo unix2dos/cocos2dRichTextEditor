@@ -191,7 +191,16 @@ void CLayerComment::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
         if (rep.status == eHttpStatus::success)
         {
             m_pTableView->reloadData();
-            m_pTableView->setContentOffset(Vec2(0,m_pTableView->maxContainerOffset().y));
+           
+            float totalHeight = 0;
+            for (int i = 0; i < numberOfCellsInTableView(m_pTableView); ++i)
+            {
+                totalHeight += tableCellSizeForIndex(m_pTableView, i).height;
+            }
+            if (totalHeight >= m_fTableViewHeight)
+            {
+                m_pTableView->setContentOffset(Vec2(0,m_pTableView->maxContainerOffset().y));
+            }
         }
     }
 }

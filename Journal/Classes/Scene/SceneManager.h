@@ -19,7 +19,7 @@ enum class eSceneType
 };
 
 class CSceneBase;
-class CSceneManager : public Ref
+class CSceneManager : public cocos2d::Ref
 {
 public:
     static CSceneManager* getInstance();

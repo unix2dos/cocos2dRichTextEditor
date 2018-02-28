@@ -22,7 +22,7 @@
 enum class eHttpType
 {
     none = 0,
-    getinfo,     //获取用户信息  CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);如果有cookie机制,就直接getinfo
+    getinfo,     //获取用户信息
     signup,      //注册,ok
     login,       //登录,ok
     journal_list,//日志信息, 废弃 CHttpManager::getInstance()->HttpGet(eHttpType::journal_list, "/public=-1");
@@ -52,7 +52,8 @@ static std::map<eHttpType, std::string> HTTPURLMAP
 };
 
 
-///NOTIFY_TYPE
+
+////////NOTIFY_TYPE////////
 enum class NOTIFY_TYPE
 {
     journal_data_change,//日志数据变化
@@ -62,6 +63,11 @@ enum class NOTIFY_TYPE
 ////////ZORDER////////
 #define MYDFE_ZORDER_MSG 1000   //弹窗消息
 
+
+
+
+////////XML SAVE////////
+#define DATA_SAVE_COOKIE "DATA_SAVE_COOKIE"
 
 
 #endif /* Define_h */

@@ -66,13 +66,16 @@ public:
     bool HttpGet(eHttpType myType, std::string data = "");
     bool HttpPost(eHttpType myType, std::string data);
     bool HttpSendRequest(HttpRequest::Type type, eHttpType myType, std::string data);
-    
+
 private:
     void _onHttpRequestCompleted(HttpClient *sender, HttpResponse *response);
     std::vector<std::string> _getCommonHeaders();
+    void _parseCookie(const std::vector<char>* headData);
+    std::string _getCookie();
 private:
     std::map<eHttpType, HttpResponseInfo> m_mapHttpStatus;
     std::set<CDataHttpDelegate*> m_setDataRegister;
+    std::mutex m_mutexCookie;
 };
 
 

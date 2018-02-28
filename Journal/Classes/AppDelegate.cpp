@@ -128,11 +128,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     path.push_back("res/main");
     FileUtils::getInstance()->setSearchPaths(path);
     
-    //跳到启动场景
-//    CSceneManager::jumpToScene(eSceneType::launch);//启动页面
-//    CSceneManager::jumpToScene(eSceneType::main);
-    CSceneManager::jumpToScene(eSceneType::login);
-    CRichViewManager::getInstance()->initRichView();
+
+    CSceneManager::jumpToScene(eSceneType::launch);//启动页面
+    CRichViewManager::getInstance()->initRichView();//richview
     return true;
 }
 

@@ -104,11 +104,6 @@ void CLayerLogin::_initUI()
     this->addChild(btnFindPassword);
     auto label3 = Label::createWithTTF("Find Password", MY_FONT_CHINESE, 35);
     btnFindPassword->setTitleLabel(label3);
-
-    if (MY_DEBUG)
-    {
-        CDataManager::getInstance()->getDataUser()->requestLogin("1@qq.com", "1");
-    }
 }
 
 

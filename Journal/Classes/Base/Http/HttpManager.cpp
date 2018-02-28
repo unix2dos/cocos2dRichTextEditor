@@ -102,7 +102,7 @@ bool CHttpManager::HttpSendRequest(HttpRequest::Type type, eHttpType myType, std
     {
         std::string strHead = "";
         for (auto&it : headers) {
-            strHead += it;
+            strHead += "\n" + it;
         }
         std::string strUrl = url.substr(strlen(SERVER_ADDRESS));
         log("--------------------------------\nrequest type= %s data= %s\nheader= %s\n--------------------------------\n", strUrl.c_str(), data.c_str(), strHead.c_str());
@@ -163,7 +163,8 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
         log("++++++++++++++++++++++++++++++++\nresponse type= %s code= %d data= %shead= %s\n++++++++++++++++++++++++++++++++\n", url.c_str(), (int)response->getResponseCode(), m_mapHttpStatus[myType].jsonRoot.toStyledString().c_str(), strHead.c_str());
     }
 
-    
+    //解析Cookie
+    _parseCookie(response->getResponseHeader());
     
     //数据解析,错误统一处理
     CDataManager::getInstance()->parseServeData(myType, m_mapHttpStatus[myType]);
@@ -195,5 +196,43 @@ std::vector<std::string> CHttpManager::_getCommonHeaders()
     std::vector<std::string> commonHeaders;
     commonHeaders.push_back("Content-Type: application/json; charset=utf-8");
     commonHeaders.push_back("Accept: application/json; charset=utf-8");
+    std::string cookie = _getCookie();
+    if (cookie != "")
+    {
+        cookie = "Cookie: " + cookie;
+        commonHeaders.push_back(cookie);
+    }
     return commonHeaders;
+}
+
+
+void CHttpManager::_parseCookie(const std::vector<char>* headData)
+{
+    std::lock_guard<std::mutex> lock(m_mutexCookie);
+    std::string strHead = "";
+    strHead.assign(headData->begin(), headData->end());
+
+    std::string strFind = "Set-Cookie: ";
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    strFind = "Set-Cookie:";
+#endif
+    auto pos1 = strHead.find(strFind);
+    auto pos2 = strHead.find("; Path=/");
+    if (pos1 == std::string::npos || pos2 == std::string::npos)
+    {
+        return;
+    }
+    
+    std::string strCookie = strHead.substr(pos1+strFind.length(), pos2 - pos1 - strFind.length());
+    UserDefault::getInstance()->setStringForKey(DATA_SAVE_COOKIE, strCookie);
+    log("\nparseCookie= %s\n\n", strCookie.c_str());
+}
+
+
+std::string CHttpManager::_getCookie()
+{
+    std::lock_guard<std::mutex> lock(m_mutexCookie);
+    
+    std::string strCookie = UserDefault::getInstance()->getStringForKey(DATA_SAVE_COOKIE, "");
+    return strCookie;
 }
