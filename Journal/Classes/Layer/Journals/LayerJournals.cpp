@@ -232,7 +232,7 @@ void CLayerJournals::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
             if (!Director::getInstance()->getRunningScene()->getChildByName("CLayerComment"))
             {
                 auto layerComment = CLayerComment::create();
-                layerComment->setCommentType(CommentType::self);
+                layerComment->setCommentType(CommentType::show_self);
                 layerComment->setName("CLayerComment");
                 Director::getInstance()->getRunningScene()->addChild(layerComment);//直接加到最上面
             }

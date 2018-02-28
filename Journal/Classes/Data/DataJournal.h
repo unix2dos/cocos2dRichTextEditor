@@ -68,6 +68,7 @@ public:
     
     void requestCommentList(int journalId);
     void requestAddComment(std::string text);
+    void requestReplyComment(int userId, std::string text);
     
     void requestLikeJournal(int journalId);
     

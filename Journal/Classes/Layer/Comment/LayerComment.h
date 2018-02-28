@@ -9,18 +9,22 @@
 #define LayerComment_hpp
 
 #define COMMENT_INPUT_HEIGHT   100 //评论框高度
+#define COMMENT_NAV_HEIGHT     80  //评论伪导航栏高度
 
 #define COMMENT_WIDTH_OFFSET   200 //评论条目宽度差值
-#define COMMENT_HEIGHT_MIN     160 //评论条目最小高度
-#define COMMENT_HEIGHT_PADDING 140 //评论条目高度落差
+
+#define COMMENT_HEIGHT_MIN     180 //评论条目最小高度
+#define COMMENT_HEIGHT_PADDING 150 //评论条目高度落差,加的延长
 
 #include "HttpManager.h"
 
 
 enum class CommentType
 {
-    self,
-    others
+    none,
+    show_self,
+    show_others,
+    reply,
 };
 
 class CLayerComment: public Layer
@@ -43,6 +47,8 @@ public:
 public:
     void setCommentType(CommentType type);
     virtual void onEnter() override;
+    
+    void replyComment(int idx);
 private:
     void _initUI();
 private:
@@ -51,6 +57,8 @@ private:
     cocos2d::extension::TableView* m_pTableView;
 private:
     CommentType m_type;
+    ui::EditBox* m_editBox;
+    int m_iCommentUserId;
 };
 
 #endif /* LayerComment_hpp */

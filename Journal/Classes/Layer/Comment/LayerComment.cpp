@@ -20,7 +20,9 @@
 CLayerComment::CLayerComment()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
-,m_type(CommentType::self)
+,m_type(CommentType::none)
+,m_editBox(nullptr)
+,m_iCommentUserId(-1)
 {
     
 }
@@ -61,24 +63,23 @@ void CLayerComment::_initUI()
     this->addChild(bg);
     
     //伪导航栏
-    auto diffY = 30;
     auto btnBack = Button::create("ui_back.png");
-    btnBack->setPosition(Vec2(30, m_fTableViewHeight-diffY));
+    btnBack->setPosition(Vec2(30, m_fTableViewHeight-COMMENT_NAV_HEIGHT/2));
     this->addChild(btnBack);
     btnBack->addClickEventListener([&](Ref* r){
         this->removeFromParent();
     });
     auto label = Label::createWithTTF("COMMENT", MY_FONT_CHINESE, 30);
-    label->setPosition(Vec2(m_winSize.width/2, m_fTableViewHeight-diffY));
+    label->setPosition(Vec2(m_winSize.width/2, m_fTableViewHeight-COMMENT_NAV_HEIGHT/2));
     label->setTextColor(Color4B(0,0,0,255));
     this->addChild(label);
     
     //减去伪导航栏
-    m_fTableViewHeight -= diffY*2;
+    m_fTableViewHeight -= COMMENT_NAV_HEIGHT;
     
     //减去评论栏
     int inputHeight = 0;
-    if (m_type != CommentType::self)
+//    if (m_type != CommentType::self)
     {
         inputHeight = COMMENT_INPUT_HEIGHT;
     }
@@ -95,7 +96,7 @@ void CLayerComment::_initUI()
     
     
     //评论框
-    if (m_type != CommentType::self)
+//    if (m_type != CommentType::self)
     {
         auto layerColor = LayerColor::create(Color4B(240, 240, 240, 255), m_winSize.width, inputHeight);
         this->addChild(layerColor);
@@ -105,13 +106,13 @@ void CLayerComment::_initUI()
         node->addChild(pBack);
         
         auto editBoxSize = Size(480, 70);
-        ui::EditBox* r = ui::EditBox::create(editBoxSize, ui::Scale9Sprite::create());
-        r->setPlaceHolder("add comment");
-        r->setPlaceholderFontSize(40);
-        r->setPlaceholderFontColor(Color3B::GRAY);
-        r->setFontColor(Color3B::BLACK);
-        r->setFontSize(40);
-        node->addChild(r);
+        m_editBox = ui::EditBox::create(editBoxSize, ui::Scale9Sprite::create());
+        m_editBox->setPlaceHolder("add comment");
+        m_editBox->setPlaceholderFontSize(40);
+        m_editBox->setPlaceholderFontColor(Color3B::GRAY);
+        m_editBox->setFontColor(Color3B::BLACK);
+        m_editBox->setFontSize(40);
+        node->addChild(m_editBox);
         node->setPosition(Vec2(layerColor->getContentSize().width/2, layerColor->getContentSize().height/2));
         layerColor->addChild(node);
         
@@ -119,14 +120,32 @@ void CLayerComment::_initUI()
         btnSend->addClickEventListener([=](Ref* ref){
             //请求添加评论
             auto dataJournal = CDataManager::getInstance()->getDataJournal();
-            dataJournal->requestAddComment(r->getText());
+            if (m_type == CommentType::show_self || m_type == CommentType::show_others)
+            {
+                dataJournal->requestAddComment(m_editBox->getText());
+            }
+            else if (m_type == CommentType::reply)
+            {
+                dataJournal->requestReplyComment(m_iCommentUserId, m_editBox->getText());
+            }
+       
             //置空
-            r->setText("");
+            m_editBox->setText("");
         });
         btnSend->setTitleText("SEND");
         btnSend->setPosition(Vec2(layerColor->getContentSize().width*.9, layerColor->getContentSize().height/2));
         layerColor->addChild(btnSend);
     }
+}
+
+void CLayerComment::replyComment(int idx)
+{
+    m_type = CommentType::reply;
+    auto data = CDataManager::getInstance()->getDataJournal()->getJournalComments()[idx];
+    std::string str = "@" + data.strUserId + " : ";
+    m_editBox->setText(str.c_str());
+    
+    m_iCommentUserId = atoi(data.strUserId.c_str());
 }
 
 
@@ -171,6 +190,7 @@ cocos2d::extension::TableViewCell* CLayerComment::tableCellAtIndex(cocos2d::exte
     if (!cell) {
         cell = CCommentCell::create();
     }
+    cell->setUserObject(this);
     cell->setContentSize(tableCellSizeForIndex(table,idx));
     dynamic_cast<CCommentCell*>(cell)->updateCell(static_cast<int>(idx));
     return cell;

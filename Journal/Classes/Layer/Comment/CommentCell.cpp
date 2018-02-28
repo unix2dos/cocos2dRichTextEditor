@@ -87,29 +87,22 @@ void CCommentCell::updateCell(int idx)
     labelContent->setOverflow(Label::Overflow::RESIZE_HEIGHT);
     this->addChild(labelContent);
 
-    //    auto a = labelContent->getBoundingBox();
-    //    auto b = labelContent->getContentSize();
-    //    log("width %f height %f\n", labelContent->getWidth(), labelContent->getHeight());
-    //    log("size %f %f\n", labelContent->getDimensions().width, labelContent->getDimensions().height);
-    //    log("a %f %f\n", a.size.width, a.size.height);
-    //    log("b %f %f\n", b.width, b.height);
-    //    log("b %d %f \n",idx, b.height);
     
+    auto labelReply = Label::createWithTTF("reply", MY_FONT_CHINESE, 25);
+    labelReply->setPosition(Vec2(130, 25));
+    labelReply->setAnchorPoint(Vec2(0, 1));
+    labelReply->setTextColor(Color4B(144,144,144,255));
+    this->addChild(labelReply);
+    auto touchListener = EventListenerTouchOneByOne::create();
+    touchListener->setSwallowTouches(true);
+    touchListener->onTouchBegan = [=](Touch* touch,Event* event) {
+        if (labelReply->getBoundingBox().containsPoint(labelReply->getParent()->convertTouchToNodeSpace(touch)))
+        {
+            auto layerComment = dynamic_cast<CLayerComment*>(this->getUserObject());
+            layerComment->replyComment(idx);
+        }
+        return false;
+    };
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, labelReply);
 
-    
-//
-//
-//    std::string email = StringUtils::format("-------------");
-//    auto labelEmail = Label::createWithTTF(email, MY_FONT_CHINESE, 30);
-//    labelEmail->setPosition(Vec2(getContentSize().width*0.2, getContentSize().height/2 - 25));
-//    labelEmail->setTextColor(Color4B(114,114,114,255));
-//    labelEmail->setAnchorPoint(Vec2(0, 0.5));
-//    this->addChild(labelEmail);
-//
-//    auto btnRight = Button::create("btn_right.png");
-//    btnRight->setPosition(Vec2(getContentSize().width*0.9, getContentSize().height/2));
-//    btnRight->addClickEventListener([&](Ref* r){
-//
-//    });
-//    this->addChild(btnRight);
 }

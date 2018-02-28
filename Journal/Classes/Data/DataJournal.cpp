@@ -251,6 +251,22 @@ void CDataJournal::requestAddComment(std::string text)
     CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
 }
 
+void CDataJournal::requestReplyComment(int userId, std::string text)
+{
+    if (text == "")
+    {
+        return;
+    }
+    Json::Value root;
+    root["journal_id"] = m_iJournalId;
+    Json::Value content;
+    content["text"] = text;
+    root["content"] = buildJson(content);
+    root["target_user_id"] = userId;
+    string strJson = buildJson(root);
+    CHttpManager::getInstance()->HttpPost(eHttpType::comment_reply, strJson);
+}
+
 void CDataJournal::requestLikeJournal(int journalId)
 {
     m_iJournalId = journalId;
