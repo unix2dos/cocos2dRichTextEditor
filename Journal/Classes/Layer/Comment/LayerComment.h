@@ -58,7 +58,7 @@ private:
 private:
     CommentType m_type;
     ui::EditBox* m_editBox;
-    int m_iCommentUserId;
+    int m_iCommentId;
 };
 
 #endif /* LayerComment_hpp */

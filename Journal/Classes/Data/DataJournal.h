@@ -32,10 +32,11 @@ struct Journal_Info
 
 struct Comment_Info
 {
-    std::string strId;
-    std::string strContent;
-    std::string strUserId;
-    std::string strJournalId;
+    std::string strId;//评论id
+    std::string strContent;//评论内容
+    std::string strUserId;//评论者userId
+    std::string strTargetId;//回复的哪一条评论,如果有就是回复评论,没有就是回复日志
+    std::string strJournalId;//日志id,可以用来校验
     int createTime;//创建时间
     int modifyTime;//修改时间
 };

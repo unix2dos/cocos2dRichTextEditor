@@ -22,7 +22,7 @@ CLayerComment::CLayerComment()
 ,m_fTableViewHeight(0.0f)
 ,m_type(CommentType::none)
 ,m_editBox(nullptr)
-,m_iCommentUserId(-1)
+,m_iCommentId(-1)
 {
     
 }
@@ -126,7 +126,7 @@ void CLayerComment::_initUI()
             }
             else if (m_type == CommentType::reply)
             {
-                dataJournal->requestReplyComment(m_iCommentUserId, m_editBox->getText());
+                dataJournal->requestReplyComment(m_iCommentId, m_editBox->getText());
             }
        
             //置空
@@ -145,7 +145,7 @@ void CLayerComment::replyComment(int idx)
     std::string str = "@" + data.strUserId + " : ";
     m_editBox->setText(str.c_str());
     
-    m_iCommentUserId = atoi(data.strUserId.c_str());
+    m_iCommentId = atoi(data.strId.c_str());
 }
 
 

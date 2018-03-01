@@ -173,6 +173,7 @@ void CDataJournal::parseCommentsList(HttpResponseInfo rep)
         Comment_Info info;
         info.strId = it["id"].asString();
         info.strUserId = it["user_id"].asString();
+        info.strTargetId = it["target_comment_id"].asString();
         info.strJournalId = it["journal_id"].asString();
         
         auto content = parseJson(it["content"].asString());
@@ -194,6 +195,7 @@ void CDataJournal::parseCommentAdd(HttpResponseInfo rep)
     Comment_Info info;
     info.strId = it["id"].asString();
     info.strUserId = it["user_id"].asString();
+    info.strTargetId = it["target_comment_id"].asString();
     info.strJournalId = it["journal_id"].asString();
     
     auto content = parseJson(it["content"].asString());
@@ -251,7 +253,7 @@ void CDataJournal::requestAddComment(std::string text)
     CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
 }
 
-void CDataJournal::requestReplyComment(int userId, std::string text)
+void CDataJournal::requestReplyComment(int commentId, std::string text)
 {
     if (text == "")
     {
@@ -262,7 +264,7 @@ void CDataJournal::requestReplyComment(int userId, std::string text)
     Json::Value content;
     content["text"] = text;
     root["content"] = buildJson(content);
-    root["target_user_id"] = userId;
+    root["target_comment_id"] = commentId;
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::comment_reply, strJson);
 }
