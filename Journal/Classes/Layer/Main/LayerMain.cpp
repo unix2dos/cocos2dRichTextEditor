@@ -67,9 +67,6 @@ void CLayerMain::_initUI()
     
     //显示默认
     this->setMainStatus(m_status);
-
-//    CHttpManager::getInstance()->HttpGet(eHttpType::getinfo);//TODO:111
-
 }
 
 
@@ -137,6 +134,13 @@ void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
             _showJournalEx();
         }
     }
+    else if (myType == eHttpType::archive_get)
+    {
+        if (rep.status == eHttpStatus::success && m_status == MainStatus::Archive)
+        {
+            _showArchive();
+        }
+    }
 }
 
 
@@ -160,13 +164,28 @@ void CLayerMain::setMainStatus(MainStatus status)
     //ui
     switch (status) {
         case MainStatus::Journals:
+        {
+            //不用请求, getinfo就获得了
             _showJournals();
+        }
             break;
         case MainStatus::Archive:
-            _showArchive();
+        {
+            //只需要第一次请求
+            if (m_mapLayers.find("Archive")  == m_mapLayers.end())
+            {
+                auto dataJournal = CDataManager::getInstance()->getDataJournal();
+                dataJournal->requestArchive();
+            }
+            else
+            {
+                _showArchive();
+            }
+        }
             break;
         case MainStatus::JournalEx:
         {
+            //每次都请求
             auto dataJournal = CDataManager::getInstance()->getDataJournal();
             dataJournal->requestJournalsEx();
         }
@@ -216,6 +235,8 @@ void CLayerMain::_showArchive()
     }
     else
     {
+        auto layer = dynamic_cast<CLayerArchive*>(it->second);
+        layer->updateUI();
         it->second->setVisible(true);
     }
 }

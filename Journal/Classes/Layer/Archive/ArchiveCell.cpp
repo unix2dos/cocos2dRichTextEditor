@@ -7,6 +7,9 @@
 
 #include "Journal.h"
 #include "Define.h"
+#include "CommonUtils.h"
+#include "DataManager.h"
+#include "DataJournal.h"
 #include "ArchiveCell.h"
 
 CArchiveCell::CArchiveCell()
@@ -50,38 +53,47 @@ void CArchiveCell::updateCell(int idx)
     this->removeAllChildren();
     
     
-    if (idx < 19) //TODO: data size
+    //    if (idx < info.size()-1)
     {
         auto draw = DrawNode::create();
-        draw->drawLine(Point(getContentSize().width*0.2, 0), Point(getContentSize().width, 0), Color4F::GRAY);
+        draw->drawLine(Point(0, 0), Point(getContentSize().width, 0), Color4F::GRAY);
         this->addChild(draw);
     }
     
-    auto avater = Sprite::create("avatar_default.png");
-    avater->setPosition(Vec2(getContentSize().width*0.1, getContentSize().height/2));
-    avater->setScale(0.5f);
-    this->addChild(avater);
+    auto data = CDataManager::getInstance()->getDataJournal()->getArchives()[idx];
     
     
-    std::string name = StringUtils::format("%d",idx);
-    auto labelName = Label::createWithTTF(name, MY_FONT_CHINESE, 30);
-    labelName->setPosition(Vec2(getContentSize().width*0.2, getContentSize().height/2 + 25));
-    labelName->setTextColor(Color4B(0,0,0,255));
-    labelName->setAnchorPoint(Vec2(0, 0.5));
-    this->addChild(labelName);
+    auto labelTime = Label::createWithTTF(getTimeString(data.createTime), MY_FONT_CHINESE, 20);
+    labelTime->setPosition(Vec2(30, getContentSize().height* .7 + 40));
+    labelTime->setTextColor(Color4B(114,114,114,255));
+    labelTime->setAnchorPoint(Vec2(0, 0.5));
+    this->addChild(labelTime);
     
     
-    std::string email = StringUtils::format("-------------");
-    auto labelEmail = Label::createWithTTF(email, MY_FONT_CHINESE, 30);
-    labelEmail->setPosition(Vec2(getContentSize().width*0.2, getContentSize().height/2 - 25));
-    labelEmail->setTextColor(Color4B(114,114,114,255));
-    labelEmail->setAnchorPoint(Vec2(0, 0.5));
-    this->addChild(labelEmail);
+    auto labelTitle = Label::createWithTTF(data.strTitle, MY_FONT_CHINESE, 30);
+    labelTitle->setPosition(Vec2(30, getContentSize().height* .7));
+    labelTitle->setTextColor(Color4B(0,0,0,255));
+    labelTitle->setAnchorPoint(Vec2(0, 0.5));
+    labelTitle->enableBold();
+    this->addChild(labelTitle);
     
-    auto btnRight = Button::create("btn_right.png");
-    btnRight->setPosition(Vec2(getContentSize().width*0.9, getContentSize().height/2));
-    btnRight->addClickEventListener([&](Ref* r){
-        
+    std::string strContext = removeHtmlTags(data.strContent);
+    auto labelContext = Label::createWithTTF(strContext, MY_FONT_CHINESE, 20);
+    labelContext->setPosition(Vec2(30, getContentSize().height* .7 - 40));
+    labelContext->setTextColor(Color4B(114,114,114,255));
+    labelContext->setAnchorPoint(Vec2(0, 1));
+    labelContext->setLineSpacing(10);
+    labelContext->setDimensions(getContentSize().width* .8, getContentSize().height* .35);
+    this->addChild(labelContext);
+    
+    
+    auto btnComment = Button::create("btn_comment.png");
+    btnComment->setPosition(Vec2(60, 30));
+    btnComment->setScale(.8f);
+    this->addChild(btnComment);
+    btnComment->addClickEventListener([=](Ref* r){
+        //请求留言列表
+        auto dataJournal = CDataManager::getInstance()->getDataJournal();
+        dataJournal->requestCommentList(data.strId.c_str());
     });
-    this->addChild(btnRight);
 }

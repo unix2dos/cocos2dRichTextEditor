@@ -96,7 +96,7 @@ void CJournalsCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     btnComment->addClickEventListener([=](Ref* r){
         //请求留言列表
         auto dataJournal = CDataManager::getInstance()->getDataJournal();
-        dataJournal->requestCommentList(atoi(data.strId.c_str()));
+        dataJournal->requestCommentList(data.strId.c_str());
     });
 }
 

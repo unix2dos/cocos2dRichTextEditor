@@ -94,10 +94,10 @@ void CJournalExCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     auto btnLike = Button::create("btn_like1.png");
     btnLike->setPosition(Vec2(70, 30));
     this->addChild(btnLike);
-    btnLike->addClickEventListener([&](Ref* r){
+    btnLike->addClickEventListener([=](Ref* r){
         //请求喜欢日志
         auto dataJournal = CDataManager::getInstance()->getDataJournal();
-        dataJournal->requestLikeJournal(atoi(data.strId.c_str()));
+        dataJournal->requestLikeJournal(data.strId);
     });
     
     
@@ -107,6 +107,6 @@ void CJournalExCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     btnComment->addClickEventListener([=](Ref* r){
         //请求留言列表
         auto dataJournal = CDataManager::getInstance()->getDataJournal();
-        dataJournal->requestCommentList(atoi(data.strId.c_str()));
+        dataJournal->requestCommentList(data.strId);
     });
 }

@@ -84,7 +84,11 @@ void CDataManager::parseServeData(eHttpType myType, HttpResponseInfo rep)
             m_pDataJournal->parseCommentsList(rep);
             break;
         case eHttpType::comment_add:
+        case eHttpType::comment_reply:
             m_pDataJournal->parseCommentAdd(rep);
+            break;
+        case eHttpType::archive_get:
+            m_pDataJournal->parseArchives(rep);
             break;
         default:
             break;

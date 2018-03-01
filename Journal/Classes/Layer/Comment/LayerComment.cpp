@@ -15,14 +15,14 @@
 #include "LayerComment.h"
 
 
-
-
 CLayerComment::CLayerComment()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
 ,m_type(CommentType::none)
 ,m_editBox(nullptr)
-,m_iCommentId(-1)
+,m_strReplyUserId("")
+,m_strReplyCommentId("")
+,m_strPlaceholder("")
 {
     
 }
@@ -79,12 +79,12 @@ void CLayerComment::_initUI()
     
     //减去评论栏
     int inputHeight = 0;
-//    if (m_type != CommentType::self)
+    //    if (m_type != CommentType::self)
     {
         inputHeight = COMMENT_INPUT_HEIGHT;
     }
     m_fTableViewHeight -= inputHeight;
-
+    
     //tableview
     m_pTableView = TableView::create(this, Size(m_winSize.width, m_fTableViewHeight));
     m_pTableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
@@ -96,56 +96,79 @@ void CLayerComment::_initUI()
     
     
     //评论框
-//    if (m_type != CommentType::self)
+    auto layerColor = LayerColor::create(Color4B(240, 240, 240, 255), m_winSize.width, inputHeight);
+    this->addChild(layerColor);
+    
+    auto node = Node::create();
+    auto pBack = Sprite::create("login_input.png");
+    node->addChild(pBack);
+    
+    auto editBoxSize = Size(480, 70);
+    m_editBox = ui::EditBox::create(editBoxSize, ui::Scale9Sprite::create());
+    m_editBox->setPlaceHolder("add comment");
+    m_editBox->setPlaceholderFontSize(40);
+    m_editBox->setPlaceholderFontColor(Color3B::GRAY);
+    m_editBox->setFontColor(Color3B::BLACK);
+    m_editBox->setFontSize(40);
+    node->addChild(m_editBox);
+    node->setPosition(Vec2(layerColor->getContentSize().width/2, layerColor->getContentSize().height/2));
+    layerColor->addChild(node);
+    
+    auto btnSend = Button::create("btn_like1.png");//TODO: 用个其他图片
+    btnSend->addClickEventListener([=](Ref* ref){
+        _addComment();
+    });
+    btnSend->setTitleText("SEND");
+    btnSend->setPosition(Vec2(layerColor->getContentSize().width*.9, layerColor->getContentSize().height/2));
+    layerColor->addChild(btnSend);
+    
+    
+    setCommentType(CommentType::add);
+}
+
+
+//请求添加评论
+void CLayerComment::_addComment()
+{
+    auto dataJournal = CDataManager::getInstance()->getDataJournal();
+    if (m_type == CommentType::add)
     {
-        auto layerColor = LayerColor::create(Color4B(240, 240, 240, 255), m_winSize.width, inputHeight);
-        this->addChild(layerColor);
-        
-        auto node = Node::create();
-        auto pBack = Sprite::create("login_input.png");
-        node->addChild(pBack);
-        
-        auto editBoxSize = Size(480, 70);
-        m_editBox = ui::EditBox::create(editBoxSize, ui::Scale9Sprite::create());
-        m_editBox->setPlaceHolder("add comment");
-        m_editBox->setPlaceholderFontSize(40);
-        m_editBox->setPlaceholderFontColor(Color3B::GRAY);
-        m_editBox->setFontColor(Color3B::BLACK);
-        m_editBox->setFontSize(40);
-        node->addChild(m_editBox);
-        node->setPosition(Vec2(layerColor->getContentSize().width/2, layerColor->getContentSize().height/2));
-        layerColor->addChild(node);
-        
-        auto btnSend = Button::create("btn_like1.png");//TODO: 用个其他图片
-        btnSend->addClickEventListener([=](Ref* ref){
-            //请求添加评论
-            auto dataJournal = CDataManager::getInstance()->getDataJournal();
-            if (m_type == CommentType::show_self || m_type == CommentType::show_others)
-            {
-                dataJournal->requestAddComment(m_editBox->getText());
-            }
-            else if (m_type == CommentType::reply)
-            {
-                dataJournal->requestReplyComment(m_iCommentId, m_editBox->getText());
-            }
-       
-            //置空
-            m_editBox->setText("");
-        });
-        btnSend->setTitleText("SEND");
-        btnSend->setPosition(Vec2(layerColor->getContentSize().width*.9, layerColor->getContentSize().height/2));
-        layerColor->addChild(btnSend);
+        dataJournal->requestAddComment(m_editBox->getText());
     }
+    else if (m_type == CommentType::reply)
+    {
+        std::string text = m_editBox->getText();
+        if (text.size() > m_strPlaceholder.size() && text.substr(0,m_strPlaceholder.size()) == m_strPlaceholder)
+        {
+            text = text.substr(m_strPlaceholder.size());
+        }
+        dataJournal->requestReplyComment(m_strReplyUserId, m_strReplyCommentId, text);
+    }
+    //置空
+    m_editBox->setText("");
+    
+    //重置状态
+    setCommentType(CommentType::add);
 }
 
 void CLayerComment::replyComment(int idx)
 {
-    m_type = CommentType::reply;
-    auto data = CDataManager::getInstance()->getDataJournal()->getJournalComments()[idx];
-    std::string str = "@" + data.strUserId + " : ";
-    m_editBox->setText(str.c_str());
+    setCommentType(CommentType::reply);
     
-    m_iCommentId = atoi(data.strId.c_str());
+    auto data = CDataManager::getInstance()->getDataJournal()->getJournalComments()[idx];
+    m_strPlaceholder = "@" + data.strUserAlias + ": ";
+    m_editBox->setText(m_strPlaceholder.c_str());
+    
+    m_strReplyUserId = data.strUserId;
+    m_strReplyCommentId = data.strId;
+}
+
+
+void CLayerComment::likeComment(int idx)
+{
+    auto dataJorunal = CDataManager::getInstance()->getDataJournal();
+    auto data = dataJorunal->getJournalComments()[idx];
+    dataJorunal->requestLikeComment(data.strId);
 }
 
 
@@ -172,15 +195,14 @@ cocos2d::Size CLayerComment::tableCellSizeForIndex(cocos2d::extension::TableView
     auto labelContent = Label::createWithTTF(data.strContent, MY_FONT_CHINESE, 30);
     labelContent->setDimensions(m_winSize.width-COMMENT_WIDTH_OFFSET, 0);
     auto height = labelContent->getContentSize().height;
-//    log("height %ld %f",  idx, height);
+    //    log("height %ld %f",  idx, height);
     if (height < COMMENT_HEIGHT_MIN)
     {
         height = COMMENT_HEIGHT_MIN;//不足最小高度, 因为有头像
     }
-    else
-    {
-        height += COMMENT_HEIGHT_PADDING;//加延长,还要加用户名高度
-    }
+
+    height += COMMENT_HEIGHT_PADDING;//加延长,还要加用户名高度
+
     return Size(m_winSize.width, height);
 }
 
@@ -206,12 +228,12 @@ ssize_t CLayerComment::numberOfCellsInTableView(cocos2d::extension::TableView *t
 
 void CLayerComment::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
 {
-    if (myType == eHttpType::comment_add)
+    if (myType == eHttpType::comment_add || myType == eHttpType::comment_reply)
     {
         if (rep.status == eHttpStatus::success)
         {
             m_pTableView->reloadData();
-           
+            
             float totalHeight = 0;
             for (int i = 0; i < numberOfCellsInTableView(m_pTableView); ++i)
             {

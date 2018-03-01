@@ -34,6 +34,9 @@ enum class eHttpType
     comment_reply,//留言回复
     comment_update,//留言更新
     comment_delete,//留言删除
+    like_add,//喜欢添加
+    like_delete,//喜欢删除
+    archive_get,//喜欢的
 };
 static std::map<eHttpType, std::string> HTTPURLMAP
 {
@@ -49,6 +52,9 @@ static std::map<eHttpType, std::string> HTTPURLMAP
     {eHttpType::comment_reply,      SERVER_ADDRESS"/comment/addreply"},
     {eHttpType::comment_update,     SERVER_ADDRESS"/comment/update"},
     {eHttpType::comment_delete,     SERVER_ADDRESS"/comment/delete"},
+    {eHttpType::like_add,           SERVER_ADDRESS"/like/add"},
+    {eHttpType::like_delete,        SERVER_ADDRESS"/like/delete"},
+    {eHttpType::archive_get,        SERVER_ADDRESS"/archive/get"},
 };
 
 

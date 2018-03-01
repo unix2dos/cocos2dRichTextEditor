@@ -71,14 +71,18 @@ void CCommentCell::updateCell(int idx)
     this->addChild(avater);
 
     auto data = CDataManager::getInstance()->getDataJournal()->getJournalComments()[idx];
-    auto labelName = Label::createWithTTF(data.strUserId, MY_FONT_CHINESE, 30);
+    
+    auto labelName = Label::createWithTTF(data.strUserAlias, MY_FONT_CHINESE, 30);
     labelName->setPosition(Vec2(130, getContentSize().height - 40));
     labelName->setTextColor(Color4B(0,0,0,255));
     labelName->setAnchorPoint(Vec2(0, 1));
     labelName->enableBold();
     this->addChild(labelName);
     
-    
+    if (data.strReplyCommentId != "None")
+    {
+        data.strContent = "@" + data.srtReplyUserAlias + ": " + data.strContent;
+    }
     auto labelContent = Label::createWithTTF(data.strContent, MY_FONT_CHINESE, 30);
     labelContent->setPosition(Vec2(130, getContentSize().height - 90));
     labelContent->setTextColor(Color4B(0,0,0,255));
@@ -88,19 +92,34 @@ void CCommentCell::updateCell(int idx)
     this->addChild(labelContent);
 
     
+    auto labelLike = Label::createWithTTF("like", MY_FONT_CHINESE, 25);
+    labelLike->setPosition(Vec2(130, 35));
+    labelLike->setAnchorPoint(Vec2(0, 1));
+    labelLike->setTextColor(Color4B(144,144,144,255));
+    this->addChild(labelLike);
+    
+    
     auto labelReply = Label::createWithTTF("reply", MY_FONT_CHINESE, 25);
-    labelReply->setPosition(Vec2(130, 25));
+    labelReply->setPosition(Vec2(230, 35));
     labelReply->setAnchorPoint(Vec2(0, 1));
     labelReply->setTextColor(Color4B(144,144,144,255));
     this->addChild(labelReply);
+    
+    
+    auto Comment = dynamic_cast<CLayerComment*>(this->getUserObject());
     auto touchListener = EventListenerTouchOneByOne::create();
     touchListener->setSwallowTouches(true);
     touchListener->onTouchBegan = [=](Touch* touch,Event* event) {
+        
         if (labelReply->getBoundingBox().containsPoint(labelReply->getParent()->convertTouchToNodeSpace(touch)))
         {
-            auto layerComment = dynamic_cast<CLayerComment*>(this->getUserObject());
-            layerComment->replyComment(idx);
+            Comment->replyComment(idx);
         }
+        else if (labelLike->getBoundingBox().containsPoint(labelLike->getParent()->convertTouchToNodeSpace(touch)))
+        {
+            Comment->likeComment(idx);
+        }
+        
         return false;
     };
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, labelReply);

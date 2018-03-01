@@ -11,6 +11,7 @@
 class CLayerArchive: public Layer
 , public cocos2d::extension::TableViewDataSource
 , public cocos2d::extension::TableViewDelegate
+, public CDataHttpDelegate
 {
 public:
     CLayerArchive();
@@ -23,6 +24,9 @@ public:
     virtual cocos2d::Size tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)override;
     virtual cocos2d::extension::TableViewCell* tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)override;
     virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
+    virtual void endWithHttpData(eHttpType myType, HttpResponseInfo rep) override;
+public:
+    void updateUI();
 private:
     void _initUI();
 private:

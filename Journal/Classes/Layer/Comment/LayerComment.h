@@ -13,8 +13,8 @@
 
 #define COMMENT_WIDTH_OFFSET   200 //评论条目宽度差值
 
-#define COMMENT_HEIGHT_MIN     180 //评论条目最小高度
-#define COMMENT_HEIGHT_PADDING 150 //评论条目高度落差,加的延长
+#define COMMENT_HEIGHT_MIN     50  //评论条目最小高度
+#define COMMENT_HEIGHT_PADDING 160 //评论条目加的延长
 
 #include "HttpManager.h"
 
@@ -22,8 +22,7 @@
 enum class CommentType
 {
     none,
-    show_self,
-    show_others,
+    add,
     reply,
 };
 
@@ -44,13 +43,14 @@ public:
     virtual cocos2d::extension::TableViewCell* tableCellAtIndex(cocos2d::extension::TableView *table, ssize_t idx)override;
     virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
     virtual void endWithHttpData(eHttpType myType, HttpResponseInfo rep) override;
+    virtual void onEnter() override;
 public:
     void setCommentType(CommentType type);
-    virtual void onEnter() override;
-    
     void replyComment(int idx);
+    void likeComment(int idx);
 private:
     void _initUI();
+    void _addComment();
 private:
     Size m_winSize;
     float m_fTableViewHeight;
@@ -58,7 +58,9 @@ private:
 private:
     CommentType m_type;
     ui::EditBox* m_editBox;
-    int m_iCommentId;
+    std::string m_strReplyUserId;
+    std::string m_strReplyCommentId;//存下来现在回复的id,因为即将会发送请求
+    std::string m_strPlaceholder;
 };
 
 #endif /* LayerComment_hpp */

@@ -17,6 +17,7 @@ struct Journal_Info
     int modifyTime;//修改时间
     int lickCount;//点赞数量
     bool isPublic;//是否公开
+    bool isLike;//我是否点赞
     
     Journal_Info()
     {
@@ -27,6 +28,7 @@ struct Journal_Info
         modifyTime = 0;
         lickCount = 0;
         isPublic = true;
+        isLike = false;
     }
 };
 
@@ -34,9 +36,15 @@ struct Comment_Info
 {
     std::string strId;//评论id
     std::string strContent;//评论内容
-    std::string strUserId;//评论者userId
-    std::string strTargetId;//回复的哪一条评论,如果有就是回复评论,没有就是回复日志
     std::string strJournalId;//日志id,可以用来校验
+    
+    std::string strUserId;//评论者userId
+    std::string strUserAlias;//评论者alias
+    
+    std::string strReplyCommentId;//如果有说明是回复的评论
+    std::string strReplyUserId;//回复的用户id
+    std::string srtReplyUserAlias;//回复的用户alias
+   
     int createTime;//创建时间
     int modifyTime;//修改时间
 };
@@ -49,36 +57,47 @@ public:
     ~CDataJournal();
     
 public:
+    const std::vector<Journal_Info>& getJournals();
+    const std::vector<Journal_Info>& getArchives();
+    const std::vector<Journal_Info>& getJournalsEx();
+    const std::vector<Comment_Info>& getJournalComments();
+    
+public:
     void parseJournalsData(HttpResponseInfo rep);
     void parseAddJournal(HttpResponseInfo rep);
     void parseUpdateJournal(HttpResponseInfo rep);
     
+    void parseArchives(HttpResponseInfo rep);
     void parseJournalsEx(HttpResponseInfo rep);
+    
     void parseCommentsList(HttpResponseInfo rep);
     void parseCommentAdd(HttpResponseInfo rep);
-    
-    const std::vector<Journal_Info>& getJournals();
-    const std::vector<Journal_Info>& getJournalsEx();
-    const std::vector<Comment_Info>& getJournalComments();
     
 public:
     void requestAddJournal(const Journal_Info& info);
     void requestUpdateJournal(const Journal_Info& info);
     
+    void requestArchive();
     void requestJournalsEx();
     
-    void requestCommentList(int journalId);
+    void requestCommentList(std::string journalId);
     void requestAddComment(std::string text);
-    void requestReplyComment(int userId, std::string text);
+    void requestReplyComment(std::string userId, std::string commentId, std::string text);
     
-    void requestLikeJournal(int journalId);
+    void requestLikeJournal(std::string journalId);
+    void requestLikeComment(std::string commentId);
     
 private:
     std::vector<Journal_Info> m_vecJournals;//只有add,update时更新, 用的时候自己排序
-    std::vector<Journal_Info> m_vecJournalsEx;//推荐消息, 不排序
+    
+    std::vector<Journal_Info> m_vecArchives; //archive, 暂不排序
+    
+    std::vector<Journal_Info> m_vecJournalsEx;//推荐消息, 暂不排序
+    
     std::vector<Comment_Info> m_vecComments;//只是一条日志的所有评论,用的时候自己排序
+
 private:
-    int m_iJournalId;
+    std::string m_strJournalId;//存下日志id,因为进去评论了,以后会用到
 };
 
 #endif /* DataJournal_hpp */

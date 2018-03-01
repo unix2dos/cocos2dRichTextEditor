@@ -6,11 +6,14 @@
 //
 
 #include "Journal.h"
+#include "Define.h"
 #include "LayerMain.h"
 #include "ArchiveCell.h"
+#include "DataManager.h"
+#include "DataJournal.h"
 #include "LayerArchive.h"
 
-#define JOURNALEX_CELL_SIZE 11 //table显示的cell数量
+#define JOURNALEX_CELL_SIZE 5 //table显示的cell数量
 
 
 CLayerArchive::CLayerArchive()
@@ -93,5 +96,23 @@ cocos2d::extension::TableViewCell* CLayerArchive::tableCellAtIndex(cocos2d::exte
 
 ssize_t CLayerArchive::numberOfCellsInTableView(cocos2d::extension::TableView *table)
 {
-    return 20;
+    auto data = CDataManager::getInstance()->getDataJournal()->getArchives();
+    return data.size();
+}
+
+
+void CLayerArchive::updateUI()
+{
+    m_pTableView->reloadData();
+}
+
+void CLayerArchive::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
+{
+    if (myType == eHttpType::archive_get)
+    {
+        if (rep.status == eHttpStatus::success)
+        {
+            
+        }
+    }
 }
