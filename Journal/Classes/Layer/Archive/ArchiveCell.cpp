@@ -52,13 +52,12 @@ void CArchiveCell::updateCell(int idx)
     this->setLocalZOrder(idx);
     this->removeAllChildren();
     
+
     
-    //    if (idx < info.size()-1)
-    {
-        auto draw = DrawNode::create();
-        draw->drawLine(Point(0, 0), Point(getContentSize().width, 0), Color4F::GRAY);
-        this->addChild(draw);
-    }
+    auto draw = DrawNode::create();
+    draw->drawLine(Point(0, 0), Point(getContentSize().width, 0), Color4F::GRAY);
+    this->addChild(draw);
+    
     
     auto data = CDataManager::getInstance()->getDataJournal()->getArchives()[idx];
     

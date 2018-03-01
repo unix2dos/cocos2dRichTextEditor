@@ -52,17 +52,6 @@ void CCommentCell::updateCell(int idx)
     this->setLocalZOrder(idx);
     this->removeAllChildren();
 
-//    {
-//        auto draw = DrawNode::create();
-//        draw->drawLine(Point(0, getContentSize().height), Point(getContentSize().width, getContentSize().height), Color4F::GRAY);
-//        this->addChild(draw);
-//    }
-//    {
-//        auto draw = DrawNode::create();
-//        draw->drawLine(Point(0, 0), Point(getContentSize().width, 0), Color4F::GRAY);
-//        this->addChild(draw);
-//    }
-
     
     auto avater = Sprite::create("avatar_default.png");
     avater->setPosition(Vec2(20, getContentSize().height - 30));

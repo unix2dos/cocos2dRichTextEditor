@@ -11,9 +11,11 @@
 #include "ArchiveCell.h"
 #include "DataManager.h"
 #include "DataJournal.h"
+#include "LayerComment.h"
+#include "RichViewManager.h"
 #include "LayerArchive.h"
 
-#define JOURNALEX_CELL_SIZE 5 //table显示的cell数量
+#define JOURNALEX_CELL_SIZE 4 //table显示的cell数量
 
 
 CLayerArchive::CLayerArchive()
@@ -76,6 +78,14 @@ void CLayerArchive::tableCellTouched(cocos2d::extension::TableView* table, cocos
     {
         return;
     }
+    
+    if (CRichViewManager::getInstance()->getRichViewType() != RichViewType::none)
+    {
+        return;
+    }
+    auto data = CDataManager::getInstance()->getDataJournal()->getArchives();
+    int idx = static_cast<int>(cell->getIdx());
+    CRichViewManager::getInstance()->showJournal(data[idx], false);
 }
 
 cocos2d::Size CLayerArchive::tableCellSizeForIndex(cocos2d::extension::TableView *table, ssize_t idx)
@@ -108,7 +118,19 @@ void CLayerArchive::updateUI()
 
 void CLayerArchive::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
 {
-    if (myType == eHttpType::archive_get)
+    if (myType == eHttpType::comment_list)
+    {
+        if (rep.status == eHttpStatus::success && this->isVisible())
+        {
+            if (!Director::getInstance()->getRunningScene()->getChildByName("CLayerComment"))
+            {
+                auto layerComment = CLayerComment::create();
+                layerComment->setName("CLayerComment");
+                Director::getInstance()->getRunningScene()->addChild(layerComment);//直接加到最上面
+            }
+        }
+    }
+    else if (myType == eHttpType::archive_get)
     {
         if (rep.status == eHttpStatus::success)
         {

@@ -172,15 +172,15 @@ void CLayerMain::setMainStatus(MainStatus status)
         case MainStatus::Archive:
         {
             //只需要第一次请求
-            if (m_mapLayers.find("Archive")  == m_mapLayers.end())
-            {
+//            if (m_mapLayers.find("Archive")  == m_mapLayers.end())
+//            {
                 auto dataJournal = CDataManager::getInstance()->getDataJournal();
                 dataJournal->requestArchive();
-            }
-            else
-            {
-                _showArchive();
-            }
+//            }
+//            else
+//            {
+//                _showArchive();
+//            }
         }
             break;
         case MainStatus::JournalEx:

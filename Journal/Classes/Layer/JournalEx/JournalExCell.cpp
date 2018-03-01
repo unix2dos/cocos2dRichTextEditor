@@ -91,7 +91,7 @@ void CJournalExCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     this->addChild(labelPreview);
     
     
-    auto btnLike = Button::create("btn_like1.png");
+    auto btnLike = Button::create("btn_like1.png");//TODO: 是否like1.png
     btnLike->setPosition(Vec2(70, 30));
     this->addChild(btnLike);
     btnLike->addClickEventListener([=](Ref* r){

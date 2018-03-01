@@ -76,24 +76,23 @@ void CDataJournal::parseJournalsData(HttpResponseInfo rep)
 void CDataJournal::parseArchives(HttpResponseInfo rep)
 {
     m_vecArchives.clear();
-    auto data = rep.jsonRoot["data"];
-//    auto archives = data["journals"];
-//    for (auto& it : archives)
-//    {
-//        Journal_Info info;
-//        info.strId = it["id"].asString();
-//        info.strTitle = it["title"].asString();
-//
-//        auto content = parseJson(it["content"].asString());
-//        if (content.isObject())
-//        {
-//            info.strContent = content["text"].asString();
-//        }
-//
-//        info.createTime = atoi(it["timestamp_create"].asString().c_str());
-//        info.isPublic = atoi(it["published"].asString().c_str());
-//        m_vecArchives.push_back(info);
-//    }
+    auto archives = rep.jsonRoot["data"];
+    for (auto& it : archives)
+    {
+        Journal_Info info;
+        info.strId = it["id"].asString();
+        info.strTitle = it["title"].asString();
+
+        auto content = parseJson(it["content"].asString());
+        if (content.isObject())
+        {
+            info.strContent = content["text"].asString();
+        }
+
+        info.createTime = atoi(it["timestamp_create"].asString().c_str());
+        info.isPublic = atoi(it["published"].asString().c_str());
+        m_vecArchives.push_back(info);
+    }
 }
 
 void CDataJournal::parseJournalsEx(HttpResponseInfo rep)
@@ -232,11 +231,6 @@ void CDataJournal::parseCommentAdd(HttpResponseInfo rep)
 }
 
 
-
-
-
-
-
 void CDataJournal::requestArchive()
 {
     CHttpManager::getInstance()->HttpGet(eHttpType::archive_get);
@@ -290,8 +284,8 @@ void CDataJournal::requestReplyComment(std::string userId, std::string commentId
 void CDataJournal::requestLikeJournal(std::string journalId)
 {
     Json::Value root;
-    root["journal_id"] = journalId;
-    root["comment_id"] = "-1";
+    root["journal_id"] = atoi(journalId.c_str());
+    root["comment_id"] = -1;
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::like_add, strJson);
 }
@@ -300,8 +294,8 @@ void CDataJournal::requestLikeJournal(std::string journalId)
 void CDataJournal::requestLikeComment(std::string commentId)
 {
     Json::Value root;
-    root["journal_id"] = "-1";
-    root["comment_id"] = commentId;
+    root["journal_id"] = -1;
+    root["comment_id"] = atoi(commentId.c_str());
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::like_add, strJson);
 }
