@@ -15,9 +15,9 @@ struct Journal_Info
     std::string strContent;//内容
     int createTime;//创建时间
     int modifyTime;//修改时间
-    int lickCount;//点赞数量
     bool isPublic;//是否公开
     bool isLike;//我是否点赞
+    int lickCount;//点赞数量
     
     Journal_Info()
     {
@@ -26,11 +26,14 @@ struct Journal_Info
         strContent = "";
         createTime = 0;
         modifyTime = 0;
-        lickCount = 0;
         isPublic = true;
         isLike = false;
+        lickCount = 0;
     }
 };
+
+
+
 
 struct Comment_Info
 {
@@ -47,6 +50,20 @@ struct Comment_Info
    
     int createTime;//创建时间
     int modifyTime;//修改时间
+    
+    Comment_Info()
+    {
+        strId = "";
+        strContent = "";
+        strJournalId = "";
+        strUserId = "";
+        strUserAlias = "";
+        strReplyCommentId = "";
+        strReplyUserId = "";
+        srtReplyUserAlias = "";
+        createTime = 0;
+        modifyTime = 0;
+    }
 };
 
 class HttpResponseInfo;
@@ -84,7 +101,9 @@ public:
     void requestAddComment(std::string text);
     void requestReplyComment(std::string userId, std::string commentId, std::string text);
     
-    void requestLikeJournal(std::string journalId);
+    void requestAddLikeJournal(std::string journalId);
+    void requestDelLikeJournal(std::string journalId);
+    
     void requestLikeComment(std::string commentId);
     
 private:

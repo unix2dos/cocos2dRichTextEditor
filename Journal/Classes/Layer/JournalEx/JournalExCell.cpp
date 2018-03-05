@@ -91,16 +91,26 @@ void CJournalExCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     this->addChild(labelPreview);
     
     
-    auto btnLike = Button::create("btn_like1.png");//TODO: 是否like1.png
+    std::string strLike = data.isLike ? "btn_like2.png":"btn_like1.png";
+    auto btnLike = Button::create(strLike);
     btnLike->setPosition(Vec2(70, 30));
     this->addChild(btnLike);
     btnLike->addClickEventListener([=](Ref* r){
         //请求喜欢日志
         auto dataJournal = CDataManager::getInstance()->getDataJournal();
-        dataJournal->requestLikeJournal(data.strId);
+        if (data.isLike)
+        {
+            btnLike->init("btn_like1.png");
+            dataJournal->requestDelLikeJournal(data.strId);
+        }
+        else
+        {
+            btnLike->init("btn_like2.png");
+            dataJournal->requestAddLikeJournal(data.strId);
+        }
     });
     
-    
+
     auto btnComment = Button::create("btn_comment.png");
     btnComment->setPosition(Vec2(150, 30));
     this->addChild(btnComment);
@@ -109,4 +119,5 @@ void CJournalExCell::updateCell(const std::vector<Journal_Info>&info, int idx)
         auto dataJournal = CDataManager::getInstance()->getDataJournal();
         dataJournal->requestCommentList(data.strId);
     });
+    btnComment->setVisible(data.isLike);
 }
