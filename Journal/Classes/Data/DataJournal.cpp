@@ -135,6 +135,9 @@ void CDataJournal::parseUpdateJournal(HttpResponseInfo rep)
 
 
 
+
+
+
 void CDataJournal::parseArchives(HttpResponseInfo rep)
 {
     m_vecArchives.clear();
@@ -252,7 +255,7 @@ void CDataJournal::parseCommentAdd(HttpResponseInfo rep)
 
 
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void CDataJournal::requestArchive()
 {
     CHttpManager::getInstance()->HttpGet(eHttpType::archive_get);
@@ -380,4 +383,25 @@ void CDataJournal::requestUpdateJournal(const Journal_Info& info)
     root["published"] = info.isPublic ? "1" : "0";
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::journal_update, strJson);
+}
+
+
+void CDataJournal::requestDeleteJournal(std::string journalId)
+{
+    Json::Value root;
+    root["journal_id"] = journalId;
+    string strJson = buildJson(root);
+//    CHttpManager::getInstance()->HttpPost(eHttpType::journal_delete, strJson);
+    
+    //假想已经删除成功
+    for (auto it = m_vecJournals.begin(); it != m_vecJournals.end(); ++it)
+    {
+        if (it->strId == journalId)
+        {
+            m_vecJournals.erase(it);
+            NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
+            break;
+        }
+    }
+
 }

@@ -20,8 +20,10 @@ public:
     virtual void onExit() override;
 public:
     void updateCell(const std::vector<Journal_Info>&info, int idx);
+    std::string getJournalId();
 private:
     Size m_winSize;
+    std::string m_strJournalId;
 };
 
 #endif /* JournalsCell_hpp */

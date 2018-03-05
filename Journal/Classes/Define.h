@@ -28,6 +28,7 @@ enum class eHttpType
     journal_list,//日志信息, 废弃 CHttpManager::getInstance()->HttpGet(eHttpType::journal_list, "/public=-1");
     journal_add, //添加日志,ok
     journal_update,//修改日志,ok
+    journal_delete,//删除日志
     journal_recommend,//推荐日志,ok
     comment_list,//留言信息,ok
     comment_add,//留言增加,ok
@@ -46,6 +47,8 @@ static std::map<eHttpType, std::string> HTTPURLMAP
     {eHttpType::journal_list,       SERVER_ADDRESS"/journal/list"},
     {eHttpType::journal_add,        SERVER_ADDRESS"/journal/add"},
     {eHttpType::journal_update,     SERVER_ADDRESS"/journal/update"},
+    {eHttpType::journal_delete,     SERVER_ADDRESS"/journal/delete"},
+    
     {eHttpType::journal_recommend,  SERVER_ADDRESS"/journal/recommend"},
     {eHttpType::comment_list,       SERVER_ADDRESS"/comment/get"},
     {eHttpType::comment_add,        SERVER_ADDRESS"/comment/add"},
@@ -74,6 +77,15 @@ enum class NOTIFY_TYPE
 
 ////////XML SAVE////////
 #define DATA_SAVE_COOKIE "DATA_SAVE_COOKIE"
+
+
+////////MOVE DIR////////
+enum class MOVE_DIR
+{
+    NONE,
+    LEFT,
+    RIGHT
+};
 
 
 #endif /* Define_h */

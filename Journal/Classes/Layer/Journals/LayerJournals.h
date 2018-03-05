@@ -41,6 +41,10 @@ public:
     virtual ssize_t numberOfCellsInTableView(cocos2d::extension::TableView *table) override;
     virtual void notifyEvent(NOTIFY_TYPE type, void* pVoid = nullptr) override;
     virtual void endWithHttpData(eHttpType myType, HttpResponseInfo rep) override;
+    
+    bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) override;
+    void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event) override;
+    void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event) override;
 public:
     void setShowType(ShowType type);
 private:
@@ -54,6 +58,9 @@ private:
 private:
     ShowType m_showType;
     std::vector<Journal_Info> m_showJournals;
+    
+    MOVE_DIR m_enumMoveDir;
+    float m_fMoveX;
 };
 
 

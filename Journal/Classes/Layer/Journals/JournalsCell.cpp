@@ -15,6 +15,7 @@
 #include "JournalsCell.h"
 
 CJournalsCell::CJournalsCell()
+:m_strJournalId("")
 {
 }
 
@@ -27,7 +28,6 @@ CJournalsCell::~CJournalsCell()
 void CJournalsCell::onEnter()
 {
     TableViewCell::onEnter();
-
 }
 
 
@@ -48,12 +48,16 @@ bool CJournalsCell::init()
 }
 
 
-
+std::string CJournalsCell::getJournalId()
+{
+    return m_strJournalId;
+}
 
 void CJournalsCell::updateCell(const std::vector<Journal_Info>&info, int idx)
 {
     this->setLocalZOrder(idx);
     this->removeAllChildren();
+
     
 //    if (idx < info.size()-1)
     {
@@ -63,7 +67,7 @@ void CJournalsCell::updateCell(const std::vector<Journal_Info>&info, int idx)
     }
     
     auto data = info[idx];
-    
+    m_strJournalId = data.strId;
     
     auto labelTime = Label::createWithTTF(getTimeString(data.createTime), MY_FONT_CHINESE, 20);
     labelTime->setPosition(Vec2(30, getContentSize().height* .7 + 40));

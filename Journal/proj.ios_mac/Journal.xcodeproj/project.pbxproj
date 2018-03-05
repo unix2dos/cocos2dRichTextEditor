@@ -737,7 +737,6 @@
 				01BA7D5A2026FB56002EA80C /* RichText */,
 				014B0F62202C20FC008D0CA7 /* Http */,
 				014B0F5C202C20FC008D0CA7 /* Notify */,
-				014B0F61202C20FC008D0CA7 /* CommonUtils.h */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -987,6 +986,7 @@
 			children = (
 				014B0F56202B018F008D0CA7 /* Journal.h */,
 				014B0F57202B01B8008D0CA7 /* Define.h */,
+				014B0F61202C20FC008D0CA7 /* CommonUtils.h */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				014B0F5B202C20FC008D0CA7 /* Base */,

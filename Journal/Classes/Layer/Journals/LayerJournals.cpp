@@ -7,6 +7,7 @@
 
 #include "Journal.h"
 #include "Define.h"
+#include "CommonUtils.h"
 #include "NotificationManager.h"
 #include "RichViewManager.h"
 #include "DataManager.h"
@@ -26,6 +27,8 @@ CLayerJournals::CLayerJournals()
 :m_pTableView(nullptr)
 ,m_fTableViewHeight(0.0f)
 ,m_showType(ShowType::None)
+,m_fMoveX(0.0f)
+,m_enumMoveDir(MOVE_DIR::NONE)
 {
     NotificationManager::getInstance()->registerNotification(NOTIFY_TYPE::journal_data_change, this);
 }
@@ -112,7 +115,20 @@ void CLayerJournals::_initUI()
     m_pTableView->setPositionY(MAIN_BOTTOM_HEIGHT);
     this->addChild(m_pTableView);
     m_pTableView->reloadData();
+    
+    
+    Node* pNode = Node::create();
+    this->addChild(pNode);
+    auto touchListener = EventListenerTouchOneByOne::create();
+    touchListener->setSwallowTouches(false);
+    touchListener->onTouchBegan = CC_CALLBACK_2(CLayerJournals::onTouchBegan, this);
+    touchListener->onTouchMoved = CC_CALLBACK_2(CLayerJournals::onTouchMoved, this);
+    touchListener->onTouchEnded = CC_CALLBACK_2(CLayerJournals::onTouchEnded, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, pNode);
 }
+
+
+
 
 
 void CLayerJournals::setShowType(ShowType type)
@@ -186,8 +202,67 @@ void CLayerJournals::scrollViewDidZoom(cocos2d::extension::ScrollView* view)
 {
 }
 
+
+bool CLayerJournals::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+    m_fMoveX = touch->getLocation().x;
+    m_enumMoveDir = MOVE_DIR::NONE;
+    return true;
+}
+void CLayerJournals::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+    float diff = touch->getLocation().x - m_fMoveX;
+    if (isMoveDistanceValid(abs(diff))  &&  abs(diff) > 200)
+    {
+        if (diff > 0)
+        {
+            m_enumMoveDir = MOVE_DIR::RIGHT;
+        }
+        else
+        {
+            m_enumMoveDir = MOVE_DIR::LEFT;
+        }
+    }
+}
+void CLayerJournals::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+
+}
+
 void CLayerJournals::tableCellTouched(cocos2d::extension::TableView* table, cocos2d::extension::TableViewCell* cell)
 {
+    if (m_enumMoveDir == MOVE_DIR::LEFT)
+    {
+        auto pos = cell->getPosition();
+        cell->setPositionX(cell->getPositionX() - 150);
+        
+        auto rect = Sprite::create();
+        rect->setAnchorPoint(Vec2(0,0.5));
+        rect->setTextureRect(Rect(0,0,150,cell->getContentSize().height));
+        rect->setColor(Color3B(255,0,0));
+        rect->setPosition(Vec2(cell->getContentSize().width,cell->getContentSize().height/2));
+        cell->addChild(rect);
+        
+        auto btn = Button::create("btn_delete.png");
+        btn->setPosition(Vec2(rect->getContentSize().width/2,rect->getContentSize().height/2));
+        btn->addClickEventListener([=](Ref* r){
+            
+            auto journalCell = dynamic_cast<CJournalsCell*>(cell);
+            auto data = CDataManager::getInstance()->getDataJournal();
+            data->requestDeleteJournal(journalCell->getJournalId());
+            
+            
+//            table->removeCellAtIndex(cell->getIdx());
+//            table->reloadData();
+            
+        });
+        rect->addChild(btn);
+        
+
+        return;
+    }
+
+    
     auto tableCell = dynamic_cast<CJournalsCell*>(cell);
     if (!tableCell)
     {

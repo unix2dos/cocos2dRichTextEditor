@@ -85,4 +85,18 @@ static std::string removeHtmlTags(std::string html)
 }
 
 
+/* 移动距离是否有效 */
+#define MOVE_INCH            7.0f/160.0f
+static bool isMoveDistanceValid(float fDistance)
+{
+    auto glview = Director::getInstance()->getOpenGLView();
+    float factor = ( glview->getScaleX() + glview->getScaleY() ) / 2;
+    float fValue = fDistance * factor / Device::getDPI();
+    if(fabs(fValue) < MOVE_INCH)
+    {
+        return false;
+    }
+    return true;
+}
+
 #endif /* CommonUtils_hpp */
