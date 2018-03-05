@@ -391,7 +391,7 @@ void CDataJournal::requestDeleteJournal(std::string journalId)
     Json::Value root;
     root["journal_id"] = journalId;
     string strJson = buildJson(root);
-//    CHttpManager::getInstance()->HttpPost(eHttpType::journal_delete, strJson);
+    CHttpManager::getInstance()->HttpPost(eHttpType::journal_delete, strJson);
     
     //假想已经删除成功
     for (auto it = m_vecJournals.begin(); it != m_vecJournals.end(); ++it)
