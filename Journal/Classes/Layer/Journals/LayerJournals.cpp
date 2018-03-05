@@ -243,17 +243,19 @@ void CLayerJournals::tableCellTouched(cocos2d::extension::TableView* table, coco
         rect->setPosition(Vec2(cell->getContentSize().width,cell->getContentSize().height/2));
         cell->addChild(rect);
         
+        
+        auto data = CDataManager::getInstance()->getDataJournal();
+        std::string strId = dynamic_cast<CJournalsCell*>(cell)->getJournalId();
+        
         auto btn = Button::create("btn_delete.png");
         btn->setPosition(Vec2(rect->getContentSize().width/2,rect->getContentSize().height/2));
         btn->addClickEventListener([=](Ref* r){
             
-            auto journalCell = dynamic_cast<CJournalsCell*>(cell);
-            auto data = CDataManager::getInstance()->getDataJournal();
-            data->requestDeleteJournal(journalCell->getJournalId());
-            
-            
-//            table->removeCellAtIndex(cell->getIdx());
+            data->requestDeleteJournal(strId);
+
+//            auto pos = table->getContentOffset();
 //            table->reloadData();
+//            table->setContentOffset(pos);
             
         });
         rect->addChild(btn);
