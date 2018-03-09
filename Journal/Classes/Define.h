@@ -18,7 +18,7 @@
 
 
 ////////HTTP////////
-#define SERVER_ADDRESS "http://journalex.us:5000" //服务器地址
+#define SERVER_ADDRESS "http://127.0.0.1:8080" //服务器地址
 enum class eHttpType
 {
     none = 0,

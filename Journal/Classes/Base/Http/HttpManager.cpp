@@ -164,7 +164,7 @@ void CHttpManager::_onHttpRequestCompleted(HttpClient *sender, HttpResponse *res
     }
 
     //解析Cookie
-    _parseCookie(response->getResponseHeader());
+    //    _parseCookie(response->getResponseHeader());//TODO: 验证不加cookie的形式
     
     //数据解析,错误统一处理
     CDataManager::getInstance()->parseServeData(myType, m_mapHttpStatus[myType]);

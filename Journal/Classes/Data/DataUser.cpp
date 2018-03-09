@@ -43,7 +43,7 @@ const User_Info& CDataUser::getUserInfo()
 void CDataUser::requestSignUp(std::string strEmail, std::string strPass, std::string strAlias)
 {
     Json::Value root;
-    root["username"] = strEmail;
+    root["email"] = strEmail;
     root["password"] = strPass;
     root["alias"] = strAlias;
     string strJson = buildJson(root);
@@ -54,7 +54,7 @@ void CDataUser::requestSignUp(std::string strEmail, std::string strPass, std::st
 void CDataUser::requestLogin(std::string strEmail, std::string strPass)
 {
     Json::Value root;
-    root["username"] = strEmail;
+    root["email"] = strEmail;
     root["password"] = strPass;
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::login, strJson);
