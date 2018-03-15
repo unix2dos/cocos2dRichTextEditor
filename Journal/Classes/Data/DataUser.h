@@ -11,21 +11,17 @@
 
 struct User_Info
 {
-    std::string username;
+    std::string email;
     std::string avatar;
     std::string alias;
     int userid;
-    int journal_count;
-    int likes;
     
     User_Info()
     {
-        username = "";
+        email = "";
         avatar = "";
         alias = "";
         userid = -1;
-        journal_count = 0;
-        likes = 0;
     }
 };
 
