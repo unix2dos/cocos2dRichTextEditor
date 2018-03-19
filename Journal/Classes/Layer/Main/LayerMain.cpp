@@ -67,6 +67,9 @@ void CLayerMain::_initUI()
     
     //显示默认
     this->setMainStatus(m_status);
+    
+    //请求日志信息
+    CDataManager::getInstance()->getDataJournal()->requestJournallist();
 }
 
 
@@ -127,7 +130,14 @@ void CLayerMain::_initButtons()
 
 void CLayerMain::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
 {
-    if (myType == eHttpType::journal_recommend)
+    if (myType == eHttpType::journal_list)
+    {
+//        if (rep.status == eHttpStatus::success && m_status == MainStatus::Journals)
+//        {
+//            _showJournals();
+//        }
+    }
+    else if (myType == eHttpType::journal_recommend)
     {
         if (rep.status == eHttpStatus::success && m_status == MainStatus::JournalEx)
         {
@@ -165,22 +175,15 @@ void CLayerMain::setMainStatus(MainStatus status)
     switch (status) {
         case MainStatus::Journals:
         {
-            //不用请求, getinfo就获得了
+            //只显示一次, 通知刷新
             _showJournals();
         }
             break;
         case MainStatus::Archive:
         {
-            //只需要第一次请求
-//            if (m_mapLayers.find("Archive")  == m_mapLayers.end())
-//            {
-                auto dataJournal = CDataManager::getInstance()->getDataJournal();
-                dataJournal->requestArchive();
-//            }
-//            else
-//            {
-//                _showArchive();
-//            }
+            //每次都请求
+            auto dataJournal = CDataManager::getInstance()->getDataJournal();
+            dataJournal->requestArchive();
         }
             break;
         case MainStatus::JournalEx:

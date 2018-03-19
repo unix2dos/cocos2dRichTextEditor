@@ -91,6 +91,7 @@ public:
     void parseCommentAdd(HttpResponseInfo rep);
     
 public:
+    void requestJournallist();
     void requestAddJournal(const Journal_Info& info);
     void requestUpdateJournal(const Journal_Info& info);
     void requestDeleteJournal(std::string journalId);

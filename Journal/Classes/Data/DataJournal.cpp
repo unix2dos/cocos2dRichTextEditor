@@ -58,16 +58,11 @@ void CDataJournal::parseJournalsData(HttpResponseInfo rep)
         Journal_Info info;
         info.strId = it["id"].asString();
         info.strTitle = it["title"].asString();
-        
-        auto content = parseJson(it["content"].asString());
-        if (content.isObject())
-        {
-            info.strContent = content["text"].asString();
-        }
- 
-        info.createTime = atoi(it["timestamp_create"].asString().c_str());
-        info.isPublic = atoi(it["published"].asString().c_str());
-        info.isLike = atoi(it["liked_by_me"].asString().c_str());
+        info.strContent = it["content"].asString();
+        info.createTime = atoi(it["create_time"].asString().c_str());
+        info.modifyTime = atoi(it["update_time"].asString().c_str());
+        info.isPublic = atoi(it["public"].asString().c_str());
+//        info.isLike = atoi(it["liked_by_me"].asString().c_str());
         info.lickCount = atoi(it["like_count"].asString().c_str());
         m_vecJournals.push_back(info);
     }
@@ -78,21 +73,15 @@ void CDataJournal::parseJournalsData(HttpResponseInfo rep)
 
 void CDataJournal::parseAddJournal(HttpResponseInfo rep)
 {
-    auto it = rep.jsonRoot["data"];
+    auto it = rep.jsonRoot["data"]["journal"];
     Journal_Info info;
     info.strId = it["id"].asString();
     info.strTitle = it["title"].asString();
-    
-    auto content = parseJson(it["content"].asString());
-    if (content.isObject())
-    {
-        info.strContent = content["text"].asString();
-    }
-    
-    info.createTime = atoi(it["timestamp_create"].asString().c_str());
-    info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
-    info.isPublic = atoi(it["published"].asString().c_str());
-    info.isLike = atoi(it["liked_by_me"].asString().c_str());
+    info.strContent = it["content"].asString();
+    info.createTime = atoi(it["create_time"].asString().c_str());
+    info.modifyTime = atoi(it["update_time"].asString().c_str());
+    info.isPublic = atoi(it["public"].asString().c_str());
+//    info.isLike = atoi(it["liked_by_me"].asString().c_str());
     info.lickCount = atoi(it["like_count"].asString().c_str());
     m_vecJournals.push_back(info);
     
@@ -103,21 +92,15 @@ void CDataJournal::parseAddJournal(HttpResponseInfo rep)
 
 void CDataJournal::parseUpdateJournal(HttpResponseInfo rep)
 {
-    auto it = rep.jsonRoot["data"];
+    auto it = rep.jsonRoot["data"]["journal"];
     Journal_Info info;
     info.strId = it["id"].asString();
     info.strTitle = it["title"].asString();
-    
-    auto content = parseJson(it["content"].asString());
-    if (content.isObject())
-    {
-        info.strContent = content["text"].asString();
-    }
-    
-    info.createTime = atoi(it["timestamp_create"].asString().c_str());
-    info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
-    info.isPublic = atoi(it["published"].asString().c_str());
-    info.isLike = atoi(it["liked_by_me"].asString().c_str());
+    info.strContent = it["content"].asString();
+    info.createTime = atoi(it["create_time"].asString().c_str());
+    info.modifyTime = atoi(it["update_time"].asString().c_str());
+    info.isPublic = atoi(it["public"].asString().c_str());
+//    info.isLike = atoi(it["liked_by_me"].asString().c_str());
     info.lickCount = atoi(it["like_count"].asString().c_str());
     
     for (auto& it : m_vecJournals) {
@@ -337,6 +320,11 @@ void CDataJournal::requestLikeComment(std::string commentId)
 
 
 
+void CDataJournal::requestJournallist()
+{
+    CHttpManager::getInstance()->HttpGet(eHttpType::journal_list);
+}
+
 void CDataJournal::requestAddJournal(const Journal_Info& info)
 {
     Journal_Info info_bak = info;
@@ -355,15 +343,9 @@ void CDataJournal::requestAddJournal(const Journal_Info& info)
     }
     
     Json::Value root;
-    root["tags"] = "none";
     root["title"] = info_bak.strTitle;
-    
-    Json::Value content;
-    content["text"] = info_bak.strContent;
-    root["content"] = buildJson(content);
-    
-    
-    root["published"] = info_bak.isPublic ? "1" : "0";
+    root["content"] = info_bak.strContent;
+    root["public"] = info_bak.isPublic ? "1" : "0";
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::journal_add, strJson);
 }
@@ -373,14 +355,9 @@ void CDataJournal::requestUpdateJournal(const Journal_Info& info)
 {
     Json::Value root;
     root["id"] = info.strId;
-    root["tags"] = "none";
     root["title"] = info.strTitle;
-    
-    Json::Value content;
-    content["text"] = info.strContent;
-    root["content"] = buildJson(content);
-    
-    root["published"] = info.isPublic ? "1" : "0";
+    root["content"] = info.strContent;
+    root["public"] = info.isPublic ? "1" : "0";
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::journal_update, strJson);
 }
@@ -389,11 +366,11 @@ void CDataJournal::requestUpdateJournal(const Journal_Info& info)
 void CDataJournal::requestDeleteJournal(std::string journalId)
 {
     Json::Value root;
-    root["journal_id"] = journalId;
+    root["id"] = journalId;
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::journal_delete, strJson);
     
-    //假想已经删除成功
+    //假想已经删除成功, 因为要立即显示
     for (auto it = m_vecJournals.begin(); it != m_vecJournals.end(); ++it)
     {
         if (it->strId == journalId)

@@ -70,10 +70,12 @@ void CDataManager::parseServeData(eHttpType myType, HttpResponseInfo rep)
         case eHttpType::signup:
         case eHttpType::login:
             m_pDataUser->parseServeData(rep);
-            m_pDataJournal->parseJournalsData(rep);
             break;
+        case eHttpType::journal_list:
+            m_pDataJournal->parseJournalsData(rep);
         case eHttpType::journal_add:
             m_pDataJournal->parseAddJournal(rep);
+            break;
         case eHttpType::journal_update:
             m_pDataJournal->parseUpdateJournal(rep);
             break;

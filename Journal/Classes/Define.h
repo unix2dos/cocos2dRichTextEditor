@@ -25,7 +25,7 @@ enum class eHttpType
     getinfo,     //获取用户信息
     signup,      //注册,ok
     login,       //登录,ok
-    journal_list,//日志信息, 废弃 CHttpManager::getInstance()->HttpGet(eHttpType::journal_list, "/public=-1");
+    journal_list,//日志信息
     journal_add, //添加日志,ok
     journal_update,//修改日志,ok
     journal_delete,//删除日志
