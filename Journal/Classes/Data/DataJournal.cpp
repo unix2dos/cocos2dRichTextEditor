@@ -59,11 +59,11 @@ void CDataJournal::parseJournalsData(HttpResponseInfo rep)
         info.strId = it["id"].asString();
         info.strTitle = it["title"].asString();
         info.strContent = it["content"].asString();
+        info.isPublic = atoi(it["public"].asString().c_str());
+        info.isLike = atoi(it["like_by_me"].asString().c_str());
+        info.lickCount = atoi(it["like_count"].asString().c_str());
         info.createTime = atoi(it["create_time"].asString().c_str());
         info.modifyTime = atoi(it["update_time"].asString().c_str());
-        info.isPublic = atoi(it["public"].asString().c_str());
-//        info.isLike = atoi(it["liked_by_me"].asString().c_str());
-        info.lickCount = atoi(it["like_count"].asString().c_str());
         m_vecJournals.push_back(info);
     }
     
@@ -78,11 +78,11 @@ void CDataJournal::parseAddJournal(HttpResponseInfo rep)
     info.strId = it["id"].asString();
     info.strTitle = it["title"].asString();
     info.strContent = it["content"].asString();
+    info.isPublic = atoi(it["public"].asString().c_str());
+    info.isLike = atoi(it["liked_by_me"].asString().c_str());
+    info.lickCount = atoi(it["like_count"].asString().c_str());
     info.createTime = atoi(it["create_time"].asString().c_str());
     info.modifyTime = atoi(it["update_time"].asString().c_str());
-    info.isPublic = atoi(it["public"].asString().c_str());
-//    info.isLike = atoi(it["liked_by_me"].asString().c_str());
-    info.lickCount = atoi(it["like_count"].asString().c_str());
     m_vecJournals.push_back(info);
     
     NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
@@ -97,11 +97,11 @@ void CDataJournal::parseUpdateJournal(HttpResponseInfo rep)
     info.strId = it["id"].asString();
     info.strTitle = it["title"].asString();
     info.strContent = it["content"].asString();
+    info.isPublic = atoi(it["public"].asString().c_str());
+    info.isLike = atoi(it["liked_by_me"].asString().c_str());
+    info.lickCount = atoi(it["like_count"].asString().c_str());
     info.createTime = atoi(it["create_time"].asString().c_str());
     info.modifyTime = atoi(it["update_time"].asString().c_str());
-    info.isPublic = atoi(it["public"].asString().c_str());
-//    info.isLike = atoi(it["liked_by_me"].asString().c_str());
-    info.lickCount = atoi(it["like_count"].asString().c_str());
     
     for (auto& it : m_vecJournals) {
         if (it.strId == info.strId) {
@@ -112,10 +112,6 @@ void CDataJournal::parseUpdateJournal(HttpResponseInfo rep)
     
     NotificationManager::getInstance()->notify(NOTIFY_TYPE::journal_data_change);
 }
-
-
-
-
 
 
 
@@ -154,18 +150,13 @@ void CDataJournal::parseJournalsEx(HttpResponseInfo rep)
         Journal_Info info;
         info.strId = it["id"].asString();
         info.strTitle = it["title"].asString();
-        
-        auto content = parseJson(it["content"].asString());
-        if (content.isObject())
-        {
-            info.strContent = content["text"].asString();
-        }
-        
-        info.createTime = atoi(it["timestamp_create"].asString().c_str());
-        info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
+        info.strContent = it["content"].asString();
         info.isPublic = atoi(it["published"].asString().c_str());
         info.isLike = atoi(it["liked_by_me"].asString().c_str());
         info.lickCount = atoi(it["like_count"].asString().c_str());
+        info.createTime = atoi(it["timestamp_create"].asString().c_str());
+        info.modifyTime = atoi(it["timestamp_update"].asString().c_str());
+        
         m_vecJournalsEx.push_back(info);
     }
 }
@@ -184,13 +175,8 @@ void CDataJournal::parseCommentsList(HttpResponseInfo rep)
     {
         Comment_Info info;
         info.strId = it["id"].asString();
-        auto content = parseJson(it["content"].asString());
-        if (content.isObject())
-        {
-            info.strContent = content["text"].asString();
-        }
+        info.strContent = it["content"].asString();
         info.strJournalId = it["journal_id"].asString();
-        
         
         info.strUserId = it["user_id"].asString();
         info.strUserAlias = it["Commenter_alias"].asString();
@@ -213,11 +199,7 @@ void CDataJournal::parseCommentAdd(HttpResponseInfo rep)
     
     Comment_Info info;
     info.strId = it["id"].asString();
-    auto content = parseJson(it["content"].asString());
-    if (content.isObject())
-    {
-        info.strContent = content["text"].asString();
-    }
+    info.strContent = it["content"].asString();
     info.strJournalId = it["journal_id"].asString();
     
     
