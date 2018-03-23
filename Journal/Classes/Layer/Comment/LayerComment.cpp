@@ -20,7 +20,6 @@ CLayerComment::CLayerComment()
 ,m_fTableViewHeight(0.0f)
 ,m_type(CommentType::none)
 ,m_editBox(nullptr)
-,m_strReplyUserId("")
 ,m_strReplyCommentId("")
 ,m_strPlaceholder("")
 {
@@ -142,7 +141,7 @@ void CLayerComment::_addComment()
         {
             text = text.substr(m_strPlaceholder.size());
         }
-        dataJournal->requestReplyComment(m_strReplyUserId, m_strReplyCommentId, text);
+        dataJournal->requestReplyComment(m_strReplyCommentId, text);
     }
     //置空
     m_editBox->setText("");
@@ -159,7 +158,6 @@ void CLayerComment::replyComment(int idx)
     m_strPlaceholder = "@" + data.strUserAlias + ": ";
     m_editBox->setText(m_strPlaceholder.c_str());
     
-    m_strReplyUserId = data.strUserId;
     m_strReplyCommentId = data.strId;
 }
 
@@ -228,7 +226,7 @@ ssize_t CLayerComment::numberOfCellsInTableView(cocos2d::extension::TableView *t
 
 void CLayerComment::endWithHttpData(eHttpType myType, HttpResponseInfo rep)
 {
-    if (myType == eHttpType::comment_add || myType == eHttpType::comment_reply)
+    if (myType == eHttpType::comment_add)
     {
         if (rep.status == eHttpStatus::success)
         {

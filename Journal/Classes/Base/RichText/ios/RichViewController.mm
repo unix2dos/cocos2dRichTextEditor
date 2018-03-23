@@ -26,12 +26,12 @@
     self.alwaysShowToolbar = NO;
     self.receiveEditorDidChangeEvents = NO;
     self.formatHTML = NO;
-    self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold
-                                 ,ZSSRichTextEditorToolbarItalic
-                                 ,ZSSRichTextEditorToolbarUnderline
-                                 ,ZSSRichTextEditorToolbarUnorderedList
-                                 ,ZSSRichTextEditorToolbarOrderedList
-                                 ];
+//    self.enabledToolbarItems = @[ZSSRichTextEditorToolbarBold
+//                                 ,ZSSRichTextEditorToolbarItalic
+//                                 ,ZSSRichTextEditorToolbarUnderline
+//                                 ,ZSSRichTextEditorToolbarUnorderedList
+//                                 ,ZSSRichTextEditorToolbarOrderedList
+//                                 ];//只显示这么几个
     //    self.title = @"";
     //    self.placeholder = @"Please tap to start editing";
     //    NSString *html = @"<h1>Large Editor</h1>"

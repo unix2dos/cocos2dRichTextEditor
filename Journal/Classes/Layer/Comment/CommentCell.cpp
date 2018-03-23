@@ -68,10 +68,7 @@ void CCommentCell::updateCell(int idx)
     labelName->enableBold();
     this->addChild(labelName);
     
-    if (data.strReplyCommentId != "None")
-    {
-        data.strContent = "@" + data.srtReplyUserAlias + ": " + data.strContent;
-    }
+    
     auto labelContent = Label::createWithTTF(data.strContent, MY_FONT_CHINESE, 30);
     labelContent->setPosition(Vec2(130, getContentSize().height - 90));
     labelContent->setTextColor(Color4B(0,0,0,255));

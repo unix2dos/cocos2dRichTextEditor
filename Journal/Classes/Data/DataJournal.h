@@ -40,13 +40,9 @@ struct Comment_Info
     std::string strId;//评论id
     std::string strContent;//评论内容
     std::string strJournalId;//日志id,可以用来校验
-    
-    std::string strUserId;//评论者userId
-    std::string strUserAlias;//评论者alias
-    
-    std::string strReplyCommentId;//如果有说明是回复的评论
-    std::string strReplyUserId;//回复的用户id
-    std::string srtReplyUserAlias;//回复的用户alias
+        
+    std::string strUserAlias;//评论作者
+    std::string strReplyUserAlias;//这条评论回复的谁
    
     int createTime;//创建时间
     int modifyTime;//修改时间
@@ -56,11 +52,8 @@ struct Comment_Info
         strId = "";
         strContent = "";
         strJournalId = "";
-        strUserId = "";
         strUserAlias = "";
-        strReplyCommentId = "";
-        strReplyUserId = "";
-        srtReplyUserAlias = "";
+        strReplyUserAlias = "";
         createTime = 0;
         modifyTime = 0;
     }
@@ -101,7 +94,7 @@ public:
     
     void requestCommentList(std::string journalId);
     void requestAddComment(std::string text);
-    void requestReplyComment(std::string userId, std::string commentId, std::string text);
+    void requestReplyComment(std::string commentId, std::string text);
     
     void requestAddLikeJournal(std::string journalId);
     void requestDelLikeJournal(std::string journalId);

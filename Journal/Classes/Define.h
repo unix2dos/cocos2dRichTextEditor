@@ -32,7 +32,6 @@ enum class eHttpType
     journal_recommend,//推荐日志,ok
     comment_list,//留言信息,ok
     comment_add,//留言增加,ok
-    comment_reply,//留言回复
     comment_update,//留言更新
     comment_delete,//留言删除
     like_add,//喜欢添加
@@ -50,9 +49,8 @@ static std::map<eHttpType, std::string> HTTPURLMAP
     {eHttpType::journal_delete,     SERVER_ADDRESS"/journal/delete"},
     
     {eHttpType::journal_recommend,  SERVER_ADDRESS"/journal/recommend"},
-    {eHttpType::comment_list,       SERVER_ADDRESS"/comment/get"},
+    {eHttpType::comment_list,       SERVER_ADDRESS"/comment/list"},
     {eHttpType::comment_add,        SERVER_ADDRESS"/comment/add"},
-    {eHttpType::comment_reply,      SERVER_ADDRESS"/comment/addreply"},
     {eHttpType::comment_update,     SERVER_ADDRESS"/comment/update"},
     {eHttpType::comment_delete,     SERVER_ADDRESS"/comment/delete"},
     {eHttpType::like_add,           SERVER_ADDRESS"/like/add"},

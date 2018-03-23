@@ -165,20 +165,15 @@ void CDataJournal::parseJournalsEx(HttpResponseInfo rep)
 void CDataJournal::parseCommentsList(HttpResponseInfo rep)
 {
     m_vecComments.clear();
-    auto comments = rep.jsonRoot["data"];
+    auto comments = rep.jsonRoot["data"]["comments"];
     for (auto& it : comments)
     {
         Comment_Info info;
         info.strId = it["id"].asString();
         info.strContent = it["content"].asString();
         info.strJournalId = it["journal_id"].asString();
-        
-        info.strUserId = it["user_id"].asString();
-        info.strUserAlias = it["Commenter_alias"].asString();
-        
-        info.strReplyCommentId = it["target_comment_id"].asString();
-        info.strReplyUserId = it["target_user_id"].asString();
-        info.srtReplyUserAlias = it["Targeter_alias"].asString();
+        info.strUserAlias = it["user_alias"].asString();
+        info.strReplyUserAlias = it["reply_user_alias"].asString();
     
         info.createTime = atoi(it["create_time"].asString().c_str());
         info.modifyTime = atoi(it["update_time"].asString().c_str());
@@ -190,21 +185,15 @@ void CDataJournal::parseCommentsList(HttpResponseInfo rep)
 
 void CDataJournal::parseCommentAdd(HttpResponseInfo rep)
 {
-    auto it = rep.jsonRoot["data"];
+    auto it = rep.jsonRoot["data"]["comment"];
     
     Comment_Info info;
     info.strId = it["id"].asString();
     info.strContent = it["content"].asString();
     info.strJournalId = it["journal_id"].asString();
-    
-    
-    info.strUserId = it["user_id"].asString();
-    info.strUserAlias = it["Commenter_alias"].asString();
-    
-    info.strReplyCommentId = it["target_comment_id"].asString();
-    info.strReplyUserId = it["target_user_id"].asString();
-    info.srtReplyUserAlias = it["Targeter_alias"].asString();
-    
+    info.strUserAlias = it["user_alias"].asString();
+    info.strReplyUserAlias = it["reply_user_alias"].asString();
+
     info.createTime = atoi(it["create_time"].asString().c_str());
     info.modifyTime = atoi(it["update_time"].asString().c_str());
     
@@ -229,7 +218,7 @@ void CDataJournal::requestJournalsEx()
 void CDataJournal::requestCommentList(std::string journalId)
 {
     m_strJournalId = journalId;
-    std::string str = "/jid=" + journalId;
+    std::string str = "?JournalId=" + journalId;
     CHttpManager::getInstance()->HttpGet(eHttpType::comment_list, str);
 }
 
@@ -241,15 +230,13 @@ void CDataJournal::requestAddComment(std::string text)
     }
     Json::Value root;
     root["journal_id"] = m_strJournalId;
-    Json::Value content;
-    content["text"] = text;
-    root["content"] = buildJson(content);
+    root["content"] = text;
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
 }
 
 
-void CDataJournal::requestReplyComment(std::string userId, std::string commentId, std::string text)
+void CDataJournal::requestReplyComment(std::string commentId, std::string text)
 {
     if (text == "")
     {
@@ -257,13 +244,10 @@ void CDataJournal::requestReplyComment(std::string userId, std::string commentId
     }
     Json::Value root;
     root["journal_id"] = m_strJournalId;
-    Json::Value content;
-    content["text"] = text;
-    root["content"] = buildJson(content);
-    root["target_user_id"] = userId;
-    root["target_comment_id"] = commentId;
+    root["content"] = text;
+    root["reply_comment_id"] = commentId;
     string strJson = buildJson(root);
-    CHttpManager::getInstance()->HttpPost(eHttpType::comment_reply, strJson);
+    CHttpManager::getInstance()->HttpPost(eHttpType::comment_add, strJson);
 }
 
 void CDataJournal::requestAddLikeJournal(std::string journalId)

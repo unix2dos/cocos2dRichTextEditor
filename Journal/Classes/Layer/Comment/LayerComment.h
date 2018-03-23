@@ -58,7 +58,6 @@ private:
 private:
     CommentType m_type;
     ui::EditBox* m_editBox;
-    std::string m_strReplyUserId;
     std::string m_strReplyCommentId;//存下来现在回复的id,因为即将会发送请求
     std::string m_strPlaceholder;
 };
