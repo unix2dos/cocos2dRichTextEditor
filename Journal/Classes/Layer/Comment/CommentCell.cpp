@@ -68,8 +68,12 @@ void CCommentCell::updateCell(int idx)
     labelName->enableBold();
     this->addChild(labelName);
     
-    
-    auto labelContent = Label::createWithTTF(data.strContent, MY_FONT_CHINESE, 30);
+    std::string strContent = data.strContent;
+    if (data.strReplyUserAlias != "")
+    {
+        strContent = "@" + data.strReplyUserAlias + ": " + strContent;
+    }
+    auto labelContent = Label::createWithTTF(strContent, MY_FONT_CHINESE, 30);
     labelContent->setPosition(Vec2(130, getContentSize().height - 90));
     labelContent->setTextColor(Color4B(0,0,0,255));
     labelContent->setAnchorPoint(Vec2(0, 1));

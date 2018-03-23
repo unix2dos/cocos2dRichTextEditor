@@ -273,7 +273,7 @@ void CDataJournal::requestDelLikeJournal(std::string journalId)
 void CDataJournal::requestLikeComment(std::string commentId)
 {
     Json::Value root;
-    root["like_type"] = "1";
+    root["like_type"] = "2";
     root["like_id"] = commentId;
     string strJson = buildJson(root);
     CHttpManager::getInstance()->HttpPost(eHttpType::like_add, strJson);
