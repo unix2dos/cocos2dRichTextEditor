@@ -18,7 +18,9 @@
 
 
 ////////HTTP////////
-#define SERVER_ADDRESS "http://127.0.0.1:8080" //服务器地址
+//#define SERVER_ADDRESS "http://127.0.0.1:8080" //服务器地址
+#define SERVER_ADDRESS "http://140.82.56.114:8080" //线上地址
+
 enum class eHttpType
 {
     none = 0,
