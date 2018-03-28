@@ -1,8 +1,8 @@
 # Journal Client
 
-Jounal是一个可以跨平台写日志, 分享日志, 查看别人日志, 收藏并且可以评论日志的APP
+Jounal is an APP that can cross-platform write logs, share logs, view other logs, bookmark and comment logs
 
-cocos2d + RichTextEditor implement Journal
+It implement by cocos2d + RichTextEditor
 
 
 ### TextEditor
