@@ -1,5 +1,17 @@
-# cocos2dRichTextEditor
+# Journal Client
+
+Jounal是一个可以跨平台写日志, 分享日志, 查看别人日志, 收藏并且可以评论日志的APP
+
 cocos2d + RichTextEditor implement Journal
+
+
+### TextEditor
+
+Object-C : https://github.com/nnhubbard/ZSSRichTextEditor
+
+Swift: https://github.com/wasabeef/richeditor-android
+
+Android: https://github.com/cjwirth/RichEditorView
 
 
 ### cocos2d use RictTextEditor
