@@ -14,6 +14,11 @@ Swift: https://github.com/wasabeef/richeditor-android
 Android: https://github.com/cjwirth/RichEditorView
 
 
+### Server
+
+Server: https://github.com/unix2dos/Journal
+
+
 ### cocos2d use RictTextEditor
 
 * uiviewController add cocos2d root controller
